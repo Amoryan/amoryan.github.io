@@ -106,7 +106,7 @@
 
 
 
-  <meta name="keywords" content="严方雄的个人博客" />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -117,14 +117,20 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="留言">
-<meta property="og:url" content="http://yanfangxiong.com/comments/index.html">
+<meta name="description" content="前言　　Android运行时权限机制 是在 API 23(Android M) 中提出来的，今年已经发布了API 26、27(Android O)，已经过去几个版本了，但是为什么我要写这个东西。首先，以前在开发的过程中，为了图方便，只是 简单的将build.gradle 中的 targetSdkVersion 设置为 ">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android运行时权限的处理">
+<meta property="og:url" content="http://yanfangxiong.com/2017/12/14/Android运行时权限的处理/index.html">
 <meta property="og:site_name" content="严方雄的个人博客">
+<meta property="og:description" content="前言　　Android运行时权限机制 是在 API 23(Android M) 中提出来的，今年已经发布了API 26、27(Android O)，已经过去几个版本了，但是为什么我要写这个东西。首先，以前在开发的过程中，为了图方便，只是 简单的将build.gradle 中的 targetSdkVersion 设置为 22，所以基本上没有太多的和运行时权限打交道，但是随着这个人啊越来越老( 帅">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-05T05:01:54.000Z">
+<meta property="og:image" content="http://yanfangxiong.com/images/20171213_001.png">
+<meta property="og:updated_time" content="2017-12-14T03:13:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="留言">
+<meta name="twitter:title" content="Android运行时权限的处理">
+<meta name="twitter:description" content="前言　　Android运行时权限机制 是在 API 23(Android M) 中提出来的，今年已经发布了API 26、27(Android O)，已经过去几个版本了，但是为什么我要写这个东西。首先，以前在开发的过程中，为了图方便，只是 简单的将build.gradle 中的 targetSdkVersion 设置为 22，所以基本上没有太多的和运行时权限打交道，但是随着这个人啊越来越老( 帅">
+<meta name="twitter:image" content="http://yanfangxiong.com/images/20171213_001.png">
 
 
 
@@ -154,13 +160,13 @@
 
 
 
-  <link rel="canonical" href="http://yanfangxiong.com/comments/"/>
+  <link rel="canonical" href="http://yanfangxiong.com/2017/12/14/Android运行时权限的处理/"/>
 
 
 
 
 
-  <title>留言</title>
+  <title>Android运行时权限的处理</title>
   
 
 
@@ -347,33 +353,215 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yanfangxiong.com/2017/12/14/Android运行时权限的处理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="严方雄">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="严方雄的个人博客">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">留言</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <script src="/assets/js/APlayer.min.js"> </script>
+          <h1 class="post-title" itemprop="name headline">Android运行时权限的处理</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-14T09:57:44+08:00">
+                2017-12-14
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-12-14T11:13:56+08:00">
+                2017-12-14
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>　　<strong>Android运行时权限机制</strong> 是在 <strong>API 23(Android M)</strong> 中提出来的，今年已经发布了API 26、27(Android O)，已经过去几个版本了，但是为什么我要写这个东西。首先，以前在开发的过程中，为了图方便，只是 <strong>简单的将build.gradle</strong> 中的 <strong>targetSdkVersion</strong> 设置为 <strong>22</strong>，所以基本上没有太多的和运行时权限打交道，但是随着这个人啊越来越老( <strong>帅</strong> )，觉得不应该躲避新的东西，而应该正视它，不然自己的技术永远都不会得到提高。所以最近打算将targetSdkVersion逐渐升上去，玩点新东西。</p>
+<h1 id="这是什么"><a href="#这是什么" class="headerlink" title="这是什么"></a>这是什么</h1><p>　　在 <strong>API 23</strong> 以前，如果用户在安装应用后，默认是同意了应用所需要的权限(但是Android厂商众多，也有很多手机会弹窗提示用户是否授予权限)。而运行时权限的加入，<strong><font color="#1b8f6e">简化了应用的安装过程，因为用户在安装的过程中不需要授予权限<font></font></font></strong>，而在应用的运行过程中，可以选择是否授予应用相关的权限。举个简单的例子，用户可以为相机提供相机访问权限，但是不提供位置的访问权限。</p>
+<h1 id="权限分类"><a href="#权限分类" class="headerlink" title="权限分类"></a>权限分类</h1><p>　　系统权限分为两类：<strong>Normal Permission</strong> 和 <strong>Dangerous Permission”</strong> ，前者 <strong><em>不会直接给用户的隐私带来风险</em></strong> ，所以如果你的app在Manifest文件中列出了应用需要这些权限，<strong><em>系统会自动赋予该权限</em></strong>。后者 <strong><em>会赋予app访问用户隐私数据的权限，是有可能对用户隐私造成风险的</em></strong> 。所以如果你的app在Manifest文件中列出了这些权限，则这些 <strong><em>权限的授予是由用户决定的</em></strong> 。</p>
+<h1 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h1><p>　　接下来，我们就要开始来玩运行时权限了。</p>
+<h2 id="检测权限"><a href="#检测权限" class="headerlink" title="检测权限"></a>检测权限</h2><p>　　如果你的app需要 <strong>Dangerous Permission</strong> ，则每次执行需要这一权限操作的时候都应该检测自己是否具有该权限，因为用户始终可以自由的调用此权限。检测的方法有两种，但是源码是一样的，只是穿了个不同的外套而已。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> cameraPermissionState = ContextCompat.checkSelfPermission(<span class="keyword">this</span>, Manifest.permission.CAMERA);</span><br><span class="line">cameraPermissionState = ActivityCompat.checkSelfPermission(<span class="keyword">this</span>, Manifest.permission.CAMERA);</span><br><span class="line"><span class="comment">//判断权限是否授予</span></span><br><span class="line"><span class="keyword">if</span> (cameraPermissionState == PermissionChecker.PERMISSION_GRANTED) &#123;</span><br><span class="line">    <span class="comment">//...已经具有该权限，你可以做一些羞羞的事情了</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">//...没有权限，这个时候你需要获取该权限了</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="请求权限"><a href="#请求权限" class="headerlink" title="请求权限"></a>请求权限</h2><p>　　Android提供了多种权限请求方式，调用这些方法将会显示一个无法自定义的Android对话框。你可以调用 <strong><font color="#1b8fe6">requestPermission()</font></strong> 方法来请求你所需要的权限。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ActivityCompat.requestPermissions(<span class="keyword">this</span>, <span class="keyword">new</span> String[]&#123;Manifest.permission.CAMERA&#125;, REQUEST_CAMERA_PERMISSION);</span><br></pre></td></tr></table></figure></p>
+<h2 id="处理权限请求响应"><a href="#处理权限请求响应" class="headerlink" title="处理权限请求响应"></a>处理权限请求响应</h2><p>　　当用户响应权限弹窗的时候，系统将回调 <strong><em>onRequestPermissionsResult()</em></strong> 方法，告知用户的响应情况。所以我们必须重写这个方法，如下。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (requestCode == REQUEST_CAMERA_PERMISSION) &#123;</span><br><span class="line">    <span class="keyword">if</span> (grantResults.length == <span class="number">1</span> &amp;&amp; grantResults[<span class="number">0</span>] == PermissionChecker.PERMISSION_GRANTED) &#123;</span><br><span class="line">        <span class="comment">//...用户允许相机访问权限，你可以做一些羞羞的事情了</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//...用户拒绝了相机访问权限</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　注意，系统显示的权限弹窗是对于 <strong><font color="#1b8fe6">权限组</font></strong> 而言的，它不会列出app需要的具体权限。比如，app想要READ_CONTACTS权限，系统会告诉用户app想要访问设备的联系人。同时，<strong>用户只需要为每个权限组授予一次权限，如果应用请求该权限组中的任何其他权限，系统将自动授予应用这些权限</strong> 。具体过程是你在 <strong>requestPermissions()</strong> 方法之后，系统会自动回调 <strong>onRequestPermissionsResult()</strong> 方法，并传入 <strong>PERMISSION_GRANTED</strong> 。</p>
+<h2 id="权限组"><a href="#权限组" class="headerlink" title="权限组"></a>权限组</h2><p>　　你可能会询问权限组又是什么东西，是的，我也问过自己。所有的Dangerous Permission都属于权限组。<br></p>
+<ol>
+<li>如果应用请求其清单中列出的危险权限，而应用目前在权限组中没有任何权限，则系统会向用户显示一个对话框，描述应用要访问的权限组。对话框不描述该组内的具体权限。例如，如果应用请求 READ_CONTACTS 权限，系统对话框只说明该应用需要访问设备的联系信息。如果用户批准，系统将向应用授予其请求的权限。</li>
+<li>如果应用请求其清单中列出的危险权限，而应用在同一权限组中已有另一项危险权限，则系统会立即授予该权限，而无需与用户进行任何交互。例如，如果某应用已经请求并且被授予了 READ_CONTACTS 权限，然后它又请求 WRITE_CONTACTS，系统将立即授予该权限。</li>
+</ol>
+<p>　　任何权限都可属于一个权限组，包括正常权限和应用定义的权限。但权限组仅当权限危险时才影响用户体验。可以忽略正常权限的权限组。<br>任何权限都可属于一个权限组，包括正常权限和应用定义的权限。但权限组仅当权限危险时才影响用户体验。可以忽略正常权限的权限组。<strong><font color="#1b8fe6"><a href="https://developer.android.com/guide/topics/security/permissions.html?hl=zh-cn#normal-dangerous" target="_blank" rel="noopener">您可以查看官方文档</a></font></strong> 。 <br><br>　　我就知道你懒，给你截图了。如果你想看官方文档，就看看下面的图。<br><img src="/images/20171213_001.png" alt="Dangerous Permission"></p>
+<h2 id="告诉用户你为什么需要这个权限"><a href="#告诉用户你为什么需要这个权限" class="headerlink" title="告诉用户你为什么需要这个权限"></a>告诉用户你为什么需要这个权限</h2><p>　　当用户选择单次拒绝权限的时候，你再次请求该权限，可以告知用户为什么你的app需要这些权限，以便让用户理解这些权限的作用。系统也提供了对应的方法 <strong><font color="#1b8fe6">ActivityCompat.shouldShowRequestPermissionRationale()</font></strong> 。如果app之前请求过此权限，并且用户拒绝了请求这个方法就会返回true。如果app之前请求过此权限，并且用户勾选了”禁止后不再询问”，这个方法将返回false。</p>
+<h1 id="一次完整的权限请求"><a href="#一次完整的权限请求" class="headerlink" title="一次完整的权限请求"></a>一次完整的权限请求</h1><p>　　动态权限的相关其实并没有多少，来看看一段完整的请求CAMERA权限的示例。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">checkPermission</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (ActivityCompat.checkSelfPermission(<span class="keyword">this</span>, Manifest.permission.CAMERA)</span><br><span class="line">            == PermissionChecker.PERMISSION_GRANTED) &#123;</span><br><span class="line">        <span class="comment">//...开始做羞羞的事情</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        requestCameraPermission();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">requestCameraPermission</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (ActivityCompat.shouldShowRequestPermissionRationale(<span class="keyword">this</span>, Manifest.permission.CAMERA)) &#123;</span><br><span class="line">        <span class="keyword">new</span> AlertDialog.Builder(<span class="keyword">this</span>)</span><br><span class="line">                .setMessage(<span class="string">"需要请求相机访问权限以便进行预览，拍摄"</span>)</span><br><span class="line">                .setPositiveButton(<span class="string">"好的"</span>, <span class="keyword">new</span> DialogInterface.OnClickListener() &#123;</span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialog, <span class="keyword">int</span> which)</span> </span>&#123;</span><br><span class="line">                        ActivityCompat.requestPermissions(MainActivity.<span class="keyword">this</span>,</span><br><span class="line">                                <span class="keyword">new</span> String[]&#123;Manifest.permission.CAMERA&#125;, PERMISSION_REQUEST_CAMERA);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">                .create()</span><br><span class="line">                .show();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ActivityCompat.requestPermissions(<span class="keyword">this</span>, <span class="keyword">new</span> String[]&#123;Manifest.permission.CAMERA&#125;,</span><br><span class="line">                PERMISSION_REQUEST_CAMERA);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRequestPermissionsResult</span><span class="params">(<span class="keyword">int</span> requestCode, String[] permissions, <span class="keyword">int</span>[] grantResults)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (requestCode == PERMISSION_REQUEST_CAMERA) &#123;</span><br><span class="line">        <span class="keyword">if</span> (grantResults.length == <span class="number">1</span> &amp;&amp; grantResults[<span class="number">0</span>] == PermissionChecker.PERMISSION_GRANTED) &#123;</span><br><span class="line">            <span class="comment">//...又可以做羞羞的事情了</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="你该知道的"><a href="#你该知道的" class="headerlink" title="你该知道的"></a>你该知道的</h1><p>　　1. 当系统要求用户授予权限时，<strong>用户可以选择指示系统不再要求提供该权限</strong> 。这种情况下，无论应用在什么时候使用 requestPermissions() 再次要求该权限，系统都会立即拒绝此请求。系统 <strong>会调用您的 onRequestPermissionsResult() 回调方法，并传递 PERMISSION_DENIED</strong> ，如果用户再次明确拒绝了您的请求，系统将采用相同方式操作。<br>　　2. 要活用 <strong>shouldShowRequestPermissionRationale()</strong> 方法。这个方法是在用户拒绝过某个权限的请求(但不是禁止后不再询问)后会返回true，然后你可以在这个方法中做一些对该权限的解释，以便用户更了解为什么需要授予该权限。</p>
+
       
     </div>
     
     
     
+
+    
+        <div>
+            
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/2017/12/14/Android运行时权限的处理/">Android运行时权限的处理</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 严方雄 的个人博客">严方雄</a></p>
+  <p><span>发布时间:</span>2017-12-14</p>
+  <p><span>最后更新:</span>2017-12-14</p>
+  <p><span>原始链接:</span><a href="/2017/12/14/Android运行时权限的处理/" title="Android运行时权限的处理">http://yanfangxiong.com/2017/12/14/Android运行时权限的处理/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yanfangxiong.com/2017/12/14/Android运行时权限的处理/"  aria-label="复制成功！"></i></span>
+  </p>
+</div>
+<script>
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({
+          title: "",
+          text: '复制成功',
+          html: false,
+          timer: 500,
+          showConfirmButton: false
+        });
+      });
+    }));
+</script>
+
+
+        </div>
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i> Android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/14/致敬2017，关于以后/" rel="next" title="致敬2017，关于以后">
+                <i class="fa fa-chevron-left"></i> 致敬2017，关于以后
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
   </div>
 
 
@@ -412,8 +600,17 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -501,6 +698,22 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#这是什么"><span class="nav-number">2.</span> <span class="nav-text">这是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#权限分类"><span class="nav-number">3.</span> <span class="nav-text">权限分类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何使用"><span class="nav-number">4.</span> <span class="nav-text">如何使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#检测权限"><span class="nav-number">4.1.</span> <span class="nav-text">检测权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请求权限"><span class="nav-number">4.2.</span> <span class="nav-text">请求权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理权限请求响应"><span class="nav-number">4.3.</span> <span class="nav-text">处理权限请求响应</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#权限组"><span class="nav-number">4.4.</span> <span class="nav-text">权限组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#告诉用户你为什么需要这个权限"><span class="nav-number">4.5.</span> <span class="nav-text">告诉用户你为什么需要这个权限</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一次完整的权限请求"><span class="nav-number">5.</span> <span class="nav-text">一次完整的权限请求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#你该知道的"><span class="nav-number">6.</span> <span class="nav-text">你该知道的</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
