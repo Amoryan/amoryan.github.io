@@ -125,7 +125,7 @@
 <meta property="og:site_name" content="严方雄的个人博客">
 <meta property="og:description" content="前言　　今年Google在IO大会上宣布kotlin正式成为Android开发的官方语言。这门语言在很早以前久就已经存在，也比较成熟了。最近项目正好要重构，打算和侃哥一起使用这门新的语言开始项目的重构之旅。于是就趁着这段空闲的时间学习学习kotlin语言。 说明　　它的语法是真的简洁，简洁到对于初学者的我完全看不懂。比如，一个扩展函数是这样定义的。12@kotlin.internal.Inlin">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-16T07:08:41.000Z">
+<meta property="og:updated_time" content="2017-12-18T08:09:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kotlin Standard.kt持续更新">
 <meta name="twitter:description" content="前言　　今年Google在IO大会上宣布kotlin正式成为Android开发的官方语言。这门语言在很早以前久就已经存在，也比较成熟了。最近项目正好要重构，打算和侃哥一起使用这门新的语言开始项目的重构之旅。于是就趁着这段空闲的时间学习学习kotlin语言。 说明　　它的语法是真的简洁，简洁到对于初学者的我完全看不懂。比如，一个扩展函数是这样定义的。12@kotlin.internal.Inlin">
@@ -408,8 +408,8 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-16T15:08:41+08:00">
-                2017-12-16
+              <time title="更新于" itemprop="dateModified" datetime="2017-12-18T16:09:32+08:00">
+                2017-12-18
               </time>
             
           </span>
@@ -455,7 +455,8 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
 <li><strong>: R = block()</strong>，<strong><em>: R</em></strong> 表示的是返回值是R，<strong><em>= block()</em></strong> 表示这个返回值是执行block表达式而来的。<br></li>
 </ol>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@kotlin</span>.<span class="keyword">internal</span>.InlineOnly</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T, R&gt;</span> T.<span class="title">run</span><span class="params">(block: <span class="type">T</span>.()</span></span> -&gt; R): R = block()</span><br></pre></td></tr></table></figure>
-<p>　　这是对任意一个类的扩展函数，比如你有一个Person类和它的实例person，然后你可以直接调用person.run{}，它定义的是T类型的扩展函数。<strong><font color="#1b8fe6">它适用于执行某段代码然后返回某个值</font></strong> 。</p>
+<p>　　这是对任意一个类的扩展函数，比如你有一个Person类和它的实例person，然后你可以直接调用person.run{}，它定义的是T类型的扩展函数。</p>
+<h1 id="with"><a href="#with" class="headerlink" title="with"></a>with</h1><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@kotlin</span>.<span class="keyword">internal</span>.InlineOnly</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T, R&gt;</span> <span class="title">with</span><span class="params">(receiver: <span class="type">T</span>, block: <span class="type">T</span>.()</span></span> -&gt; R): R = receiver.block()</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -476,7 +477,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   <p><span>本文标题:</span><a href="/2017/12/16/kotlin-Standard-kt持续更新/">kotlin Standard.kt持续更新</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 严方雄 的个人博客">严方雄</a></p>
   <p><span>发布时间:</span>2017-12-16</p>
-  <p><span>最后更新:</span>2017-12-16</p>
+  <p><span>最后更新:</span>2017-12-18</p>
   <p><span>原始链接:</span><a href="/2017/12/16/kotlin-Standard-kt持续更新/" title="kotlin Standard.kt持续更新">http://yanfangxiong.com/2017/12/16/kotlin-Standard-kt持续更新/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yanfangxiong.com/2017/12/16/kotlin-Standard-kt持续更新/"  aria-label="复制成功！"></i></span>
   </p>
@@ -628,7 +629,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -707,7 +708,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#run"><span class="nav-number">3.</span> <span class="nav-text">run</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#run"><span class="nav-number">3.</span> <span class="nav-text">run</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#with"><span class="nav-number">4.</span> <span class="nav-text">with</span></a></li></ol></div>
             
 
           </div>
@@ -1253,9 +1254,9 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   <!-- 页面点击小红心 -->
   <script type="text/javascript" src="/js/src/click-love.js"></script>
   <!-- 播放音乐 -->
-  <div style="display: none">
+  <!-- <div style="display: none">
     <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=518088247&auto=1&height=66">
     </iframe>
-  </div>
+  </div> -->
 </body>
 </html>
