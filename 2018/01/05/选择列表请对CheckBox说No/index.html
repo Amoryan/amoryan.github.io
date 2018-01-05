@@ -106,7 +106,7 @@
 
 
 
-  <meta name="keywords" content="严方雄的个人博客" />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -117,16 +117,18 @@
 
 
 
-<meta name="description" content="有想法就去做，不论结果如何，都是成长的过程！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="严方雄的个人博客">
-<meta property="og:url" content="http://yanfangxiong.com/index.html">
+<meta name="description" content="由来　　我记得刚学习Android的时候，有个需求是这个样子的，做一个单选或者多选的选择列表。然后那个时候懂得不是很多，就用CheckBox去做。做来做去，发现很多的坑，比如控件会被重用，导致选中的状态也被重用了。后来自己随着自己接触的东西变多，想到用另外一种方式来实现选择列表，这并不是我写这篇文章的原因。主要原因是最">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="选择列表请对CheckBox说No">
+<meta property="og:url" content="http://yanfangxiong.com/2018/01/05/选择列表请对CheckBox说No/index.html">
 <meta property="og:site_name" content="严方雄的个人博客">
-<meta property="og:description" content="有想法就去做，不论结果如何，都是成长的过程！">
+<meta property="og:description" content="由来　　我记得刚学习Android的时候，有个需求是这个样子的，做一个单选或者多选的选择列表。然后那个时候懂得不是很多，就用CheckBox去做。做来做去，发现很多的坑，比如控件会被重用，导致选中的状态也被重用了。后来自己随着自己接触的东西变多，想到用另外一种方式来实现选择列表，这并不是我写这篇文章的原因。主要原因是最近在看同事写的代码(我们是两个人在开发)的时候，发现选择列表还是用的Check">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-05T09:15:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="严方雄的个人博客">
-<meta name="twitter:description" content="有想法就去做，不论结果如何，都是成长的过程！">
+<meta name="twitter:title" content="选择列表请对CheckBox说No">
+<meta name="twitter:description" content="由来　　我记得刚学习Android的时候，有个需求是这个样子的，做一个单选或者多选的选择列表。然后那个时候懂得不是很多，就用CheckBox去做。做来做去，发现很多的坑，比如控件会被重用，导致选中的状态也被重用了。后来自己随着自己接触的东西变多，想到用另外一种方式来实现选择列表，这并不是我写这篇文章的原因。主要原因是最近在看同事写的代码(我们是两个人在开发)的时候，发现选择列表还是用的Check">
 
 
 
@@ -156,13 +158,13 @@
 
 
 
-  <link rel="canonical" href="http://yanfangxiong.com/"/>
+  <link rel="canonical" href="http://yanfangxiong.com/2018/01/05/选择列表请对CheckBox说No/"/>
 
 
 
 
 
-  <title>严方雄的个人博客</title>
+  <title>选择列表请对CheckBox说No</title>
   
 
 
@@ -209,8 +211,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -347,9 +348,9 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -379,9 +380,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/05/选择列表请对CheckBox说No/" itemprop="url">选择列表请对CheckBox说No</a></h1>
+          <h1 class="post-title" itemprop="name headline">选择列表请对CheckBox说No</h1>
         
 
         <div class="post-meta">
@@ -443,18 +442,16 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
       
 
       
-        
-          
-           由来　　我记得刚学习Android的时候，有个需求是这个样子的，做一个单选或者多选的选择列表。然后
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/05/选择列表请对CheckBox说No/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="由来"><a href="#由来" class="headerlink" title="由来"></a>由来</h1><p>　　我记得刚学习Android的时候，有个需求是这个样子的，做一个单选或者多选的选择列表。然后那个时候懂得不是很多，就用CheckBox去做。做来做去，发现很多的坑，比如控件会被重用，导致选中的状态也被重用了。后来自己随着自己接触的东西变多，想到用另外一种方式来实现选择列表，这并不是我写这篇文章的原因。主要原因是最近在看同事写的代码(我们是两个人在开发)的时候，发现选择列表还是用的CheckBox，我觉得有必要分享下自己的实现方式，当然如果你们有什么好的建议记得及时告诉我。</p>
+<h1 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h1><p>　　接下来我就说一下我是如何实现选择列表的(欢迎大家来吐槽)。</p>
+<h2 id="level-list"><a href="#level-list" class="headerlink" title="level-list"></a>level-list</h2><p>　　官方文档的介绍请戳<a href="https://developer.android.com/reference/android/graphics/drawable/LevelListDrawable.html" target="_blank" rel="noopener"><strong><font color="#1b8fe6">这里</font></strong></a>。它可以通过一些值来管理一系列的图片，然后通过level属性修改这些值后就会显示对应的图片。</p>
+<h3 id="举个栗子"><a href="#举个栗子" class="headerlink" title="举个栗子"></a>举个栗子</h3><p>　　因为是选择列表，那必然会有两张图片，一张是未选中的，我们记为ic_select_off，一张是选中的，我们记为ic_select_on。然后我们可以在<font color="#1b8fe6">drawable</font>文件夹下新建一个level_list_common_select.xml的资源文件。具体代码如下<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">level-list</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:drawable</span>=<span class="string">"@mipmap/ic_select_off"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:maxLevel</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:drawable</span>=<span class="string">"@mipmap/ic_select_on"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:maxLevel</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">level-list</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="布局文件"><a href="#布局文件" class="headerlink" title="布局文件"></a>布局文件</h2><p>　　接下来，我们说说布局文件，我们不会用到CheckBox，这里我们用ImageView来顶替CheckBox，大致如下所示。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"50dp"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:background</span>=<span class="string">"#ffffff"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">"horizontal"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:paddingLeft</span>=<span class="string">"12dp"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:paddingRight</span>=<span class="string">"12dp"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">ImageView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/selectStatusIv"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_gravity</span>=<span class="string">"center_vertical"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:src</span>=<span class="string">"@drawable/level_list_select"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/selectTitleTv"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:ellipsize</span>=<span class="string">"end"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:gravity</span>=<span class="string">"center_vertical"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:lines</span>=<span class="string">"1"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:singleLine</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">"hello"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>　　这里并没有太多花里胡哨的东西，只是用一个ImageView替换掉了CheckBox。</p>
+<h2 id="核心逻辑"><a href="#核心逻辑" class="headerlink" title="核心逻辑"></a>核心逻辑</h2><p>　　你需要找一个能够唯一标记这个选项的字段，比如id，这个字段一般都会有。然后我们的适配器里面会存放一个selectId，在渲染View的方法中校验当前项的id是否和选中的id是一致的，如果一致，则将level设置为1，否则设置为0就可以了。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RepayCurrentAdapter</span></span>(</span><br><span class="line">        context: Context,</span><br><span class="line">        resId: <span class="built_in">Int</span>,</span><br><span class="line">        <span class="keyword">data</span>: List&lt;RepayCurrentItem&gt;</span><br><span class="line">) : CommonListAdapter&lt;RepayCurrentItem&gt;(context, resId, <span class="keyword">data</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> selectId: <span class="built_in">Long</span>? = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">select</span><span class="params">(selectId: <span class="type">Long</span>)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.selectId = selectId</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">bindData</span><span class="params">(view: <span class="type">View</span>, position: <span class="type">Int</span>, <span class="keyword">data</span>: <span class="type">RepayCurrentItem</span>)</span></span> &#123;</span><br><span class="line">        view.selectStatusIv.drawable.level = <span class="keyword">if</span>(selectId == <span class="keyword">data</span>.id)&#123; <span class="number">1</span> &#125; <span class="keyword">else</span> &#123; <span class="number">0</span> &#125;</span><br><span class="line">        view.selectTitleTv.text = <span class="keyword">data</span>.selectTitle</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　这里用的kotlin编写的，CommonListAdapter可以去看之前写的用kotlin封装的适配器。这样这个单选的逻辑就写完了。嗯，就是这么简单，不用关心CheckBox重用导致的状态复用问题。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>　　如果我不去思考该如何简化，那我永远都只是死板的用CheckBox来完成选择列表。所以，要学会思考，只根据产品给的需求完成相应的任务那是一个初级程序猿做的事情。<br><strong><em><font color="#1b8fe6">日子还长，别太失望~</font></em></strong></p>
+
       
     </div>
     
@@ -462,145 +459,40 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     
 
     
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yanfangxiong.com/2017/12/25/有趣的kotlin封装适配器/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="严方雄">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="严方雄的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/25/有趣的kotlin封装适配器/" itemprop="url">有趣的kotlin封装适配器</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div>
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-25T23:28:22+08:00">
-                2017-12-25
-              </time>
-            
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
 
-            
-              <span class="post-meta-divider">|</span>
-            
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/2018/01/05/选择列表请对CheckBox说No/">选择列表请对CheckBox说No</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 严方雄 的个人博客">严方雄</a></p>
+  <p><span>发布时间:</span>2018-01-05</p>
+  <p><span>最后更新:</span>2018-01-05</p>
+  <p><span>原始链接:</span><a href="/2018/01/05/选择列表请对CheckBox说No/" title="选择列表请对CheckBox说No">http://yanfangxiong.com/2018/01/05/选择列表请对CheckBox说No/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yanfangxiong.com/2018/01/05/选择列表请对CheckBox说No/"  aria-label="复制成功！"></i></span>
+  </p>
+</div>
+<script>
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({
+          title: "",
+          text: '复制成功',
+          html: false,
+          timer: 500,
+          showConfirmButton: false
+        });
+      });
+    }));
+</script>
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-25T23:42:59+08:00">
-                2017-12-25
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
 
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-           前言　　最近在迁移C端项目到B端，然后有很多功能点对于B端是不一样的，所以打算在迁移的过程中，用k
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/25/有趣的kotlin封装适配器/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
     
 
     
@@ -611,294 +503,36 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yanfangxiong.com/2017/12/16/kotlin之集合的惰性操作/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="严方雄">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="严方雄的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/16/kotlin之集合的惰性操作/" itemprop="url">kotlin之集合的惰性操作</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-16T16:23:06+08:00">
-                2017-12-16
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-05T13:36:15+08:00">
-                2018-01-05
-              </time>
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i> Android</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          
-           前言　　最近在学习kotlin的时候，发现了一个 骚操作 ，它叫集合的惰性操作。什么，你问我为什么
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/16/kotlin之集合的惰性操作/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/25/有趣的kotlin封装适配器/" rel="next" title="有趣的kotlin封装适配器">
+                <i class="fa fa-chevron-left"></i> 有趣的kotlin封装适配器
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yanfangxiong.com/2017/12/14/Android运行时权限的处理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="严方雄">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="严方雄的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/14/Android运行时权限的处理/" itemprop="url">Android运行时权限的处理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-14T09:57:44+08:00">
-                2017-12-14
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-16T17:24:02+08:00">
-                2017-12-16
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-           前言　　Android运行时权限机制 是在 API 23(Android M) 中提出来的，今年已
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/14/Android运行时权限的处理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -908,437 +542,32 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yanfangxiong.com/2017/12/14/致敬2017，关于以后/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="严方雄">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="严方雄的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/14/致敬2017，关于以后/" itemprop="url">致敬2017，关于以后</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-14T00:04:16+08:00">
-                2017-12-14
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-14T00:29:50+08:00">
-                2017-12-14
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
+    <div class="post-spread">
       
         
-          
-           由来　　今天从人事那里要到了年会拍摄的全部照片，看到自己的照片已经可以弄成一个表情包还是挺意外的。
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/14/致敬2017，关于以后/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
 
 
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yanfangxiong.com/2017/12/07/hexo-d引发的思考/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="严方雄">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="严方雄的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/07/hexo-d引发的思考/" itemprop="url">hexo d引发的思考</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-07T14:04:03+08:00">
-                2017-12-07
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-07T17:02:47+08:00">
-                2017-12-07
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-           引发思考的导火索　　最近用github pages和hexo搭建了自己的博客，每次本地写好后，需要
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/07/hexo-d引发的思考/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-          <!--/noindex-->
-        
-      
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+        <div id="gitment-container"></div>
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yanfangxiong.com/2017/12/06/留下成长的足迹/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="严方雄">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="严方雄的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/06/留下成长的足迹/" itemprop="url">留下成长的足迹</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-06T10:25:21+08:00">
-                2017-12-06
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-06T13:49:31+08:00">
-                2017-12-06
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-           　　来杭州不知不觉已经过去一年之久，发现自己变得越来越阳(臭)光(不)帅(要)气(脸)了。　　一年
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/06/留下成长的足迹/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
   
 
 
-          </div>
-          
-
-
-          
 
         </div>
         
@@ -1361,8 +590,17 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1450,6 +688,22 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#由来"><span class="nav-number">1.</span> <span class="nav-text">由来</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现方式"><span class="nav-number">2.</span> <span class="nav-text">实现方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#level-list"><span class="nav-number">2.1.</span> <span class="nav-text">level-list</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#举个栗子"><span class="nav-number">2.1.1.</span> <span class="nav-text">举个栗子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#布局文件"><span class="nav-number">2.2.</span> <span class="nav-text">布局文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核心逻辑"><span class="nav-number">2.3.</span> <span class="nav-text">核心逻辑</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1586,6 +840,10 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
