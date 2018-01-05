@@ -129,7 +129,7 @@
 <meta property="og:image" content="http://yanfangxiong.com/images/2017/12/16/002.png">
 <meta property="og:image" content="http://yanfangxiong.com/images/2017/12/16/003.png">
 <meta property="og:image" content="http://yanfangxiong.com/images/2017/12/16/004.png">
-<meta property="og:updated_time" content="2017-12-16T10:23:56.000Z">
+<meta property="og:updated_time" content="2018-01-05T05:36:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kotlin之集合的惰性操作">
 <meta name="twitter:description" content="前言　　最近在学习kotlin的时候，发现了一个 骚操作 ，它叫集合的惰性操作。什么，你问我为什么称它 骚 ？我也不知道，反正脑海中就浮现了这么个词语！可能是贫穷限制了我的想象力！ 举个栗子　　比如有这么一个场景，你是一家猎头公司的人员(别问我为什么是猎头，因为我看完猎场了)。然后你需要从一批人员中筛选符合条件的人选。123456data class Person(var name: Strin">
@@ -413,8 +413,8 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-16T18:23:56+08:00">
-                2017-12-16
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-05T13:36:15+08:00">
+                2018-01-05
               </time>
             
           </span>
@@ -450,7 +450,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
         <script src="/assets/js/APlayer.min.js"> </script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>　　最近在学习kotlin的时候，发现了一个 <strong><em><font color="#1b8fe6">骚操作</font></em></strong> ，它叫集合的惰性操作。什么，你问我为什么称它 <strong>骚</strong> ？我也不知道，反正脑海中就浮现了这么个词语！可能是贫穷限制了我的想象力！</p>
 <h1 id="举个栗子"><a href="#举个栗子" class="headerlink" title="举个栗子"></a>举个栗子</h1><p>　　比如有这么一个场景，你是一家猎头公司的人员(别问我为什么是猎头，因为我看完猎场了)。然后你需要从一批人员中筛选符合条件的人选。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>(<span class="keyword">var</span> name: String, <span class="keyword">var</span> age: <span class="built_in">Int</span> = <span class="number">0</span>, <span class="keyword">var</span> workYear: <span class="built_in">Int</span> = <span class="number">0</span>, <span class="keyword">var</span> mail: String?)</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> persons = listOf(Person(<span class="string">"Tom"</span>, <span class="number">20</span>, <span class="number">2</span>, <span class="string">"Tom@mail.com"</span>),</span><br><span class="line">        Person(<span class="string">"Mike"</span>, <span class="number">22</span>, <span class="number">3</span>, <span class="string">"Mike@mail.com"</span>),</span><br><span class="line">        Person(<span class="string">"Jerry"</span>, <span class="number">21</span>, <span class="number">3</span>, <span class="string">"Jerry@mail.com"</span>),</span><br><span class="line">        Person(<span class="string">"Atom"</span>, <span class="number">22</span>, <span class="number">2</span>, <span class="string">"Atom@mail.com"</span>))</span><br></pre></td></tr></table></figure></p>
 <p>　　你需要筛选出工作年限不小于３年的人的联系方式，然后联系他们准备进行面试。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">println(persons.filter &#123;</span><br><span class="line">  println(<span class="string">"filter operate!"</span>)</span><br><span class="line">  it.workYear &gt;= <span class="number">3</span></span><br><span class="line">&#125;.map &#123;</span><br><span class="line">  println(<span class="string">"map operate!"</span>)</span><br><span class="line">  it.mail</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>　　上面的代码会输出如下的结果，这样你就成功的筛选出了Mike和Jerry。<img src="/images/2017/12/16/001.png" alt="result">　　如果你不了解 <strong>filter</strong> 和 <strong>map</strong> 两个扩展函数，请移步到我的另外一篇博客<a href=""><strong><em><font color="#1b8fe6">kotlin _Collections.kt持续更新</font></em></strong></a>。从输出结果上我们也可以看出它的流程是这样的，先对persons集合的每一个元素调用filter，然后会产生一个新的集合，然后对新的集合调用map，这样就得到了所有符合条件人员的联系方式。</p>
+<p>　　上面的代码会输出如下的结果，这样你就成功的筛选出了Mike和Jerry。<img src="/images/2017/12/16/001.png" alt="result">　　如果你不了解 <strong>filter</strong> 和 <strong>map</strong> 两个扩展函数，可以查看源码中的这两个扩展函数是怎么写的 <strong><em><font color="#1b8fe6">_Collections.kt</font></em></strong>。从输出结果上我们也可以看出它的流程是这样的，先对persons集合的每一个元素调用filter，然后会产生一个新的集合，然后对新的集合调用map，这样就得到了所有符合条件人员的联系方式。</p>
 <h1 id="Sequence序列"><a href="#Sequence序列" class="headerlink" title="Sequence序列"></a>Sequence序列</h1><p>　　上面已经说明了这段代码的执行流程，倘若你要从你们成百上千万的人才库中筛选这些人员，执行效率是不是就非常低下了，而且如果变换操作过多的时候，你会创建很多个临时的集合。这时候，惰性操作就出来的，解释排后，代码先行！<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">println(<span class="string">"result is:"</span> + persons.asSequence()</span><br><span class="line">  .filter &#123;</span><br><span class="line">    println(<span class="string">"filter operate!"</span>)</span><br><span class="line">      it.workYear &gt;= <span class="number">3</span></span><br><span class="line">  &#125;</span><br><span class="line">  .map &#123;</span><br><span class="line">    println(<span class="string">"map operate!"</span>)</span><br><span class="line">    it.mail</span><br><span class="line">  &#125;</span><br><span class="line">  .toList())</span><br></pre></td></tr></table></figure></p>
 <p>　　上面这段代码输出结果是这样的。<img src="/images/2017/12/16/002.png" alt="result">　　我们很容易就能够看出，它会对persons中的每一个元素先调用filter，如果满足条件再调用map；它是一个元素操作完之后再对另外一个元素做操作。我们再来看看一个神奇的现象，先把toList()删除掉，它会输出这个结果。<img src="/images/2017/12/16/003.png" alt="result">　　很神奇吧，它没有对persons中的元素做任何操作，只是单纯的返回了一个TransformingSequence的对象。</p>
 <h2 id="序列的操作"><a href="#序列的操作" class="headerlink" title="序列的操作"></a>序列的操作</h2><p>　　我们可以将序列的操作分为两类，<strong>intermediate operation</strong> 和 <strong>terminal operation</strong> 。看下面这张图你就明白了。<img src="/images/2017/12/16/004.png" alt="result">　　intermediate operation是惰性的。从上面的代码我们可以看出，只有当terminal operation执行的时候，intermediate operation才会执行。</p>
@@ -478,7 +478,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   <p><span>本文标题:</span><a href="/2017/12/16/kotlin之集合的惰性操作/">kotlin之集合的惰性操作</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 严方雄 的个人博客">严方雄</a></p>
   <p><span>发布时间:</span>2017-12-16</p>
-  <p><span>最后更新:</span>2017-12-16</p>
+  <p><span>最后更新:</span>2018-01-05</p>
   <p><span>原始链接:</span><a href="/2017/12/16/kotlin之集合的惰性操作/" title="kotlin之集合的惰性操作">http://yanfangxiong.com/2017/12/16/kotlin之集合的惰性操作/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yanfangxiong.com/2017/12/16/kotlin之集合的惰性操作/"  aria-label="复制成功！"></i></span>
   </p>
@@ -525,8 +525,8 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/16/kotlin-Standard-kt持续更新/" rel="next" title="kotlin Standard.kt持续更新">
-                <i class="fa fa-chevron-left"></i> kotlin Standard.kt持续更新
+              <a href="/2017/12/14/Android运行时权限的处理/" rel="next" title="Android运行时权限的处理">
+                <i class="fa fa-chevron-left"></i> Android运行时权限的处理
               </a>
             
           </div>
@@ -630,7 +630,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -729,7 +729,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
