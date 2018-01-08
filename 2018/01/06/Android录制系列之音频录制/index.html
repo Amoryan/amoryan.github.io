@@ -128,7 +128,7 @@
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/01/08/002.png">
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/01/08/003.png">
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/01/08/001.png">
-<meta property="og:updated_time" content="2018-01-08T13:56:40.000Z">
+<meta property="og:updated_time" content="2018-01-08T13:59:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android录制系列之音频录制">
 <meta name="twitter:description" content="简介　　Android的多媒体框架包含并支持录制和解码多种多样的音视频格式。如果设备支持，你可以使用MediaRecorder来进行这些操作。( Android模拟器无法录制音频 ) MediaRecorder的使用权限　　如果你想进行音频录制，你必须添加RECORDER_AUDIO的权限，这是一个 危险权限 ，如果你不知道如何请求权限，你可以查看之前的一篇文章 Android运行时权限的处理。">
@@ -412,7 +412,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-08T21:56:40+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-08T21:59:14+08:00">
                 2018-01-08
               </time>
             
@@ -456,7 +456,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
 <li><p>通过 <strong><font color="#1b8fe6">setAudioSource()</font></strong> 方法设置音频源，音频源的取值你可以直接查看 <a href="https://developer.android.com/reference/android/media/MediaRecorder.AudioSource.html" target="_blank" rel="noopener"><strong><font color="#1b8fe6">MediaRecorder.AudioSource</font></strong></a>，一般情况下我们会选择 <strong><font color="#1b8fe6">MIC</font></strong> 也就是麦克风作为音频源；</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC)</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>通过 <strong><font color="#1b8fe6">setOutputFormat()</font></strong> 方法设置输出格式，输出格式的取值你可以直接查看 <a href="https://developer.android.com/reference/android/media/MediaRecorder.OutputFormat.html" target="_blank" rel="noopener"><strong><font color="#1b8fe6">MediaRecorder.OutputFormat&lt;/font</font></strong></a>；</p>
+<li><p>通过 <strong><font color="#1b8fe6">setOutputFormat()</font></strong> 方法设置输出格式，输出格式的取值你可以直接查看 <a href="https://developer.android.com/reference/android/media/MediaRecorder.OutputFormat.html" target="_blank" rel="noopener"><strong><font color="#1b8fe6">MediaRecorder.OutputFormat</font></strong></a>；</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>通过 <strong><font color="#1b8fe6">setAudioEncoder()</font></strong> 方法设置音频解码方式，解码方式的取值你可以直接查看 <a href="https://developer.android.com/reference/android/media/MediaRecorder.AudioEncoder.html" target="_blank" rel="noopener"><strong><font color="#1b8fe6">MediaRecorder.AudioEncoder</font></strong></a></p>
