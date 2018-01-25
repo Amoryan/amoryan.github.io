@@ -126,7 +126,7 @@
 <meta property="og:description" content="由来　　因为现在项目里面都是用 kotlin 在编写项目，在跨界面传递数据的时候经常需要传递对象数据，这就需要使用到 对象的序列化 ，就难免和 Parcelable 打交道。 序列化的方式　　在Android中，对象的序列化方式是有两种的，一种是Java中的 Serializable ，一种是Android特有的 Parcelable 。既然Google新增加了一种 Parcelable 的方式">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/01/25/001.png">
-<meta property="og:updated_time" content="2018-01-25T10:01:57.000Z">
+<meta property="og:updated_time" content="2018-01-25T10:05:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="当Kotlin遇上Parcelable">
 <meta name="twitter:description" content="由来　　因为现在项目里面都是用 kotlin 在编写项目，在跨界面传递数据的时候经常需要传递对象数据，这就需要使用到 对象的序列化 ，就难免和 Parcelable 打交道。 序列化的方式　　在Android中，对象的序列化方式是有两种的，一种是Java中的 Serializable ，一种是Android特有的 Parcelable 。既然Google新增加了一种 Parcelable 的方式">
@@ -410,7 +410,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-25T18:01:57+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-25T18:05:22+08:00">
                 2018-01-25
               </time>
             
@@ -455,7 +455,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
 </ol>
 <p>　　从上面的代码我们就可以看出，如何序列化这个对象已经非常清楚的表现出来，根本不需要通过反射来知道来推断类型，所以能够更加高效的序列化对象。</p>
 <h2 id="区别与抉择"><a href="#区别与抉择" class="headerlink" title="区别与抉择"></a>区别与抉择</h2><ol>
-<li>Serializable实现方式简单，但是比较消耗内存，一般建议使用在序列化对象保存到文件中的时候使用；</li>
+<li>Serializable实现方式简单，但是比较消耗内存，一般建议在序列化对象保存到文件中的时候使用；</li>
 <li>Parcelable实现方式较为复杂，但是效率高，消耗内存小，在代码中建议使用这种方式。</li>
 </ol>
 <h1 id="问题所在"><a href="#问题所在" class="headerlink" title="问题所在"></a>问题所在</h1><p>　　我们知道，<strong><font color="#1b8fe6">在kotlin中伴生对象只能存在一个</font></strong> ，一般一些在java中的静态常量我们可能会定义在伴生对象中，但是我们可以看上面的Person的Parcelable实现，系统默认给我们创建的CREATOR对象就直接指定为了伴生对象，这样虽然是没有问题的，但是你定义的一些常量就是属于CREATOR对象了，实际上这是不必要的，所以我们需要一种方式将伴生对象 “释放” 出来。<br>　　这里我们就直接上代码了。只需要使用 <strong><font color="#1b8fe6">＠JVMField</font></strong> 注解就可以解决这个问题。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">companion</span> <span class="keyword">object</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@JvmField</span></span><br><span class="line">    <span class="keyword">val</span> CREATOR: Parcelable.Creator&lt;Person&gt; = <span class="keyword">object</span> : Parcelable.Creator&lt;Person&gt; &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">createFromParcel</span><span class="params">(parcel: <span class="type">Parcel</span>)</span></span>: Person &#123;</span><br><span class="line">            <span class="keyword">return</span> Person(parcel)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">newArray</span><span class="params">(size: <span class="type">Int</span>)</span></span>: Array&lt;Person?&gt; &#123;</span><br><span class="line">            <span class="keyword">return</span> arrayOfNulls(size)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
