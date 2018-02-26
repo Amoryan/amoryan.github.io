@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[设计模式-简单工厂]]></title>
+    <url>%2F2018%2F02%2F26%2F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%2F</url>
+    <content type="text"><![CDATA[前言 之前写代码从来都没有注重设计模式这一块，熟知的并且用的最多的就是单例模式，但是并没有什么卵用，现在项目越来越庞大，每次迭代都要改一堆东西，印象中重复的代码也越来越多，有时候迭代一个版本要改N多个地方的相同代码，如果哪个地方忘了就很蛋疼，但是让我去重构又不知道从何处下手，最近打算将设计模式的东西系统的学习一下，然后将自己写的代码好好的梳理一下。 举个栗子 现在产品经理需要一个图表展示的功能，包括折线图，饼图和柱状图等。于是我写了一个IChart的接口，只有一个display()方法。12345interface IChart &#123; fun display() &#125; 然后编写了几个IChart的子类，如下。1234567891011121314151617181920212223class PieChart : IChart &#123; override fun display() &#123; println("显示饼状图") &#125;&#125;class BarChart : IChart &#123; override fun display() &#123; println("显示柱状图") &#125;&#125;class LinearChart : IChart &#123; override fun display() &#123; println("显示折线图") &#125;&#125; 就这样写好了图表的相关类。然后就是如何根据不同的类型产生不同的类的对象。1234567891011class ChartFactory &#123; fun generateChartImpl(type: String): IChart &#123; return when (type) &#123; "bar" -&gt; BarChart() "linear" -&gt; LinearChart() else -&gt; PieChart() &#125; &#125;&#125; 最后我们来测试一下就可以了。1234fun main(args: Array&lt;String&gt;) &#123; val chartImpl = ChartFactory.generateChartImpl("linear") chartImpl.display()&#125; 运行结果如下所示，这就是简单的工厂模式。 毒鸡汤 日子还长，请别失望～]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[mac插入U盘的只读问题]]></title>
     <url>%2F2018%2F02%2F21%2Fmac%E6%8F%92%E5%85%A5U%E7%9B%98%E7%9A%84%E5%8F%AA%E8%AF%BB%E9%97%AE%E9%A2%98%2F</url>
     <content type="text"><![CDATA[前言 最近帮我舅舅重装系统，因为要将我电脑上的系统镜像复制到U盘中， 然后发现我只能读取U盘里面的文件，而不能进行写入操作。 U盘文件系统格式 想要解决这个问题，首先你得了解U盘的文件系统格式。于是我将U盘插在windows电脑上进行格式化的时候，发现格式化的种类有3种，NTFS ， FAT32 ， exFAT 。那么我们来看看这几种格式的区别。 这里推荐一款免费的软件 Mounty11 。它支持在mac读写NTFS文件系统格式的U盘。 NTFS 它全称New Technology File System(新技术文件系统)。支持LZ77压缩、文件级加密、访问控制。主文件表(MFT)负责存储稳健的属性、位置、访问信息。这种格式在mac如果不使用工具是无法写入文件的，当然它还有一些弊端，比如最大分区，最大文件只支持2TB，（日常够用了）兼容范围不如FAT32，长时间使用会影响U盘寿命。所以这种文件系统格式肯定不是我们要的。 FAT32 它是1997年的Windows 95 OSR2，在第二版系统中首次引入的文件系统格式。 它有很好的兼容性，几乎所有主流系统都能对其格式写入读取 。既然有这么好的兼容性，那我们是不是就直接将U盘格式化为FAT32就可以了。当然不是，这种文件系统虽然有很好的兼容性，却有很多的弊端。 这种文件格式安全无保障，对于单个的文件移动，体积不能超过4G，并且文件名称长度不能超过255个字节 ，所以这不是最好的选择。 exFAT 微软专门为闪存设备设计的文件系统，高容量的SDXC卡默认都是这种格式。文件名最高可达65536个，分区和单个文件支持最大可达到16EB，写读取速度稳定。最主要的是它在mac和windows之间都可以进行读写操作。 解决 最终我并没有选择使用第三方工具在mac进行读写NTFS的U盘，而是将U盘格式化为exFAT的格式，然后再将文件拖放到U盘中，再制作启动盘。 总结 如果只是简单的拖放小文件，你完全可以选择使用FAT32文件系统格式，如果需要拖放大文件则可以考虑使用NTFS或者exFAT，当然不建议使用NTFS，因为它对U盘的使用寿命有影响。 毒鸡汤 日子还长，请别失望~ 祝大家新年快乐]]></content>
