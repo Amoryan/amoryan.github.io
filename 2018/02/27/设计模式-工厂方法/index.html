@@ -106,7 +106,7 @@
 
 
 
-  <meta name="keywords" content="严方雄的个人博客" />
+  <meta name="keywords" content="设计模式," />
 
 
 
@@ -117,16 +117,18 @@
 
 
 
-<meta name="description" content="日子还长，别太失望~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="严方雄的空间">
-<meta property="og:url" content="http://yanfangxiong.com/archives/index.html">
+<meta name="description" content="前言　　设计模式－简单工厂文章中介绍的简单工厂，但是我们发现，如果新增加了另外一种图表的展示，那么就得修改静态工厂的generateChartImpl()方法。这无疑违反了开放封闭原则。 修改Factory　　于是在简单工厂的基础上我定义了一个IChartFactory的接口，如下。12345interface ICh">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式-工厂方法">
+<meta property="og:url" content="http://yanfangxiong.com/2018/02/27/设计模式-工厂方法/index.html">
 <meta property="og:site_name" content="严方雄的空间">
-<meta property="og:description" content="日子还长，别太失望~">
+<meta property="og:description" content="前言　　设计模式－简单工厂文章中介绍的简单工厂，但是我们发现，如果新增加了另外一种图表的展示，那么就得修改静态工厂的generateChartImpl()方法。这无疑违反了开放封闭原则。 修改Factory　　于是在简单工厂的基础上我定义了一个IChartFactory的接口，如下。12345interface IChartFactory &amp;#123;    fun generateChartI">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-27T07:54:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="严方雄的空间">
-<meta name="twitter:description" content="日子还长，别太失望~">
+<meta name="twitter:title" content="设计模式-工厂方法">
+<meta name="twitter:description" content="前言　　设计模式－简单工厂文章中介绍的简单工厂，但是我们发现，如果新增加了另外一种图表的展示，那么就得修改静态工厂的generateChartImpl()方法。这无疑违反了开放封闭原则。 修改Factory　　于是在简单工厂的基础上我定义了一个IChartFactory的接口，如下。12345interface IChartFactory &amp;#123;    fun generateChartI">
 
 
 
@@ -156,13 +158,13 @@
 
 
 
-  <link rel="canonical" href="http://yanfangxiong.com/archives/"/>
+  <link rel="canonical" href="http://yanfangxiong.com/2018/02/27/设计模式-工厂方法/"/>
 
 
 
 
 
-  <title>成长</title>
+  <title>设计模式-工厂方法</title>
   
 
 
@@ -209,7 +211,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -347,411 +349,208 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yanfangxiong.com/2018/02/27/设计模式-工厂方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="严方雄">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="严方雄的空间">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">设计模式-工厂方法</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-27T15:05:44+08:00">
+                2018-02-27
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-27T15:54:39+08:00">
+                2018-02-27
+              </time>
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 19 篇日志。 继续努力。
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/27/设计模式-工厂方法/" itemprop="url">
-              
-                <span itemprop="name">设计模式-工厂方法</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-27T15:05:44+08:00"
-              content="2018-02-27" >
-          02-27
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/27/关于京东open-api-sdk的那些坑/" itemprop="url">
-              
-                <span itemprop="name">关于京东open-api-sdk的那些坑</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-27T13:33:57+08:00"
-              content="2018-02-27" >
-          02-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/26/设计模式-简单工厂/" itemprop="url">
-              
-                <span itemprop="name">设计模式-简单工厂</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-26T16:24:48+08:00"
-              content="2018-02-26" >
-          02-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>　　<a href="http://yanfangxiong.com/2018/02/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82/">设计模式－简单工厂</a>文章中介绍的简单工厂，但是我们发现，如果新增加了另外一种图表的展示，那么就得修改静态工厂的<strong><font color="#1b8fe6">generateChartImpl()</font></strong>方法。这无疑违反了<strong><font color="#1b8fe6">开放封闭原则</font></strong>。</p>
+<h1 id="修改Factory"><a href="#修改Factory" class="headerlink" title="修改Factory"></a>修改Factory</h1><p>　　于是在简单工厂的基础上我定义了一个IChartFactory的接口，如下。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IChartFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">generateChartImpl</span><span class="params">()</span></span>: IChart</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="拆分Factory"><a href="#拆分Factory" class="headerlink" title="拆分Factory"></a>拆分Factory</h1><p>　　然后将简单工厂的ChartFactory拆分成下面的类，如下。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PieChartFactory</span> : <span class="type">IChartFactory &#123;</span></span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">generateChartImpl</span><span class="params">()</span></span>: IChart = PieChart()</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BarChartFactory</span> : <span class="type">IChartFactory &#123;</span></span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">generateChartImpl</span><span class="params">()</span></span>: IChart = BarChart()</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinearChartFactory</span> : <span class="type">IChartFactory &#123;</span></span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">generateChartImpl</span><span class="params">()</span></span>: IChart = LinearChart()</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>　　使用起来只需要通过对应的Factory创建对应的IChart对象就可以了。如下<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> chartImpl = PieChartFactory().generateChartImpl()</span><br><span class="line">    chartImpl.display()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　并且我们还发现，如果需要增加一种图表的显示只需要增加IChart的子类和对应的IChartFactory的子类就可以了，而不需要去修改已有的代码，这样就不会违反<strong><font color="#1b8fe6">开闭原则</font></strong>了，而且具有一定的扩展性。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>　　从上面的代码中我们看出，虽然<strong><font color="#1b8fe6">工厂方法</font></strong>能够有很好的扩展性，但是缺点也显而易见，它会导致类的数量越来越多，这样反而会增加系统的复杂度。</p>
+<h1 id="毒鸡汤"><a href="#毒鸡汤" class="headerlink" title="毒鸡汤"></a>毒鸡汤</h1><p>　　日子还长，请别失望~</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/21/mac插入U盘的只读问题/" itemprop="url">
-              
-                <span itemprop="name">mac插入U盘的只读问题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-21T20:24:18+08:00"
-              content="2018-02-21" >
-          02-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/13/关于迅雷下载BT出现的版权方问题/" itemprop="url">
-              
-                <span itemprop="name">关于迅雷下载BT出现的版权方问题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-13T20:40:32+08:00"
-              content="2018-02-13" >
-          02-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/01/30/android-support-annotation/" itemprop="url">
-              
-                <span itemprop="name">android support annotation</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-01-30T11:52:46+08:00"
-              content="2018-01-30" >
-          01-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/01/30/Android-Architecture-Components/" itemprop="url">
-              
-                <span itemprop="name">Android Architecture Components</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-01-30T11:32:46+08:00"
-              content="2018-01-30" >
-          01-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/01/24/当Kotlin遇上Parcelable/" itemprop="url">
-              
-                <span itemprop="name">当Kotlin遇上Parcelable</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-01-24T22:27:35+08:00"
-              content="2018-01-24" >
-          01-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/01/23/有趣的kotlin封装Recycler适配器/" itemprop="url">
-              
-                <span itemprop="name">有趣的kotlin封装Recycler适配器</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-01-23T20:29:06+08:00"
-              content="2018-01-23" >
-          01-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/01/10/Camera的使用/" itemprop="url">
-              
-                <span itemprop="name">Camera的使用</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-01-10T09:47:22+08:00"
-              content="2018-01-10" >
-          01-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+        <div>
+            
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/2018/02/27/设计模式-工厂方法/">设计模式-工厂方法</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 严方雄 的个人博客">严方雄</a></p>
+  <p><span>发布时间:</span>2018-02-27</p>
+  <p><span>最后更新:</span>2018-02-27</p>
+  <p><span>原始链接:</span><a href="/2018/02/27/设计模式-工厂方法/" title="设计模式-工厂方法">http://yanfangxiong.com/2018/02/27/设计模式-工厂方法/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yanfangxiong.com/2018/02/27/设计模式-工厂方法/"  aria-label="复制成功！"></i></span>
+  </p>
+</div>
+<script>
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({
+          title: "",
+          text: '复制成功',
+          html: false,
+          timer: 500,
+          showConfirmButton: false
+        });
+      });
+    }));
+</script>
+
+
+        </div>
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"><i class="fa fa-tag"></i> 设计模式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/27/关于京东open-api-sdk的那些坑/" rel="next" title="关于京东open-api-sdk的那些坑">
+                <i class="fa fa-chevron-left"></i> 关于京东open-api-sdk的那些坑
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -759,6 +558,14 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
 
 
           
+
+  
+    <div class="comments" id="comments">
+        <div id="gitment-container"></div>
+    </div>
+  
+
+
 
         </div>
         
@@ -781,8 +588,17 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -870,6 +686,22 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修改Factory"><span class="nav-number">2.</span> <span class="nav-text">修改Factory</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#拆分Factory"><span class="nav-number">3.</span> <span class="nav-text">拆分Factory</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试"><span class="nav-number">4.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#毒鸡汤"><span class="nav-number">6.</span> <span class="nav-text">毒鸡汤</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1006,6 +838,10 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
