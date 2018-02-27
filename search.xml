@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[关于京东open-api-sdk的那些坑]]></title>
+    <url>%2F2018%2F02%2F27%2F%E5%85%B3%E4%BA%8E%E4%BA%AC%E4%B8%9Copen-api-sdk%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91%2F</url>
+    <content type="text"><![CDATA[前言 近来有位朋友让我用java测试下京东的open-api-sdk的调用，对此记录下在测试过程中遇到的那些坑。 ClassNotFound 于是乎我将sdk下载下来集成到项目中，然后按照文档上的内容编写了下面的代码。12345678910111213141516171819202122WareWriteUpdateWareRequest request = new WareWriteUpdateWareRequest();Ware ware = new Ware();ware.setWareId(/*wareId*/);ware.setTitle(/*title*/);ware.setTransportId(/*transportId*/);request.setWare(ware);JdClient client = new DefaultJdClient( "serverUrl", "accessToken", "appKey", "appSecret");try &#123; WareWriteUpdateWareResponse execute = client.execute(request); if (execute.getSuccess()) &#123; System.out.println("请求成功:" + execute.getMsg()); &#125; else &#123; System.out.println("请求失败:" + execute.getMsg()); &#125;&#125; catch (JdException e) &#123; e.printStackTrace();&#125; 似乎是没有毛病的，然后我运行了代码，得到了下面的结果！你没有看错，wtf，找不到类，什么鬼哦。 NoSuchMethod 然后朋友给我发了一篇博客，按照里面的配置，我修改了项目配置为maven项目，然后添加了如下的依赖。1234567891011&lt;dependency&gt; &lt;groupId&gt;org.codehaus.jackson&lt;/groupId&gt; &lt;artifactId&gt;jackson-core-asl&lt;/artifactId&gt; &lt;version&gt;1.8.11&lt;/version&gt;&lt;/dependency&gt;&lt;dependency&gt; &lt;groupId&gt;org.codehaus.jackson&lt;/groupId&gt; &lt;artifactId&gt;jackson-mapper-asl&lt;/artifactId&gt; &lt;version&gt;1.8.11&lt;/version&gt;&lt;/dependency&gt; 本以为这样就没有问题了。但是事不如己愿，哈哈，又出现了下面的问题。 解决 看到这个异常我的第一反应就是open-api-sdk中调用的jar包的版本一定比我配置的要高，于是我在mavenrepository里面搜索了最新的jackson-core-asl和jackson-mapper-asl的jar最新版本，并且修改了pom.xml中的version信息。如下所示：1234567891011&lt;dependency&gt; &lt;groupId&gt;org.codehaus.jackson&lt;/groupId&gt; &lt;artifactId&gt;jackson-core-asl&lt;/artifactId&gt; &lt;version&gt;1.9.13&lt;/version&gt;&lt;/dependency&gt;&lt;dependency&gt; &lt;groupId&gt;org.codehaus.jackson&lt;/groupId&gt; &lt;artifactId&gt;jackson-mapper-asl&lt;/artifactId&gt; &lt;version&gt;1.9.13&lt;/version&gt;&lt;/dependency&gt; 然后，我再次运行了代码，得到以下结果。 吐槽 说实话，第一次见到sdk里面使用了三方的jar，但是又不在文档里面说明的，也是服气~ 毒鸡汤 日子还长，别太失望～]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>点滴</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[设计模式-简单工厂]]></title>
     <url>%2F2018%2F02%2F26%2F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%2F</url>
     <content type="text"><![CDATA[前言 之前写代码从来都没有注重设计模式这一块，熟知的并且用的最多的就是单例模式，但是并没有什么卵用，现在项目越来越庞大，每次迭代都要改一堆东西，印象中重复的代码也越来越多，有时候迭代一个版本要改N多个地方的相同代码，如果哪个地方忘了就很蛋疼，但是让我去重构又不知道从何处下手，最近打算将设计模式的东西系统的学习一下，然后将自己写的代码好好的梳理一下。 举个栗子 现在产品经理需要一个图表展示的功能，包括折线图，饼图和柱状图等。于是我写了一个IChart的接口，只有一个display()方法。12345interface IChart &#123; fun display() &#125; 然后编写了几个IChart的子类，如下。1234567891011121314151617181920212223class PieChart : IChart &#123; override fun display() &#123; println("显示饼状图") &#125;&#125;class BarChart : IChart &#123; override fun display() &#123; println("显示柱状图") &#125;&#125;class LinearChart : IChart &#123; override fun display() &#123; println("显示折线图") &#125;&#125; 就这样写好了图表的相关类。然后就是如何根据不同的类型产生不同的类的对象。1234567891011class ChartFactory &#123; fun generateChartImpl(type: String): IChart &#123; return when (type) &#123; "bar" -&gt; BarChart() "linear" -&gt; LinearChart() else -&gt; PieChart() &#125; &#125;&#125; 最后我们来测试一下就可以了。1234fun main(args: Array&lt;String&gt;) &#123; val chartImpl = ChartFactory.generateChartImpl("linear") chartImpl.display()&#125; 运行结果如下所示，这就是简单的工厂模式。 毒鸡汤 日子还长，请别失望～]]></content>
