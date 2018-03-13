@@ -128,7 +128,7 @@
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/03/13/001.png">
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/03/13/002.png">
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/03/13/003.png">
-<meta property="og:updated_time" content="2018-03-13T06:32:39.000Z">
+<meta property="og:updated_time" content="2018-03-13T06:36:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何clone aosp">
 <meta name="twitter:description" content="什么是aosp　　aosp(android open source project)其实就是Android开源项目。　　git地址: https://android.googlesource.com/。 clone项目　　如果你想要把整个的aosp项目clone下来，建议你买个移动硬盘。本人比较穷，mac只有256G的存储空间，所以这里就只clone framework库的代码做示范，大概有2G">
@@ -412,7 +412,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-13T14:32:39+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-13T14:36:10+08:00">
                 2018-03-13
               </time>
             
@@ -449,10 +449,10 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
         <script src="/assets/js/APlayer.min.js"> </script><h1 id="什么是aosp"><a href="#什么是aosp" class="headerlink" title="什么是aosp"></a>什么是aosp</h1><p>　　<a href="https://source.android.com/" target="_blank" rel="noopener"><strong><font color="#1b8fe6">aosp(android open source project)</font></strong></a>其实就是Android开源项目。<br>　　<strong><font color="#1b8fe6">git地址</font></strong>: <a href="https://android.googlesource.com/" target="_blank" rel="noopener">https://android.googlesource.com/</a>。</p>
 <h1 id="clone项目"><a href="#clone项目" class="headerlink" title="clone项目"></a>clone项目</h1><p>　　如果你想要把整个的aosp项目clone下来，建议你买个移动硬盘。本人比较穷，mac只有256G的存储空间，所以这里就只clone framework库的代码做示范，大概有2G左右。</p>
 <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><p>　　首先你得在电脑上装git，啊，你问我为什么？你不装怎么clone项目(mdzz，谁问你了)。然后配置用户名和邮箱。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git config --global user.name "xxx"</span><br><span class="line"><span class="meta">$</span> git config --global user.email "xxx@gmail.com"</span><br></pre></td></tr></table></figure></p>
-<h3 id="找仓库地址"><a href="#找仓库地址" class="headerlink" title="找仓库地址"></a>找仓库地址</h3><p>　　配置好你的git之后你需要在google的代码库里面找到framework的仓库地址，大概是下面这样。<img src="/images/2018/03/13/001.png" alt="framework git repository"><br></p>
+<h3 id="找仓库地址"><a href="#找仓库地址" class="headerlink" title="找仓库地址"></a>找仓库地址</h3><p>　　配置好你的git之后你需要在google的代码库里面找到framework的仓库地址，大概是下面这样。<img src="/images/2018/03/13/001.png" alt="framework git repository"></p>
 <h2 id="开始clone"><a href="#开始clone" class="headerlink" title="开始clone"></a>开始clone</h2><p>　　准备工作做完之后，我们就可以开始clone项目了。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git clone https://android.googlesource.com/platform/frameworks/base</span><br></pre></td></tr></table></figure></p>
-<p>　　一切似乎都在情理之中，然后过了一会，iTerm里面显示如下问题。<img src="/images/2018/03/13/002.png" alt="connection failed"><br><br>　　这个问题是因为git没法访问到framework的仓库。因为我的vpn是开启的，于是我觉得应该是git的问题，然后在google上搜索了下，git需要设置代理。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git config --global http.proxy "http://xxx.xxx.xxx:port"</span><br><span class="line"><span class="meta">$</span> git config --global https.proxy "http://xxx.xxx.xxx:port"</span><br><span class="line"><span class="meta">$</span> git config --global http.sslVerify false</span><br></pre></td></tr></table></figure></p>
-<p>　　我用的是蓝灯，在设置－网络－高级－代理里面可以查看代理地址。如下图所示<img src="/images/2018/03/13/003.png" alt="proxy"><br><br>　　然后再次运行git clone命令，等待数分钟之后就能看到已经clone好的代码了。<br><br><br><br><br>　　日子还长，别太失望~</p>
+<p>　　一切似乎都在情理之中，然后过了一会，iTerm里面显示如下问题。<img src="/images/2018/03/13/002.png" alt="connection failed"><br>　　这个问题是因为git没法访问到framework的仓库。因为我的vpn是开启的，于是我觉得应该是git的问题，然后在google上搜索了下，git需要设置代理。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git config --global http.proxy "http://xxx.xxx.xxx:port"</span><br><span class="line"><span class="meta">$</span> git config --global https.proxy "http://xxx.xxx.xxx:port"</span><br><span class="line"><span class="meta">$</span> git config --global http.sslVerify false</span><br></pre></td></tr></table></figure></p>
+<p>　　我用的是蓝灯，在设置－网络－高级－代理里面可以查看代理地址。如下图所示<img src="/images/2018/03/13/003.png" alt="proxy"><br>　　然后再次运行git clone命令，等待数分钟之后就能看到已经clone好的代码了。<br>　　日子还长，别太失望~</p>
 
       
     </div>
