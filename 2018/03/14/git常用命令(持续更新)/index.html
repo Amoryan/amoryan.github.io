@@ -121,9 +121,9 @@
 <meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git常用命令(持续更新)">
-<meta property="og:url" content="http://yanfangxiong.com/2018/03/14/git中比较有趣的命令/index.html">
+<meta property="og:url" content="http://yanfangxiong.com/2018/03/14/git常用命令(持续更新)/index.html">
 <meta property="og:site_name" content="严方雄的空间">
-<meta property="og:description" content="起因　　一直使用的AndroidStudio进行开发，它将git的操作封装的十分简单，以至于我根本就没有细究git命令的作用，这就导致有时候和同事一起开发遇到问题了不知道怎么去解决。 准备工作 首先，我们得安装git，如果不会的，请自行百度或者google； 然后，我们在一个空白的文件夹下面新建一个git仓库，开始我们的git命令学习之旅git rebase举个🌰　　你刚接到一个需求需要开发A">
+<meta property="og:description" content="起因　　一直使用的AndroidStudio进行开发，它将git的操作封装的十分简单，以至于我根本就没有细究git命令的作用，这就导致有时候和同事一起开发遇到问题了不知道怎么去解决。 准备工作 首先，我们得安装git，如果不会的，请自行百度或者google； 然后，我们在一个空白的文件夹下面新建一个git仓库，开始我们的git命令学习之旅  git rebase举个🌰　　你刚接到一个需求需要开">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/03/14/002.png">
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/03/14/001.png">
@@ -137,10 +137,10 @@
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/03/14/010.png">
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/03/14/011.png">
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/03/14/012.gif">
-<meta property="og:updated_time" content="2018-03-14T14:57:06.000Z">
+<meta property="og:updated_time" content="2018-03-14T14:59:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git常用命令(持续更新)">
-<meta name="twitter:description" content="起因　　一直使用的AndroidStudio进行开发，它将git的操作封装的十分简单，以至于我根本就没有细究git命令的作用，这就导致有时候和同事一起开发遇到问题了不知道怎么去解决。 准备工作 首先，我们得安装git，如果不会的，请自行百度或者google； 然后，我们在一个空白的文件夹下面新建一个git仓库，开始我们的git命令学习之旅git rebase举个🌰　　你刚接到一个需求需要开发A">
+<meta name="twitter:description" content="起因　　一直使用的AndroidStudio进行开发，它将git的操作封装的十分简单，以至于我根本就没有细究git命令的作用，这就导致有时候和同事一起开发遇到问题了不知道怎么去解决。 准备工作 首先，我们得安装git，如果不会的，请自行百度或者google； 然后，我们在一个空白的文件夹下面新建一个git仓库，开始我们的git命令学习之旅  git rebase举个🌰　　你刚接到一个需求需要开">
 <meta name="twitter:image" content="http://yanfangxiong.com/images/2018/03/14/002.png">
 
 
@@ -171,7 +171,7 @@
 
 
 
-  <link rel="canonical" href="http://yanfangxiong.com/2018/03/14/git中比较有趣的命令/"/>
+  <link rel="canonical" href="http://yanfangxiong.com/2018/03/14/git常用命令(持续更新)/"/>
 
 
 
@@ -376,7 +376,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yanfangxiong.com/2018/03/14/git中比较有趣的命令/">
+    <link itemprop="mainEntityOfPage" href="http://yanfangxiong.com/2018/03/14/git常用命令(持续更新)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="严方雄">
@@ -421,7 +421,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-14T22:57:06+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-14T22:59:05+08:00">
                 2018-03-14
               </time>
             
@@ -458,9 +458,10 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
         <script src="/assets/js/APlayer.min.js"> </script><h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>　　一直使用的AndroidStudio进行开发，它将git的操作封装的十分简单，以至于我根本就没有细究git命令的作用，这就导致有时候和同事一起开发遇到问题了不知道怎么去解决。</p>
 <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><ol>
 <li>首先，我们得安装git，如果不会的，请自行百度或者google；</li>
-<li>然后，我们在一个空白的文件夹下面新建一个git仓库，开始我们的git命令学习之旅<h1 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h1><h2 id="举个🌰"><a href="#举个🌰" class="headerlink" title="举个🌰"></a>举个🌰</h2>　　你刚接到一个需求需要开发A功能，然后你在本地切出一个dev_afunc的分支，然后开发了一部分的时候，你将代码commit了几次；这个时候，产品经理过来说有个B功能比较紧急，然后这个时候你需要开发B功能，这个时候你又创建了dev_bfunc的分支，在上面进行开发，开发完了之后验收通过然后发布了。这个时候你又要回过头来开发A功能。<h2 id="A功能开发中"><a href="#A功能开发中" class="headerlink" title="A功能开发中"></a>A功能开发中</h2>　　我们新拉出一个分支，然后做一些修改并提交到当前分支。<img src="/images/2018/03/14/002.png" alt="002"><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git checkout -b dev_afunc</span><br><span class="line"><span class="meta">$</span> git add .</span><br><span class="line"><span class="meta">$</span> git commit -m "开发A功能中"</span><br></pre></td></tr></table></figure>
-</li>
+<li>然后，我们在一个空白的文件夹下面新建一个git仓库，开始我们的git命令学习之旅</li>
 </ol>
+<h1 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h1><h2 id="举个🌰"><a href="#举个🌰" class="headerlink" title="举个🌰"></a>举个🌰</h2><p>　　你刚接到一个需求需要开发A功能，然后你在本地切出一个dev_afunc的分支，然后开发了一部分的时候，你将代码commit了几次；这个时候，产品经理过来说有个B功能比较紧急，然后这个时候你需要开发B功能，这个时候你又创建了dev_bfunc的分支，在上面进行开发，开发完了之后验收通过然后发布了。这个时候你又要回过头来开发A功能。</p>
+<h2 id="A功能开发中"><a href="#A功能开发中" class="headerlink" title="A功能开发中"></a>A功能开发中</h2><p>　　我们新拉出一个分支，然后做一些修改并提交到当前分支。<img src="/images/2018/03/14/002.png" alt="002"><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git checkout -b dev_afunc</span><br><span class="line"><span class="meta">$</span> git add .</span><br><span class="line"><span class="meta">$</span> git commit -m "开发A功能中"</span><br></pre></td></tr></table></figure></p>
 <p>　　这个时候git仓库是这个样子的<img src="/images/2018/03/14/001.png" alt="001"></p>
 <h2 id="半路杀出个B"><a href="#半路杀出个B" class="headerlink" title="半路杀出个B"></a>半路杀出个B</h2><p>　　然后这个时候，B功能比较紧急，于是我们将分支切换到了master，然后再拉出一个dev_bfunc分支进行开发B功能，并做一些修改之后提交到当前分支。<img src="/images/2018/03/14/003.png" alt="003"><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git checkout master</span><br><span class="line"><span class="meta">$</span> git checkout -b dev_bfunc</span><br><span class="line"><span class="meta">$</span> git add .</span><br><span class="line"><span class="meta">$</span> git commit -m "开发B功能中"</span><br></pre></td></tr></table></figure></p>
 <p>　　这个时候git仓库是这个样子的。<img src="/images/2018/03/14/004.png" alt="004"></p>
@@ -487,12 +488,12 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
   <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
   <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
-  <p><span>本文标题:</span><a href="/2018/03/14/git中比较有趣的命令/">git常用命令(持续更新)</a></p>
+  <p><span>本文标题:</span><a href="/2018/03/14/git常用命令(持续更新)/">git常用命令(持续更新)</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 严方雄 的个人博客">严方雄</a></p>
   <p><span>发布时间:</span>2018-03-14</p>
   <p><span>最后更新:</span>2018-03-14</p>
-  <p><span>原始链接:</span><a href="/2018/03/14/git中比较有趣的命令/" title="git常用命令(持续更新)">http://yanfangxiong.com/2018/03/14/git中比较有趣的命令/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yanfangxiong.com/2018/03/14/git中比较有趣的命令/"  aria-label="复制成功！"></i></span>
+  <p><span>原始链接:</span><a href="/2018/03/14/git常用命令(持续更新)/" title="git常用命令(持续更新)">http://yanfangxiong.com/2018/03/14/git常用命令(持续更新)/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yanfangxiong.com/2018/03/14/git常用命令(持续更新)/"  aria-label="复制成功！"></i></span>
   </p>
 </div>
 <script>
