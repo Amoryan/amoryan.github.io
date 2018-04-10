@@ -106,7 +106,7 @@
 
 
 
-  <meta name="keywords" content="设计模式," />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -117,20 +117,23 @@
 
 
 
-<meta name="description" content="前言　　之前写代码从来都没有注重设计模式这一块，熟知的并且用的最多的就是单例模式，但是并没有什么卵用，现在项目越来越庞大，每次迭代都要改一堆东西，印象中重复的代码也越来越多，有时候迭代一个版本要改N多个地方的相同代码，如果哪个地方忘了就很蛋疼，但是让我去重构又不知道从何处下手，最近打算将设计模式的东西系统的学习一下，然">
-<meta name="keywords" content="设计模式">
+<meta name="description" content="什么是View　　View是屏幕上的一块矩形区域，负责绘制和触摸反馈。 View的生命周期　　View中有很多回调方法，它们在View的不同生命周期阶段调用，比较常用的方法有下面这些。12345678910111213141516171819202122232425262728293031323334353637383">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式-简单工厂">
-<meta property="og:url" content="http://yanfangxiong.com/2018/02/26/设计模式-简单工厂/index.html">
+<meta property="og:title" content="视图的载体View">
+<meta property="og:url" content="http://yanfangxiong.com/2018/04/10/视图的载体View/index.html">
 <meta property="og:site_name" content="严方雄的空间">
-<meta property="og:description" content="前言　　之前写代码从来都没有注重设计模式这一块，熟知的并且用的最多的就是单例模式，但是并没有什么卵用，现在项目越来越庞大，每次迭代都要改一堆东西，印象中重复的代码也越来越多，有时候迭代一个版本要改N多个地方的相同代码，如果哪个地方忘了就很蛋疼，但是让我去重构又不知道从何处下手，最近打算将设计模式的东西系统的学习一下，然后将自己写的代码好好的梳理一下。 举个栗子　　现在产品经理需要一个图表展示的功">
+<meta property="og:description" content="什么是View　　View是屏幕上的一块矩形区域，负责绘制和触摸反馈。 View的生命周期　　View中有很多回调方法，它们在View的不同生命周期阶段调用，比较常用的方法有下面这些。12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yanfangxiong.com/images/2018/02/26/001.png">
-<meta property="og:updated_time" content="2018-02-26T11:38:26.000Z">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/04/10/001.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/04/10/002.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/04/10/003.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/04/10/004.png">
+<meta property="og:updated_time" content="2018-04-10T07:47:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式-简单工厂">
-<meta name="twitter:description" content="前言　　之前写代码从来都没有注重设计模式这一块，熟知的并且用的最多的就是单例模式，但是并没有什么卵用，现在项目越来越庞大，每次迭代都要改一堆东西，印象中重复的代码也越来越多，有时候迭代一个版本要改N多个地方的相同代码，如果哪个地方忘了就很蛋疼，但是让我去重构又不知道从何处下手，最近打算将设计模式的东西系统的学习一下，然后将自己写的代码好好的梳理一下。 举个栗子　　现在产品经理需要一个图表展示的功">
-<meta name="twitter:image" content="http://yanfangxiong.com/images/2018/02/26/001.png">
+<meta name="twitter:title" content="视图的载体View">
+<meta name="twitter:description" content="什么是View　　View是屏幕上的一块矩形区域，负责绘制和触摸反馈。 View的生命周期　　View中有很多回调方法，它们在View的不同生命周期阶段调用，比较常用的方法有下面这些。12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758">
+<meta name="twitter:image" content="http://yanfangxiong.com/images/2018/04/10/001.png">
 
 
 
@@ -160,13 +163,13 @@
 
 
 
-  <link rel="canonical" href="http://yanfangxiong.com/2018/02/26/设计模式-简单工厂/"/>
+  <link rel="canonical" href="http://yanfangxiong.com/2018/04/10/视图的载体View/"/>
 
 
 
 
 
-  <title>设计模式-简单工厂</title>
+  <title>视图的载体View</title>
   
 
 
@@ -365,7 +368,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yanfangxiong.com/2018/02/26/设计模式-简单工厂/">
+    <link itemprop="mainEntityOfPage" href="http://yanfangxiong.com/2018/04/10/视图的载体View/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="严方雄">
@@ -382,7 +385,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
 
         
         
-          <h1 class="post-title" itemprop="name headline">设计模式-简单工厂</h1>
+          <h1 class="post-title" itemprop="name headline">视图的载体View</h1>
         
 
         <div class="post-meta">
@@ -394,8 +397,8 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T16:24:48+08:00">
-                2018-02-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-10T14:18:14+08:00">
+                2018-04-10
               </time>
             
 
@@ -410,8 +413,8 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-02-26T19:38:26+08:00">
-                2018-02-26
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-10T15:47:03+08:00">
+                2018-04-10
               </time>
             
           </span>
@@ -444,13 +447,17 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>　　之前写代码从来都没有注重设计模式这一块，熟知的并且用的最多的就是单例模式，但是并没有什么卵用，现在项目越来越庞大，每次迭代都要改一堆东西，印象中重复的代码也越来越多，有时候迭代一个版本要改N多个地方的相同代码，如果哪个地方忘了就很蛋疼，但是让我去重构又不知道从何处下手，最近打算将设计模式的东西系统的学习一下，然后将自己写的代码好好的梳理一下。</p>
-<h1 id="举个栗子"><a href="#举个栗子" class="headerlink" title="举个栗子"></a>举个栗子</h1><p>　　现在产品经理需要一个图表展示的功能，包括折线图，饼图和柱状图等。于是我写了一个<strong>IChart</strong>的接口，只有一个<strong>display()</strong>方法。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IChart</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">display</span><span class="params">()</span></span></span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>　　然后编写了几个<strong>IChart</strong>的子类，如下。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PieChart</span> : <span class="type">IChart &#123;</span></span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">display</span><span class="params">()</span></span> &#123;</span><br><span class="line">        println(<span class="string">"显示饼状图"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BarChart</span> : <span class="type">IChart &#123;</span></span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">display</span><span class="params">()</span></span> &#123;</span><br><span class="line">        println(<span class="string">"显示柱状图"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinearChart</span> : <span class="type">IChart &#123;</span></span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">display</span><span class="params">()</span></span> &#123;</span><br><span class="line">        println(<span class="string">"显示折线图"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>　　就这样写好了图表的相关类。然后就是如何根据不同的类型产生不同的类的对象。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChartFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">generateChartImpl</span><span class="params">(type: <span class="type">String</span>)</span></span>: IChart &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">when</span> (type) &#123;</span><br><span class="line">            <span class="string">"bar"</span> -&gt; BarChart()</span><br><span class="line">            <span class="string">"linear"</span> -&gt; LinearChart()</span><br><span class="line">            <span class="keyword">else</span> -&gt; PieChart()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>　　最后我们来测试一下就可以了。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> chartImpl = ChartFactory.generateChartImpl(<span class="string">"linear"</span>)</span><br><span class="line">    chartImpl.display()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>　　运行结果如下所示，这就是简单的工厂模式。<img src="/images/2018/02/26/001.png" alt="result"></p>
-<h1 id="毒鸡汤"><a href="#毒鸡汤" class="headerlink" title="毒鸡汤"></a>毒鸡汤</h1><p>　　日子还长，请别失望～</p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="什么是View"><a href="#什么是View" class="headerlink" title="什么是View"></a>什么是View</h1><p>　　View是屏幕上的一块矩形区域，负责绘制和触摸反馈。</p>
+<h1 id="View的生命周期"><a href="#View的生命周期" class="headerlink" title="View的生命周期"></a>View的生命周期</h1><p>　　View中有很多回调方法，它们在View的不同生命周期阶段调用，比较常用的方法有下面这些。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * View在xml文件中加载完成的时候调用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">onFinishInflate</span><span class="params">()</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * View关联的Window可视性发生变化的时候调用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">onWindowVisibilityChanged</span><span class="params">(visibility: <span class="type">Int</span>)</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * View的可视性发生变化的时候调用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">onVisibilityChanged</span><span class="params">(visibility: <span class="type">Int</span>)</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * View关联的Window获取焦点或者失去焦点的时候调用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">onWindowFocusChanged</span><span class="params">(hasWindowFocus: <span class="type">Boolean</span>)</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * View获取焦点或者失去焦点的时候调用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">onFocusChanged</span><span class="params">(gainFocus: <span class="type">Boolean</span>, direction: <span class="type">Int</span>, previouslyFocusedRect: <span class="type">Rect</span>?)</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测量View及子View的时候调用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">onMeasure</span><span class="params">(widthMeasureSpec: <span class="type">Int</span>, heightMeasureSpec: <span class="type">Int</span>)</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 当View的大小发生变化的时候调用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">onSizeChanged</span><span class="params">(w: <span class="type">Int</span>, h: <span class="type">Int</span>, oldw: <span class="type">Int</span>, oldh: <span class="type">Int</span>)</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 布局View及其子View的时候调用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">onLayout</span><span class="params">(changed: <span class="type">Boolean</span>, w: <span class="type">Int</span>, h: <span class="type">Int</span>, oldw: <span class="type">Int</span>, oldh: <span class="type">Int</span>)</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 绘制View及其子View的时候调用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">onDraw</span><span class="params">(canvas: <span class="type">Canvas</span>)</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * View被关联到Window的时候调用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">onAttachedToWindow</span><span class="params">()</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * View从Window上分离的时候调用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">onDetachedFromWindow</span><span class="params">()</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 触摸事件发生的时候调用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">onTouchEvent</span><span class="params">(event: <span class="type">MotionEvent</span>?)</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 物理按键事件发生的时候调用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">onKeyDown</span><span class="params">(keyCode: <span class="type">Int</span>, event: <span class="type">KeyEvent</span>)</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 物理按键事件发生的时候调用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">onKeyUp</span><span class="params">(keyCode: <span class="type">Int</span>, event: <span class="type">KeyEvent</span>)</span></span></span><br></pre></td></tr></table></figure></p>
+<h2 id="和Activity生命周期的关系"><a href="#和Activity生命周期的关系" class="headerlink" title="和Activity生命周期的关系"></a>和Activity生命周期的关系</h2><p>　　为了研究View生命周期和Activity生命周期之间的关系，我编写了一个CustomView类，下面我们就来看看究竟发生了什么有趣的事情。</p>
+<h3 id="onCreate"><a href="#onCreate" class="headerlink" title="onCreate"></a>onCreate</h3><p>　　当Activity创建的时候。<img src="/images/2018/04/10/001.png" alt="001"></p>
+<h3 id="onPause"><a href="#onPause" class="headerlink" title="onPause"></a>onPause</h3><p>　　当Activity退到后台的时候。<img src="/images/2018/04/10/002.png" alt="002"></p>
+<h3 id="onRestart"><a href="#onRestart" class="headerlink" title="onRestart"></a>onRestart</h3><p>　　当Activity从后台进入前台的时候。<img src="/images/2018/04/10/003.png" alt="003"></p>
+<h3 id="onDestroy"><a href="#onDestroy" class="headerlink" title="onDestroy"></a>onDestroy</h3><p>　　当Activity销毁的时候。<img src="/images/2018/04/10/004.png" alt="004"></p>
+<h2 id="有什么作用呢"><a href="#有什么作用呢" class="headerlink" title="有什么作用呢"></a>有什么作用呢</h2><p>　　那我们了解View的这些生命周期方法有什么作用呢？下面我就列举下我们经常遇见的问题。</p>
+<h3 id="在Activity中获取View的宽高"><a href="#在Activity中获取View的宽高" class="headerlink" title="在Activity中获取View的宽高"></a>在Activity中获取View的宽高</h3><p>　　你是否也曾经在Activity的onCreate，onResume等方法中获取过View的宽高，是否也同样得到了0的结果。从View的生命周期方法调用我们可以看出，在Activity的onResume方法调用的时候，View还没有完成测量，当然获取到的是0了。我们可以在Activity的<strong><font color="#1b8fe6">onWindowFocusChanged()</font></strong>方法中获取View的宽高。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onWindowFocusChanged</span><span class="params">(hasFocus: <span class="type">Boolean</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">super</span>.onWindowFocusChanged(hasFocus)</span><br><span class="line">    <span class="keyword">if</span> (hasFocus) &#123;</span><br><span class="line">        Log.d(<span class="string">"Amoryan"</span>, <span class="string">"<span class="subst">$&#123;customView.width&#125;</span>"</span>)</span><br><span class="line">        Log.d(<span class="string">"Amoryan"</span>, <span class="string">"<span class="subst">$&#123;customView.height&#125;</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="保存和恢复数据"><a href="#保存和恢复数据" class="headerlink" title="保存和恢复数据"></a>保存和恢复数据</h3><p>　　在Activity的生命周期发生变化的时候，View有可能需要作出相应的相应，比如VideoView需要保存和回复当前进度。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onWindowVisibilityChanged</span><span class="params">(visibility: <span class="type">Int</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onWindowVisibilityChanged(visibility)</span><br><span class="line">    <span class="keyword">if</span> (visibility == View.VISIBLE)&#123;</span><br><span class="line">        <span class="comment">// Activity Resumed</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//Activity Paused</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="释放资源"><a href="#释放资源" class="headerlink" title="释放资源"></a>释放资源</h3><p>　　有时候我们需要在View从Window上分离的时候释放一些占用内存的资源，比如Bitmap的回收，线程的释放等。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDetachedFromWindow</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onDetachedFromWindow()</span><br><span class="line">    <span class="comment">//释放资源</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -468,12 +475,12 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
   <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
   <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
-  <p><span>本文标题:</span><a href="/2018/02/26/设计模式-简单工厂/">设计模式-简单工厂</a></p>
+  <p><span>本文标题:</span><a href="/2018/04/10/视图的载体View/">视图的载体View</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 严方雄 的个人博客">严方雄</a></p>
-  <p><span>发布时间:</span>2018-02-26</p>
-  <p><span>最后更新:</span>2018-02-26</p>
-  <p><span>原始链接:</span><a href="/2018/02/26/设计模式-简单工厂/" title="设计模式-简单工厂">http://yanfangxiong.com/2018/02/26/设计模式-简单工厂/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yanfangxiong.com/2018/02/26/设计模式-简单工厂/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2018-04-10</p>
+  <p><span>最后更新:</span>2018-04-10</p>
+  <p><span>原始链接:</span><a href="/2018/04/10/视图的载体View/" title="视图的载体View">http://yanfangxiong.com/2018/04/10/视图的载体View/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yanfangxiong.com/2018/04/10/视图的载体View/"  aria-label="复制成功！"></i></span>
   </p>
 </div>
 <script>
@@ -505,7 +512,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
       
         <div class="post-tags">
           
-            <a href="/tags/设计模式/" rel="tag"><i class="fa fa-tag"></i> 设计模式</a>
+            <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i> Android</a>
           
         </div>
       
@@ -518,8 +525,8 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/21/mac插入U盘的只读问题/" rel="next" title="mac插入U盘的只读问题">
-                <i class="fa fa-chevron-left"></i> mac插入U盘的只读问题
+              <a href="/2018/03/14/git常用命令(持续更新)/" rel="next" title="git常用命令(持续更新)">
+                <i class="fa fa-chevron-left"></i> git常用命令(持续更新)
               </a>
             
           </div>
@@ -527,10 +534,6 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/27/关于京东open-api-sdk的那些坑/" rel="prev" title="关于京东open-api-sdk的那些坑">
-                关于京东open-api-sdk的那些坑 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -702,7 +705,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#举个栗子"><span class="nav-number">2.</span> <span class="nav-text">举个栗子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#毒鸡汤"><span class="nav-number">3.</span> <span class="nav-text">毒鸡汤</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是View"><span class="nav-number">1.</span> <span class="nav-text">什么是View</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#View的生命周期"><span class="nav-number">2.</span> <span class="nav-text">View的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#和Activity生命周期的关系"><span class="nav-number">2.1.</span> <span class="nav-text">和Activity生命周期的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#onCreate"><span class="nav-number">2.1.1.</span> <span class="nav-text">onCreate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#onPause"><span class="nav-number">2.1.2.</span> <span class="nav-text">onPause</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#onRestart"><span class="nav-number">2.1.3.</span> <span class="nav-text">onRestart</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#onDestroy"><span class="nav-number">2.1.4.</span> <span class="nav-text">onDestroy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有什么作用呢"><span class="nav-number">2.2.</span> <span class="nav-text">有什么作用呢</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在Activity中获取View的宽高"><span class="nav-number">2.2.1.</span> <span class="nav-text">在Activity中获取View的宽高</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存和恢复数据"><span class="nav-number">2.2.2.</span> <span class="nav-text">保存和恢复数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#释放资源"><span class="nav-number">2.2.3.</span> <span class="nav-text">释放资源</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
