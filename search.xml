@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[设计模式-代理模式]]></title>
+    <url>%2F2018%2F04%2F18%2F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[前言 前段时间我们分析了kotlin的委托，委托实际上有点类似于静态代理模式，趁着委托的记忆还没有消失(我的记忆力比鱼稍微好一丢丢(理直气壮))，我们来分析下代理模式。 静态代理 静态代理模式中，有3个重要的角色 抽象角色，它抽离了代理角色和真实角色的共性； 代理角色，直接与客户进行交互，在内部访问真实角色，但同时又可以对真实角色的访问附加额外的操作； 真实角色，代理角色中真正操作的。 抽象角色 首先我们定义一个抽象接口，它有一个request方法。123interface IBase&#123; fun request() &#125; 真实角色 然后，我们定义一个真实角色，它实现了抽象角色。12345class BaseImpl:IBase&#123; override fun request()&#123; //...request &#125;&#125; 代理角色 最后，我们定义一个代理角色，它同样也实现了抽象角色，同时它包含了一个BaseImpl的实例对象。12345678910class BaseImplProxy:IBase&#123; private val baseImpl:BaseImpl by lazy&#123; BaseImpl() &#125; override fun request()&#123; //这里实际调用真实角色的request() baseImpl.request() &#125;&#125; 写到这里，我们发现上面和kotlin的委托是一模一样的原理。但是静态代理中，我们可以在request()中做一些额外的操作。12345678910111213override fun request()&#123; preRequest() baseImpl.request() postRequest()&#125;private fun preRequest()&#123; //...请求前做的事情&#125;private fun postRequest()&#123; //...请求后做的事情&#125; 但是kotlin的委托就不能做这些事情。 动态代理]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[视图的管理者Window]]></title>
     <url>%2F2018%2F04%2F16%2F%E8%A7%86%E5%9B%BE%E7%9A%84%E7%AE%A1%E7%90%86%E8%80%85Window%2F</url>
     <content type="text"><![CDATA[]]></content>

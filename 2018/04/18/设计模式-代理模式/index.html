@@ -106,7 +106,7 @@
 
 
 
-  <meta name="keywords" content="严方雄的个人博客" />
+  <meta name="keywords" content="设计模式," />
 
 
 
@@ -117,16 +117,18 @@
 
 
 
-<meta name="description" content="余生没那么长，不要一味的付出去惯哪些得寸进尺的人，请忠于自己，活的像最初的模样~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="严方雄的空间">
-<meta property="og:url" content="http://yanfangxiong.com/archives/2018/02/index.html">
+<meta name="description" content="前言　　前段时间我们分析了kotlin的委托，委托实际上有点类似于静态代理模式，趁着委托的记忆还没有消失(我的记忆力比鱼稍微好一丢丢(理直气壮))，我们来分析下代理模式。 静态代理　　静态代理模式中，有3个重要的角色  抽象角色，它抽离了代理角色和真实角色的共性； 代理角色，直接与客户进行交互，在内部访问真实角色，但同">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式-代理模式">
+<meta property="og:url" content="http://yanfangxiong.com/2018/04/18/设计模式-代理模式/index.html">
 <meta property="og:site_name" content="严方雄的空间">
-<meta property="og:description" content="余生没那么长，不要一味的付出去惯哪些得寸进尺的人，请忠于自己，活的像最初的模样~">
+<meta property="og:description" content="前言　　前段时间我们分析了kotlin的委托，委托实际上有点类似于静态代理模式，趁着委托的记忆还没有消失(我的记忆力比鱼稍微好一丢丢(理直气壮))，我们来分析下代理模式。 静态代理　　静态代理模式中，有3个重要的角色  抽象角色，它抽离了代理角色和真实角色的共性； 代理角色，直接与客户进行交互，在内部访问真实角色，但同时又可以对真实角色的访问附加额外的操作； 真实角色，代理角色中真正操作的。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-18T06:01:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="严方雄的空间">
-<meta name="twitter:description" content="余生没那么长，不要一味的付出去惯哪些得寸进尺的人，请忠于自己，活的像最初的模样~">
+<meta name="twitter:title" content="设计模式-代理模式">
+<meta name="twitter:description" content="前言　　前段时间我们分析了kotlin的委托，委托实际上有点类似于静态代理模式，趁着委托的记忆还没有消失(我的记忆力比鱼稍微好一丢丢(理直气壮))，我们来分析下代理模式。 静态代理　　静态代理模式中，有3个重要的角色  抽象角色，它抽离了代理角色和真实角色的共性； 代理角色，直接与客户进行交互，在内部访问真实角色，但同时又可以对真实角色的访问附加额外的操作； 真实角色，代理角色中真正操作的。">
 
 
 
@@ -156,13 +158,13 @@
 
 
 
-  <link rel="canonical" href="http://yanfangxiong.com/archives/2018/02/"/>
+  <link rel="canonical" href="http://yanfangxiong.com/2018/04/18/设计模式-代理模式/"/>
 
 
 
 
 
-  <title>成长</title>
+  <title>设计模式-代理模式</title>
   
 
 
@@ -209,7 +211,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -347,259 +349,213 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yanfangxiong.com/2018/04/18/设计模式-代理模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="严方雄">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="严方雄的空间">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">设计模式-代理模式</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-18T09:38:05+08:00">
+                2018-04-18
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-18T14:01:19+08:00">
+                2018-04-18
+              </time>
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 29 篇日志。 继续努力。
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/28/设计模式-抽象工厂/" itemprop="url">
-              
-                <span itemprop="name">设计模式-抽象工厂</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-28T17:27:26+08:00"
-              content="2018-02-28" >
-          02-28
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/27/设计模式-工厂方法/" itemprop="url">
-              
-                <span itemprop="name">设计模式-工厂方法</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-27T15:05:44+08:00"
-              content="2018-02-27" >
-          02-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/27/关于京东open-api-sdk的那些坑/" itemprop="url">
-              
-                <span itemprop="name">关于京东open-api-sdk的那些坑</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-27T13:33:57+08:00"
-              content="2018-02-27" >
-          02-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/26/设计模式-简单工厂/" itemprop="url">
-              
-                <span itemprop="name">设计模式-简单工厂</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-26T16:24:48+08:00"
-              content="2018-02-26" >
-          02-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>　　前段时间我们分析了kotlin的委托，委托实际上有点类似于静态代理模式，趁着委托的记忆还没有消失(我的记忆力比鱼稍微好一丢丢(理直气壮))，我们来分析下代理模式。</p>
+<h1 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h1><p>　　静态代理模式中，有3个重要的角色</p>
+<ol>
+<li>抽象角色，它抽离了代理角色和真实角色的共性；</li>
+<li>代理角色，直接与客户进行交互，在内部访问真实角色，但同时又可以对真实角色的访问附加额外的操作；</li>
+<li>真实角色，代理角色中真正操作的。</li>
+</ol>
+<h2 id="抽象角色"><a href="#抽象角色" class="headerlink" title="抽象角色"></a>抽象角色</h2><p>　　首先我们定义一个抽象接口，它有一个request方法。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IBase</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">request</span><span class="params">()</span></span>   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="真实角色"><a href="#真实角色" class="headerlink" title="真实角色"></a>真实角色</h2><p>　　然后，我们定义一个真实角色，它实现了抽象角色。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseImpl</span>:<span class="type">IBase&#123;</span></span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">request</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//...request</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="代理角色"><a href="#代理角色" class="headerlink" title="代理角色"></a>代理角色</h2><p>　　最后，我们定义一个代理角色，它同样也实现了抽象角色，同时它包含了一个BaseImpl的实例对象。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseImplProxy</span>:<span class="type">IBase&#123;</span></span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> baseImpl:BaseImpl <span class="keyword">by</span> lazy&#123;</span><br><span class="line">        BaseImpl()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">request</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//这里实际调用真实角色的request()</span></span><br><span class="line">        baseImpl.request()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　写到这里，我们发现上面和kotlin的委托是一模一样的原理。但是静态代理中，我们可以在request()中做一些额外的操作。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">request</span><span class="params">()</span></span>&#123;</span><br><span class="line">    preRequest()</span><br><span class="line">    baseImpl.request()</span><br><span class="line">    postRequest()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">preRequest</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//...请求前做的事情</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">postRequest</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//...请求后做的事情</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　但是kotlin的委托就不能做这些事情。</p>
+<h1 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h1>
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/21/mac插入U盘的只读问题/" itemprop="url">
-              
-                <span itemprop="name">mac插入U盘的只读问题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-21T20:24:18+08:00"
-              content="2018-02-21" >
-          02-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/13/关于迅雷下载BT出现的版权方问题/" itemprop="url">
-              
-                <span itemprop="name">关于迅雷下载BT出现的版权方问题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-13T20:40:32+08:00"
-              content="2018-02-13" >
-          02-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+        <div>
+            
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/2018/04/18/设计模式-代理模式/">设计模式-代理模式</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 严方雄 的个人博客">严方雄</a></p>
+  <p><span>发布时间:</span>2018-04-18</p>
+  <p><span>最后更新:</span>2018-04-18</p>
+  <p><span>原始链接:</span><a href="/2018/04/18/设计模式-代理模式/" title="设计模式-代理模式">http://yanfangxiong.com/2018/04/18/设计模式-代理模式/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yanfangxiong.com/2018/04/18/设计模式-代理模式/"  aria-label="复制成功！"></i></span>
+  </p>
+</div>
+<script>
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({
+          title: "",
+          text: '复制成功',
+          html: false,
+          timer: 500,
+          showConfirmButton: false
+        });
+      });
+    }));
+</script>
+
+
+        </div>
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"><i class="fa fa-tag"></i> 设计模式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/16/视图的管理者Window/" rel="next" title="视图的管理者Window">
+                <i class="fa fa-chevron-left"></i> 视图的管理者Window
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -607,6 +563,14 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
 
 
           
+
+  
+    <div class="comments" id="comments">
+        <div id="gitment-container"></div>
+    </div>
+  
+
+
 
         </div>
         
@@ -629,8 +593,17 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -718,6 +691,22 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#静态代理"><span class="nav-number">2.</span> <span class="nav-text">静态代理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象角色"><span class="nav-number">2.1.</span> <span class="nav-text">抽象角色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#真实角色"><span class="nav-number">2.2.</span> <span class="nav-text">真实角色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代理角色"><span class="nav-number">2.3.</span> <span class="nav-text">代理角色</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态代理"><span class="nav-number">3.</span> <span class="nav-text">动态代理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -854,6 +843,10 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
