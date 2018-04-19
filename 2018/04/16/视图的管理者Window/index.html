@@ -106,7 +106,7 @@
 
 
 
-  <meta name="keywords" content="严方雄的个人博客" />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -117,14 +117,18 @@
 
 
 
+<meta name="description" content="前言　　日常开发过程中，接触更多的是View，对于Window却没有太多的接触，但实际上View都是通过Window来呈现的，而Window又是被WindowManager所管理的。 WindowManagerWindowManager.LayoutParamsWindow类型　　从WindowManager的Layo">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="视图的管理者Window">
 <meta property="og:url" content="http://yanfangxiong.com/2018/04/16/视图的管理者Window/index.html">
 <meta property="og:site_name" content="严方雄的空间">
+<meta property="og:description" content="前言　　日常开发过程中，接触更多的是View，对于Window却没有太多的接触，但实际上View都是通过Window来呈现的，而Window又是被WindowManager所管理的。 WindowManagerWindowManager.LayoutParamsWindow类型　　从WindowManager的LayoutParams里面我们可以看到以下这些常量的定义，这些常量对应的是Layou">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-16T09:15:53.000Z">
+<meta property="og:updated_time" content="2018-04-19T06:44:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="视图的管理者Window">
+<meta name="twitter:description" content="前言　　日常开发过程中，接触更多的是View，对于Window却没有太多的接触，但实际上View都是通过Window来呈现的，而Window又是被WindowManager所管理的。 WindowManagerWindowManager.LayoutParamsWindow类型　　从WindowManager的LayoutParams里面我们可以看到以下这些常量的定义，这些常量对应的是Layou">
 
 
 
@@ -404,8 +408,8 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-16T17:15:53+08:00">
-                2018-04-16
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-19T14:44:16+08:00">
+                2018-04-19
               </time>
             
           </span>
@@ -438,7 +442,39 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>　　日常开发过程中，接触更多的是View，对于Window却没有太多的接触，但实际上View都是通过Window来呈现的，而Window又是被WindowManager所管理的。</p>
+<h1 id="WindowManager"><a href="#WindowManager" class="headerlink" title="WindowManager"></a>WindowManager</h1><h2 id="WindowManager-LayoutParams"><a href="#WindowManager-LayoutParams" class="headerlink" title="WindowManager.LayoutParams"></a>WindowManager.LayoutParams</h2><h3 id="Window类型"><a href="#Window类型" class="headerlink" title="Window类型"></a>Window类型</h3><p>　　从WindowManager的LayoutParams里面我们可以看到以下这些常量的定义，这些常量对应的是LayoutParams中的type字段，表示窗口的类型。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> FIRST_APPLICATION_WINDOW = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> LAST_APPLICATION_WINDOW = <span class="number">99</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> FIRST_SUB_WINDOW = <span class="number">1000</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> LAST_SUB_WINDOW = <span class="number">1999</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> FIRST_SYSTEM_WINDOW     = <span class="number">2000</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> LAST_SYSTEM_WINDOW      = <span class="number">2999</span>;</span><br></pre></td></tr></table></figure></p>
+<p>　　看到这些常量的定义，我们可以大致的猜测出在Android系统中，Window被分为3类</p>
+<ol>
+<li>应用Window，type值在1-99之间，一般对应着一个Activity；</li>
+<li>子Window，type值在1000-1999之间，一般不能独立存在，需要依附在父Window上，比如Dialog；</li>
+<li>系统Window，type值在2000-2999之间，一般需要声明权限才能够创建。</li>
+</ol>
+<p>　　另外这个常量值表示Window在z轴上的index，也就是说这个值越大，Window的显示就越靠前。</p>
+<h3 id="softInputMode"><a href="#softInputMode" class="headerlink" title="softInputMode"></a>softInputMode</h3><p>　　这个东西我们在开发过程中经常用到，比如在manifest.xml文件中的activity忠设置windowSoftInputMode属性，这就是在设置softInputMode值。softInputMode会影响两点内容</p>
+<ol>
+<li>软键盘的显示状态，一个是以state；</li>
+<li>Window与软键盘之间的交互方式，一个是adjust。</li>
+</ol>
+<h4 id="软键盘的显示状态"><a href="#软键盘的显示状态" class="headerlink" title="软键盘的显示状态"></a>软键盘的显示状态</h4><p>　　softInputMode控制软键盘的显示状态的常量值有如下几种，在LayoutParams中都可以找到。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SOFT_INPUT_MASK_STATE = <span class="number">0x0f</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SOFT_INPUT_STATE_UNSPECIFIED = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SOFT_INPUT_STATE_UNCHANGED = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SOFT_INPUT_STATE_HIDDEN = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SOFT_INPUT_STATE_ALWAYS_HIDDEN = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SOFT_INPUT_STATE_VISIBLE = <span class="number">4</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SOFT_INPUT_STATE_ALWAYS_VISIBLE = <span class="number">5</span>;</span><br></pre></td></tr></table></figure></p>
+<p>　　下面我们来看看这些常量值会怎样影响软键盘的显示状态。</p>
+<ol>
+<li>SOFT_INPUT_STATE_UNSPECIFIED，不设置任何显示状态；</li>
+<li>SOFT_INPUT_STATE_UNCHANGED，不改变软件盘的显示状态，举个栗子，<strong><font color="#1b8fe6">现在有两个界面A和B，如果A界面的softInputMode设置为stateUnchanged，当你从A界面跳转到B界面再返回A界面的时候，软键盘的显示状态不会发生改变，也就是说，在B界面软件盘如果是显示，那么返回A的时候就是显示的；反之，如果B界面软键盘显示状态是隐藏的，那么返回A的时候就是隐藏的</font></strong>；</li>
+<li>SOFT_INPUT_STATE_HIDDEN，在合适的时候隐藏软键盘，比如用户导航到界面的时候；</li>
+<li>SOFT_INPUT_STATE_ALWAYS_HIDDEN，当Window获得焦点的时候总是隐藏软件盘，这个和stateHidden还是有区别的。举个栗子，<strong><font color="#1b8fe6">同样有两个界面A和B，如果A的softInputMode设置的是stateHidden，当第一次导航到A界面的时候软键盘是隐藏的，当从A跳转到B界面，B界面将软键盘显示出来后再返回A界面，这个时候A界面软键盘保持显示状态；但是，如果A界面的softInputMode设置的是stateAlwaysHidden，同样的操作从B返回A界面的时候，软键盘会被隐藏掉</font></strong>；</li>
+<li>SOFT_INPUT_STATE_VISIBLE，在合适的时候显示软键盘，比如用户导航到界面的时候；</li>
+<li>SOFT_INPUT_STATE_ALWAYS_VISIBLE，当Window获得焦点的时候总是显示软键盘，这个和stateVisible的区别我就不举栗子了，与stateHidden，stateAlwaysHidden的区别一样。</li>
+</ol>
+<h4 id="Window和软键盘的交互方式"><a href="#Window和软键盘的交互方式" class="headerlink" title="Window和软键盘的交互方式"></a>Window和软键盘的交互方式</h4><p>　　softInputMode控制Window和软键盘之间的交互方式的常量值有如下几种，同样定义在LayoutParams中。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SOFT_INPUT_MASK_ADJUST = <span class="number">0xf0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SOFT_INPUT_ADJUST_UNSPECIFIED = <span class="number">0x00</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SOFT_INPUT_ADJUST_RESIZE = <span class="number">0x10</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SOFT_INPUT_ADJUST_PAN = <span class="number">0x20</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SOFT_INPUT_ADJUST_NOTHING = <span class="number">0x30</span>;</span><br></pre></td></tr></table></figure></p>
+<p>　　同样我们再来看看这些常量值会如何影响Window和软键盘之间的交互方式。</p>
+<ol>
+<li>SOFT_INPUT_ADJUST_UNSPECIFIED，不指定任何的交互方式；</li>
+<li>SOFT_INPUT_ADJUST_RESIZE，允许Window改变大小当软键盘显示的时候，这样能够保证Window不被软键盘所遮挡。<strong><font color="#1b8fe6">前方高能，注意，如果Window的flag包含FLAG_FULLSCREEN，那这个值将被忽略，当软键盘显示的时候，Window依旧保持full screen</font></strong>；</li>
+<li>SOFT_INPUT_ADJUST_PAN，当软键盘显示的时候，设置一个窗口平移。<strong><font color="#1b8fe6">这个值不需要处理Window的大小改变，而只需要通过framework层做一个平移保证当前的输入焦点相对于用户是可见的就可以了</font></strong>；</li>
+<li>SOFT_INPUT_ADJUST_NOTHING，当软键盘显示的时候不做任何调整。</li>
+</ol>
+
       
     </div>
     
@@ -458,7 +494,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   <p><span>本文标题:</span><a href="/2018/04/16/视图的管理者Window/">视图的管理者Window</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 严方雄 的个人博客">严方雄</a></p>
   <p><span>发布时间:</span>2018-04-16</p>
-  <p><span>最后更新:</span>2018-04-16</p>
+  <p><span>最后更新:</span>2018-04-19</p>
   <p><span>原始链接:</span><a href="/2018/04/16/视图的管理者Window/" title="视图的管理者Window">http://yanfangxiong.com/2018/04/16/视图的管理者Window/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yanfangxiong.com/2018/04/16/视图的管理者Window/"  aria-label="复制成功！"></i></span>
   </p>
@@ -489,6 +525,12 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i> Android</a>
+          
+        </div>
       
 
       
@@ -575,8 +617,17 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -664,6 +715,22 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WindowManager"><span class="nav-number">2.</span> <span class="nav-text">WindowManager</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#WindowManager-LayoutParams"><span class="nav-number">2.1.</span> <span class="nav-text">WindowManager.LayoutParams</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Window类型"><span class="nav-number">2.1.1.</span> <span class="nav-text">Window类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#softInputMode"><span class="nav-number">2.1.2.</span> <span class="nav-text">softInputMode</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#软键盘的显示状态"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">软键盘的显示状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Window和软键盘的交互方式"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">Window和软键盘的交互方式</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
