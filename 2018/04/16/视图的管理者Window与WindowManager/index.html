@@ -120,15 +120,15 @@
 <meta name="description" content="前言　　日常开发过程中，接触更多的是View，对于Window却没有太多的接触，但实际上View都是通过Window来呈现的，而Window又是被WindowManager所管理的。 WindowManager.LayoutParamstype　　从WindowManager的LayoutParams里面我们可以看到以">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="视图的管理者Window">
-<meta property="og:url" content="http://yanfangxiong.com/2018/04/16/视图的管理者Window/index.html">
+<meta property="og:title" content="视图的管理者Window与WindowManager">
+<meta property="og:url" content="http://yanfangxiong.com/2018/04/16/视图的管理者Window与WindowManager/index.html">
 <meta property="og:site_name" content="严方雄的空间">
 <meta property="og:description" content="前言　　日常开发过程中，接触更多的是View，对于Window却没有太多的接触，但实际上View都是通过Window来呈现的，而Window又是被WindowManager所管理的。 WindowManager.LayoutParamstype　　从WindowManager的LayoutParams里面我们可以看到以下这些常量的定义，这些常量对应的是LayoutParams中的type字段，表">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/04/20/001.png">
-<meta property="og:updated_time" content="2018-04-20T07:06:30.000Z">
+<meta property="og:updated_time" content="2018-04-24T01:30:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="视图的管理者Window">
+<meta name="twitter:title" content="视图的管理者Window与WindowManager">
 <meta name="twitter:description" content="前言　　日常开发过程中，接触更多的是View，对于Window却没有太多的接触，但实际上View都是通过Window来呈现的，而Window又是被WindowManager所管理的。 WindowManager.LayoutParamstype　　从WindowManager的LayoutParams里面我们可以看到以下这些常量的定义，这些常量对应的是LayoutParams中的type字段，表">
 <meta name="twitter:image" content="http://yanfangxiong.com/images/2018/04/20/001.png">
 
@@ -160,13 +160,13 @@
 
 
 
-  <link rel="canonical" href="http://yanfangxiong.com/2018/04/16/视图的管理者Window/"/>
+  <link rel="canonical" href="http://yanfangxiong.com/2018/04/16/视图的管理者Window与WindowManager/"/>
 
 
 
 
 
-  <title>视图的管理者Window</title>
+  <title>视图的管理者Window与WindowManager</title>
   
 
 
@@ -365,7 +365,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yanfangxiong.com/2018/04/16/视图的管理者Window/">
+    <link itemprop="mainEntityOfPage" href="http://yanfangxiong.com/2018/04/16/视图的管理者Window与WindowManager/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="严方雄">
@@ -382,7 +382,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
 
         
         
-          <h1 class="post-title" itemprop="name headline">视图的管理者Window</h1>
+          <h1 class="post-title" itemprop="name headline">视图的管理者Window与WindowManager</h1>
         
 
         <div class="post-meta">
@@ -410,8 +410,8 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-20T15:06:30+08:00">
-                2018-04-20
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-24T09:30:36+08:00">
+                2018-04-24
               </time>
             
           </span>
@@ -523,12 +523,12 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
   <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
   <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
-  <p><span>本文标题:</span><a href="/2018/04/16/视图的管理者Window/">视图的管理者Window</a></p>
+  <p><span>本文标题:</span><a href="/2018/04/16/视图的管理者Window与WindowManager/">视图的管理者Window与WindowManager</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 严方雄 的个人博客">严方雄</a></p>
   <p><span>发布时间:</span>2018-04-16</p>
-  <p><span>最后更新:</span>2018-04-20</p>
-  <p><span>原始链接:</span><a href="/2018/04/16/视图的管理者Window/" title="视图的管理者Window">http://yanfangxiong.com/2018/04/16/视图的管理者Window/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yanfangxiong.com/2018/04/16/视图的管理者Window/"  aria-label="复制成功！"></i></span>
+  <p><span>最后更新:</span>2018-04-24</p>
+  <p><span>原始链接:</span><a href="/2018/04/16/视图的管理者Window与WindowManager/" title="视图的管理者Window与WindowManager">http://yanfangxiong.com/2018/04/16/视图的管理者Window与WindowManager/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yanfangxiong.com/2018/04/16/视图的管理者Window与WindowManager/"  aria-label="复制成功！"></i></span>
   </p>
 </div>
 <script>
