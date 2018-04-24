@@ -30,6 +30,8 @@
       </categories>
       <tags>
         <tag>Android</tag>
+        <tag>Window</tag>
+        <tag>WindowManager</tag>
       </tags>
   </entry>
   <entry>
@@ -42,6 +44,7 @@
       <tags>
         <tag>Android</tag>
         <tag>kotlin</tag>
+        <tag>委托</tag>
       </tags>
   </entry>
   <entry>
@@ -53,6 +56,7 @@
       </categories>
       <tags>
         <tag>Android</tag>
+        <tag>View</tag>
       </tags>
   </entry>
   <entry>
@@ -75,7 +79,6 @@
       </categories>
       <tags>
         <tag>git</tag>
-        <tag>点滴</tag>
       </tags>
   </entry>
   <entry>
@@ -104,6 +107,7 @@
       <tags>
         <tag>Android</tag>
         <tag>kotlin</tag>
+        <tag>ViewPager</tag>
       </tags>
   </entry>
   <entry>
@@ -136,7 +140,8 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>点滴</tag>
+        <tag>Java</tag>
+        <tag>sdk对接</tag>
       </tags>
   </entry>
   <entry>
@@ -155,10 +160,10 @@
     <url>%2F2018%2F02%2F21%2Fmac%E6%8F%92%E5%85%A5U%E7%9B%98%E7%9A%84%E5%8F%AA%E8%AF%BB%E9%97%AE%E9%A2%98%2F</url>
     <content type="text"><![CDATA[前言 最近帮我舅舅重装系统，因为要将我电脑上的系统镜像复制到U盘中， 然后发现我只能读取U盘里面的文件，而不能进行写入操作。 U盘文件系统格式 想要解决这个问题，首先你得了解U盘的文件系统格式。于是我将U盘插在windows电脑上进行格式化的时候，发现格式化的种类有3种，NTFS ， FAT32 ， exFAT 。那么我们来看看这几种格式的区别。 这里推荐一款免费的软件 Mounty11 。它支持在mac读写NTFS文件系统格式的U盘。 NTFS 它全称New Technology File System(新技术文件系统)。支持LZ77压缩、文件级加密、访问控制。主文件表(MFT)负责存储稳健的属性、位置、访问信息。这种格式在mac如果不使用工具是无法写入文件的，当然它还有一些弊端，比如最大分区，最大文件只支持2TB，（日常够用了）兼容范围不如FAT32，长时间使用会影响U盘寿命。所以这种文件系统格式肯定不是我们要的。 FAT32 它是1997年的Windows 95 OSR2，在第二版系统中首次引入的文件系统格式。 它有很好的兼容性，几乎所有主流系统都能对其格式写入读取 。既然有这么好的兼容性，那我们是不是就直接将U盘格式化为FAT32就可以了。当然不是，这种文件系统虽然有很好的兼容性，却有很多的弊端。 这种文件格式安全无保障，对于单个的文件移动，体积不能超过4G，并且文件名称长度不能超过255个字节 ，所以这不是最好的选择。 exFAT 微软专门为闪存设备设计的文件系统，高容量的SDXC卡默认都是这种格式。文件名最高可达65536个，分区和单个文件支持最大可达到16EB，写读取速度稳定。最主要的是它在mac和windows之间都可以进行读写操作。 解决 最终我并没有选择使用第三方工具在mac进行读写NTFS的U盘，而是将U盘格式化为exFAT的格式，然后再将文件拖放到U盘中，再制作启动盘。 总结 如果只是简单的拖放小文件，你完全可以选择使用FAT32文件系统格式，如果需要拖放大文件则可以考虑使用NTFS或者exFAT，当然不建议使用NTFS，因为它对U盘的使用寿命有影响。 毒鸡汤 日子还长，请别失望~ 祝大家新年快乐]]></content>
       <categories>
-        <category>技术</category>
+        <category>奇葩</category>
       </categories>
       <tags>
-        <tag>点滴</tag>
+        <tag>mac</tag>
       </tags>
   </entry>
   <entry>
@@ -166,10 +171,10 @@
     <url>%2F2018%2F02%2F13%2F%E5%85%B3%E4%BA%8E%E8%BF%85%E9%9B%B7%E4%B8%8B%E8%BD%BDBT%E5%87%BA%E7%8E%B0%E7%9A%84%E7%89%88%E6%9D%83%E6%96%B9%E9%97%AE%E9%A2%98%2F</url>
     <content type="text"><![CDATA[前言 2月11号的动车从杭州回家，于是我为了打发在车上的5个多小时时间，2月10号的晚上准备下载一些电影在动车上看。当然是以前看过了的电影，哈哈。于是在google上搜索了速度与激情8和机器之血的BT文件，正当我准备通过迅雷下载这些文件的时候，发现任务的右下角显示 应版权方要求，该资源无法下载 。 WTF！！！ 原因 这个原因是版权方和迅雷交涉后，迅雷通过技术阻止了文件的下载。看到这里忍不住爆了一句粗口，mmp。 解决方案 作为一个程序猿怎么能够被这种问题影响而不看电影，是吧。于是我上google搜索了一些解决方案，找到了一个比较好的方法。 准备工作 首先你得有一个 百度网盘账号 ，因为接下来我们准备通过百度网盘来进行下载这些文件。 获取BT文件的下载地址 获取这个地址的方式比较简单，你只需要在迅雷的下载任务列表选择一个无法下载的文件，然后右键 复制文件下载链接 就可以了。 建立离线下载任务 然后，你就可以登录百度网盘，新建离线下载任务。如下图所示。 然后选择新建链接任务，将在迅雷上复制的链接粘贴上去，建立任务就可以了。 通过百度云盘app进行文件下载 最后你只需要通过百度云盘的app进行文件下载就可以了。 毒鸡汤 日子还长，请别失望~]]></content>
       <categories>
-        <category>技术</category>
+        <category>奇葩</category>
       </categories>
       <tags>
-        <tag>点滴</tag>
+        <tag>BT下载</tag>
       </tags>
   </entry>
   <entry>
@@ -204,6 +209,7 @@
       <tags>
         <tag>Android</tag>
         <tag>kotlin</tag>
+        <tag>Parcelable</tag>
       </tags>
   </entry>
   <entry>
@@ -227,6 +233,8 @@
       </categories>
       <tags>
         <tag>Android</tag>
+        <tag>kotlin</tag>
+        <tag>多媒体</tag>
       </tags>
   </entry>
   <entry>
@@ -238,6 +246,8 @@
       </categories>
       <tags>
         <tag>Android</tag>
+        <tag>kotlin</tag>
+        <tag>多媒体</tag>
       </tags>
   </entry>
   <entry>
@@ -249,6 +259,8 @@
       </categories>
       <tags>
         <tag>Android</tag>
+        <tag>kotlin</tag>
+        <tag>多媒体</tag>
       </tags>
   </entry>
   <entry>
@@ -260,6 +272,7 @@
       </categories>
       <tags>
         <tag>Android</tag>
+        <tag>level-list</tag>
       </tags>
   </entry>
   <entry>
@@ -294,6 +307,8 @@
       </categories>
       <tags>
         <tag>Android</tag>
+        <tag>kotlin</tag>
+        <tag>运行时权限</tag>
       </tags>
   </entry>
   <entry>
