@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Dancing Script:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="git," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言　　你是否也曾遇到版本回退的困扰，是否害怕使用版本回退，每次当错误提交之后，就惊的一身冷汗。很早以前，我就是这样子的。 场景一　　提交了一个commit，发现修改了不改修改的内容，怎么办？在现有分支上修改完了之后再次提交？这样无疑是可以的，但是我们可以通过git revert命令优雅的解决这种问题。 提交一个com">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git revert&#x2F;reset">
+<meta property="og:url" content="http://yanfangxiong.com/2018/04/27/git-revert-reset/index.html">
+<meta property="og:site_name" content="严方雄的空间">
+<meta property="og:description" content="前言　　你是否也曾遇到版本回退的困扰，是否害怕使用版本回退，每次当错误提交之后，就惊的一身冷汗。很早以前，我就是这样子的。 场景一　　提交了一个commit，发现修改了不改修改的内容，怎么办？在现有分支上修改完了之后再次提交？这样无疑是可以的，但是我们可以通过git revert命令优雅的解决这种问题。 提交一个commit　　我们在A分支上提交一个commit。123$ vim a.txt$">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/05/02/005.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/05/02/006.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/05/02/007.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/05/02/008.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/05/02/009.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/05/02/010.png">
+<meta property="og:updated_time" content="2018-05-02T05:58:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git revert&#x2F;reset">
+<meta name="twitter:description" content="前言　　你是否也曾遇到版本回退的困扰，是否害怕使用版本回退，每次当错误提交之后，就惊的一身冷汗。很早以前，我就是这样子的。 场景一　　提交了一个commit，发现修改了不改修改的内容，怎么办？在现有分支上修改完了之后再次提交？这样无疑是可以的，但是我们可以通过git revert命令优雅的解决这种问题。 提交一个commit　　我们在A分支上提交一个commit。123$ vim a.txt$">
+<meta name="twitter:image" content="http://yanfangxiong.com/images/2018/05/02/005.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: false,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"expandIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yanfangxiong.com/2018/04/27/git-revert-reset/"/>
+
+
+
+
+
+  <title>git revert/reset</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    left: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    document.getElementById("live2dcanvas").style.width = '75px';
+    document.getElementById("live2dcanvas").style.height = '150px';
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/koharu.model.json", 0.5);});
+})();
+</script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">严方雄的空间</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            成长
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-comments">
+          <a href="/comments/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comment"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yanfangxiong.com/2018/04/27/git-revert-reset/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="严方雄">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="严方雄的空间">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">git revert/reset</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-27T13:22:46+08:00">
+                2018-04-27
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-02T13:58:20+08:00">
+                2018-05-02
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>　　你是否也曾遇到版本回退的困扰，是否害怕使用版本回退，每次当错误提交之后，就惊的一身冷汗。很早以前，我就是这样子的。</p>
+<h1 id="场景一"><a href="#场景一" class="headerlink" title="场景一"></a>场景一</h1><p>　　提交了一个commit，发现修改了不改修改的内容，怎么办？在现有分支上修改完了之后再次提交？这样无疑是可以的，但是我们可以通过git revert命令优雅的解决这种问题。</p>
+<h2 id="提交一个commit"><a href="#提交一个commit" class="headerlink" title="提交一个commit"></a>提交一个commit</h2><p>　　我们在A分支上提交一个commit。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> vim a.txt</span><br><span class="line"><span class="meta">$</span> git add .</span><br><span class="line"><span class="meta">$</span> git commit -m "增加a.txt文件"</span><br></pre></td></tr></table></figure></p>
+<h2 id="revert最近一次commit"><a href="#revert最近一次commit" class="headerlink" title="revert最近一次commit"></a>revert最近一次commit</h2><p>　　这个时候，我们使用revert命令将这次commit给重置。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git revert HEAD</span><br></pre></td></tr></table></figure></p>
+<p>　　revert命令实际上做的事情就是重新生成一个commit覆盖掉之前的那个commit。这个时候git仓库的commit记录是这样的。<img src="/images/2018/05/02/005.png" alt="005"></p>
+<h2 id="提交了多次commit才发现有问题"><a href="#提交了多次commit才发现有问题" class="headerlink" title="提交了多次commit才发现有问题"></a>提交了多次commit才发现有问题</h2><p>　　如果commit之后，你并没有发现问题，同时你又提交了多个commit，突然发现之前的commit有问题怎么办呢。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> vim a.txt</span><br><span class="line"><span class="meta">$</span> git add .</span><br><span class="line"><span class="meta">$</span> git commit -m "增加a.txt文件"</span><br><span class="line"><span class="meta">$</span> vim b.txt</span><br><span class="line"><span class="meta">$</span> git add .</span><br><span class="line"><span class="meta">$</span> git commit -m "增加b.txt文件"</span><br><span class="line"><span class="meta">$</span> vim c.txt</span><br><span class="line"><span class="meta">$</span> git add .</span><br><span class="line"><span class="meta">$</span> git commit -m "增加c.txt文件"</span><br><span class="line"><span class="meta">$</span> vim d.txt</span><br><span class="line"><span class="meta">$</span> git add .</span><br><span class="line"><span class="meta">$</span> git commit -m "增加d.txt文件"</span><br></pre></td></tr></table></figure></p>
+<p>　　发现a.txt的那次commit是不需要的。这个时候我们找到commit的唯一标识，然后使用revert将其废弃掉。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git log</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> git revert be6afa6ee5</span><br></pre></td></tr></table></figure></p>
+<p>　　be6afa6ee5就是a.txt文件对应的commit唯一标识。这个时候git仓库的commit记录是这样的。<img src="/images/2018/05/02/006.png" alt="006"></p>
+<h2 id="找不到parent"><a href="#找不到parent" class="headerlink" title="找不到parent"></a>找不到parent</h2><p>　　有时候你在revert的时候会出现如下的问题。<img src="/images/2018/05/02/007.png" alt="007"><br>　　这个问题产生的原因是你revert的这个commit它是从两个不同的分支merge后产生的。所以它的parent有两个，你在revert的时候它不知道该revert到哪一个parent，所以就报错了。<br>　　这个时候你可以通过-m参数来指定你需要revert的parent。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git revert HEAD -m 1</span><br></pre></td></tr></table></figure></p>
+<p>　　上面的命令就表示你需要revert那个执行merge命令的分支。</p>
+<h1 id="场景二"><a href="#场景二" class="headerlink" title="场景二"></a>场景二</h1><p>　　一年以前，不是很懂git的我，每次版本上线之后都不会打入tag，也不会给每次上线的版本单独保存一个分支，所以就出现了这样的问题。当出现线上bug的时候，我需要找到上线的commit，然后将HEAD指向那个commit修改bug(当时的我是多么的智障啊，哈哈哈)。</p>
+<h2 id="版本上线后提交若干个commit"><a href="#版本上线后提交若干个commit" class="headerlink" title="版本上线后提交若干个commit"></a>版本上线后提交若干个commit</h2><p>　　这里我们提交若干个commit。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> vim a.txt</span><br><span class="line"><span class="meta">$</span> git add .</span><br><span class="line"><span class="meta">$</span> git commit -m "增加a.txt文件"</span><br><span class="line"><span class="meta">$</span> vim b.txt</span><br><span class="line"><span class="meta">$</span> git add .</span><br><span class="line"><span class="meta">$</span> git commit -m "增加b.txt文件"</span><br><span class="line"><span class="meta">$</span> vim c.txt</span><br><span class="line"><span class="meta">$</span> git add .</span><br><span class="line"><span class="meta">$</span> git commit -m "增加c.txt文件"</span><br><span class="line"><span class="meta">$</span> vim d.txt</span><br><span class="line"><span class="meta">$</span> git add .</span><br><span class="line"><span class="meta">$</span> git commit -m "增加d.txt文件"</span><br></pre></td></tr></table></figure></p>
+<h2 id="强制回退"><a href="#强制回退" class="headerlink" title="强制回退"></a>强制回退</h2><p>　　线上出现问题，因为没有tag，也没有具体分支对应发布版本。我就copy了一份代码，然后reset强制回退后修改bug(千万不要学我，一年前的我就是这么做的)。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git log</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> git reset --hard 01aa54f328</span><br></pre></td></tr></table></figure></p>
+<p>　　这样就将HEAD强制指向了之前发包的commit。</p>
+<h2 id="误操作reset"><a href="#误操作reset" class="headerlink" title="误操作reset"></a>误操作reset</h2><p>　　这尼玛就蛋疼了，你在开发过程中发现自己误操作使用了reset命令。卧槽，git log还没有之前的东西了，怎么办怎么办，大脑一片空白。不要慌不要慌，git还是有记录存在的。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git reflog</span><br></pre></td></tr></table></figure></p>
+<p>　　在我们reset –hard之后使用git log命令来查看得到如下结果。<img src="/images/2018/05/02/008.png" alt="008"><br>　　而我们使用git reflog命令来查看可以得到如下结果。<img src="/images/2018/05/02/009.png" alt="009"><br>　　看到这里我们就知道该怎么做了，我们可以直接通过reset命令再将HEAD指向对应的commit。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git reset --hard f06e667</span><br></pre></td></tr></table></figure></p>
+<p>　　这里千万不要用git reset –hard HEAD~1，以为你现在HEAD之前1个commit是init的那个commit。</p>
+<h2 id="无关联覆盖"><a href="#无关联覆盖" class="headerlink" title="无关联覆盖"></a>无关联覆盖</h2><p>　　前段时间，朋友遇到这样的问题。他在使用hexo做静态博客的过程中，repo仓库地址填写错误，导致hexo d命令执行后将原来一个项目的所有文件都被覆盖掉了。这是两个完全没有关联的commit历史，执行pull命令的时候会报出如下的错误。<img src="/images/2018/05/02/010.png" alt="010">
+　　
+　　</p>
+<p>　　余生没那么长，不要一味的付出去惯那些得寸进尺的人，请忠于自己，活得像最初的模样！</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+        <div>
+            
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/2018/04/27/git-revert-reset/">git revert/reset</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 严方雄 的个人博客">严方雄</a></p>
+  <p><span>发布时间:</span>2018-04-27</p>
+  <p><span>最后更新:</span>2018-05-02</p>
+  <p><span>原始链接:</span><a href="/2018/04/27/git-revert-reset/" title="git revert/reset">http://yanfangxiong.com/2018/04/27/git-revert-reset/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yanfangxiong.com/2018/04/27/git-revert-reset/"  aria-label="复制成功！"></i></span>
+  </p>
+</div>
+<script>
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({
+          title: "",
+          text: '复制成功',
+          html: false,
+          timer: 500,
+          showConfirmButton: false
+        });
+      });
+    }));
+</script>
+
+
+        </div>
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag"><i class="fa fa-tag"></i> git</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/27/git-cherry-pick/" rel="next" title="git cherry-pick">
+                <i class="fa fa-chevron-left"></i> git cherry-pick
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+        <div id="gitment-container"></div>
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="严方雄" />
+            
+              <p class="site-author-name" itemprop="name">严方雄</p>
+              <p class="site-description motion-element" itemprop="description">余生没那么长，不要一味的付出去惯哪些得寸进尺的人，请忠于自己，活的像最初的模样~</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/amoryan" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                推荐博客
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.whezh.com/" title="Hezhou's personal blog" target="_blank">Hezhou's personal blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#场景一"><span class="nav-number">2.</span> <span class="nav-text">场景一</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#提交一个commit"><span class="nav-number">2.1.</span> <span class="nav-text">提交一个commit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#revert最近一次commit"><span class="nav-number">2.2.</span> <span class="nav-text">revert最近一次commit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提交了多次commit才发现有问题"><span class="nav-number">2.3.</span> <span class="nav-text">提交了多次commit才发现有问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#找不到parent"><span class="nav-number">2.4.</span> <span class="nav-text">找不到parent</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#场景二"><span class="nav-number">3.</span> <span class="nav-text">场景二</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#版本上线后提交若干个commit"><span class="nav-number">3.1.</span> <span class="nav-text">版本上线后提交若干个commit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#强制回退"><span class="nav-number">3.2.</span> <span class="nav-text">强制回退</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#误操作reset"><span class="nav-number">3.3.</span> <span class="nav-text">误操作reset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无关联覆盖"><span class="nav-number">3.4.</span> <span class="nav-text">无关联覆盖</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">严方雄</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script type="text/javascript">
+            var temp = window.location.pathname;
+            var gitment = new Gitment({
+                    id: decodeURIComponent(temp),
+                    owner: 'Amoryan',
+                    repo: 'amoryan.github.io',
+                    oauth: {
+                        client_id: 'fa40d1c2257386108712',
+                        client_secret: '8d01df95c8ac9fd361b960fdba54044fa628d522',
+                    }});
+            gitment.render('gitment-container');
+    </script>
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+
+  <!-- 页面点击小红心 -->
+  <!-- <script type="text/javascript" src="/js/src/click-love.js"></script> -->
+  <!-- 播放音乐 -->
+  <!-- <div style="display: none">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=518088247&auto=1&height=66">
+    </iframe>
+  </div> -->
+</body>
+</html>
