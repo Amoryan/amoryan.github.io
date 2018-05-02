@@ -130,8 +130,7 @@
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/05/02/007.png">
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/05/02/008.png">
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/05/02/009.png">
-<meta property="og:image" content="http://yanfangxiong.com/images/2018/05/02/010.png">
-<meta property="og:updated_time" content="2018-05-02T05:58:20.000Z">
+<meta property="og:updated_time" content="2018-05-02T06:16:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git revert&#x2F;reset">
 <meta name="twitter:description" content="前言　　你是否也曾遇到版本回退的困扰，是否害怕使用版本回退，每次当错误提交之后，就惊的一身冷汗。很早以前，我就是这样子的。 场景一　　提交了一个commit，发现修改了不改修改的内容，怎么办？在现有分支上修改完了之后再次提交？这样无疑是可以的，但是我们可以通过git revert命令优雅的解决这种问题。 提交一个commit　　我们在A分支上提交一个commit。123$ vim a.txt$">
@@ -415,7 +414,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-02T13:58:20+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-02T14:16:37+08:00">
                 2018-05-02
               </time>
             
@@ -466,9 +465,9 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
 <h2 id="误操作reset"><a href="#误操作reset" class="headerlink" title="误操作reset"></a>误操作reset</h2><p>　　这尼玛就蛋疼了，你在开发过程中发现自己误操作使用了reset命令。卧槽，git log还没有之前的东西了，怎么办怎么办，大脑一片空白。不要慌不要慌，git还是有记录存在的。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git reflog</span><br></pre></td></tr></table></figure></p>
 <p>　　在我们reset –hard之后使用git log命令来查看得到如下结果。<img src="/images/2018/05/02/008.png" alt="008"><br>　　而我们使用git reflog命令来查看可以得到如下结果。<img src="/images/2018/05/02/009.png" alt="009"><br>　　看到这里我们就知道该怎么做了，我们可以直接通过reset命令再将HEAD指向对应的commit。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git reset --hard f06e667</span><br></pre></td></tr></table></figure></p>
 <p>　　这里千万不要用git reset –hard HEAD~1，以为你现在HEAD之前1个commit是init的那个commit。</p>
-<h2 id="无关联覆盖"><a href="#无关联覆盖" class="headerlink" title="无关联覆盖"></a>无关联覆盖</h2><p>　　前段时间，朋友遇到这样的问题。他在使用hexo做静态博客的过程中，repo仓库地址填写错误，导致hexo d命令执行后将原来一个项目的所有文件都被覆盖掉了。这是两个完全没有关联的commit历史，执行pull命令的时候会报出如下的错误。<img src="/images/2018/05/02/010.png" alt="010">
-　　
-　　</p>
+<h2 id="无关联覆盖"><a href="#无关联覆盖" class="headerlink" title="无关联覆盖"></a>无关联覆盖</h2><p>　　前段时间，朋友遇到这样的问题。他在使用hexo做静态博客的过程中，repo仓库地址填写错误，导致hexo d命令执行后将原来一个项目的所有文件都被覆盖掉了。<br>　　其实解决是十分简单的，我们只需要强制覆盖掉远程仓库的代码就可以了。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git push origin -f master</span><br></pre></td></tr></table></figure></p>
+<p>　　但是我想说的并不是这个，因为这是两个完全没有关联的commit历史，执行pull命令的时候会报错。我们如果要pull远程仓库的代码就需要通过如下的命令了。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master --allow-unrelated-histories</span><br></pre></td></tr></table></figure></p>
+<p>　　</p>
 <p>　　余生没那么长，不要一味的付出去惯那些得寸进尺的人，请忠于自己，活得像最初的模样！</p>
 
       
@@ -638,7 +637,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
