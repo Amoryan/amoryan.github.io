@@ -106,7 +106,7 @@
 
 
 
-  <meta name="keywords" content="BT下载," />
+  <meta name="keywords" content="Window,WindowManager," />
 
 
 
@@ -117,21 +117,18 @@
 
 
 
-<meta name="description" content="前言　　2月11号的动车从杭州回家，于是我为了打发在车上的5个多小时时间，2月10号的晚上准备下载一些电影在动车上看。当然是以前看过了的电影，哈哈。于是在google上搜索了速度与激情8和机器之血的BT文件，正当我准备通过迅雷下载这些文件的时候，发现任务的右下角显示 应版权方要求，该资源无法下载 。 WTF！！！ 原因">
-<meta name="keywords" content="BT下载">
+<meta name="description" content="前言　　前段时间学习了Window和WindowManager，但是并没有实际的用到它，只是简单的了解了其基本流程和功能，于是想写一个Demo来加深对Window以及WindowManager的理解，就有了这篇文章，写的比较粗糙。 项目地址　　AssistiveTouch 实现type的选择　　为了让其悬浮在桌面上，它">
+<meta name="keywords" content="Window,WindowManager">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于迅雷下载BT出现的版权方问题">
-<meta property="og:url" content="http://yanfangxiong.com/2018/02/13/关于迅雷下载BT出现的版权方问题/index.html">
+<meta property="og:title" content="简单的悬浮窗">
+<meta property="og:url" content="http://yanfangxiong.com/2018/05/07/简单的悬浮窗/index.html">
 <meta property="og:site_name" content="严方雄的空间">
-<meta property="og:description" content="前言　　2月11号的动车从杭州回家，于是我为了打发在车上的5个多小时时间，2月10号的晚上准备下载一些电影在动车上看。当然是以前看过了的电影，哈哈。于是在google上搜索了速度与激情8和机器之血的BT文件，正当我准备通过迅雷下载这些文件的时候，发现任务的右下角显示 应版权方要求，该资源无法下载 。 WTF！！！ 原因　　这个原因是版权方和迅雷交涉后，迅雷通过技术阻止了文件的下载。看到这里忍不住">
+<meta property="og:description" content="前言　　前段时间学习了Window和WindowManager，但是并没有实际的用到它，只是简单的了解了其基本流程和功能，于是想写一个Demo来加深对Window以及WindowManager的理解，就有了这篇文章，写的比较粗糙。 项目地址　　AssistiveTouch 实现type的选择　　为了让其悬浮在桌面上，它必须有一个System Window的type类型。12345private">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yanfangxiong.com/images/2018/02/13/001.png">
-<meta property="og:image" content="http://yanfangxiong.com/images/2018/02/13/002.png">
-<meta property="og:updated_time" content="2018-04-24T05:50:29.000Z">
+<meta property="og:updated_time" content="2018-05-07T13:31:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于迅雷下载BT出现的版权方问题">
-<meta name="twitter:description" content="前言　　2月11号的动车从杭州回家，于是我为了打发在车上的5个多小时时间，2月10号的晚上准备下载一些电影在动车上看。当然是以前看过了的电影，哈哈。于是在google上搜索了速度与激情8和机器之血的BT文件，正当我准备通过迅雷下载这些文件的时候，发现任务的右下角显示 应版权方要求，该资源无法下载 。 WTF！！！ 原因　　这个原因是版权方和迅雷交涉后，迅雷通过技术阻止了文件的下载。看到这里忍不住">
-<meta name="twitter:image" content="http://yanfangxiong.com/images/2018/02/13/001.png">
+<meta name="twitter:title" content="简单的悬浮窗">
+<meta name="twitter:description" content="前言　　前段时间学习了Window和WindowManager，但是并没有实际的用到它，只是简单的了解了其基本流程和功能，于是想写一个Demo来加深对Window以及WindowManager的理解，就有了这篇文章，写的比较粗糙。 项目地址　　AssistiveTouch 实现type的选择　　为了让其悬浮在桌面上，它必须有一个System Window的type类型。12345private">
 
 
 
@@ -161,13 +158,13 @@
 
 
 
-  <link rel="canonical" href="http://yanfangxiong.com/2018/02/13/关于迅雷下载BT出现的版权方问题/"/>
+  <link rel="canonical" href="http://yanfangxiong.com/2018/05/07/简单的悬浮窗/"/>
 
 
 
 
 
-  <title>关于迅雷下载BT出现的版权方问题</title>
+  <title>简单的悬浮窗</title>
   
 
 
@@ -366,7 +363,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yanfangxiong.com/2018/02/13/关于迅雷下载BT出现的版权方问题/">
+    <link itemprop="mainEntityOfPage" href="http://yanfangxiong.com/2018/05/07/简单的悬浮窗/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="严方雄">
@@ -383,7 +380,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
 
         
         
-          <h1 class="post-title" itemprop="name headline">关于迅雷下载BT出现的版权方问题</h1>
+          <h1 class="post-title" itemprop="name headline">简单的悬浮窗</h1>
         
 
         <div class="post-meta">
@@ -395,8 +392,8 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-13T20:40:32+08:00">
-                2018-02-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-07T15:03:09+08:00">
+                2018-05-07
               </time>
             
 
@@ -411,8 +408,8 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-24T13:50:29+08:00">
-                2018-04-24
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-07T21:31:12+08:00">
+                2018-05-07
               </time>
             
           </span>
@@ -445,15 +442,16 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>　　2月11号的动车从杭州回家，于是我为了打发在车上的5个多小时时间，2月10号的晚上准备下载一些电影在动车上看。当然是以前看过了的电影，哈哈。于是在google上搜索了速度与激情8和机器之血的BT文件，正当我准备通过迅雷下载这些文件的时候，发现任务的右下角显示 <strong><font color="#1b8fe6">应版权方要求，该资源无法下载</font></strong> 。 WTF！！！</p>
-<h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>　　这个原因是版权方和迅雷交涉后，迅雷通过技术阻止了文件的下载。看到这里忍不住爆了一句粗口，mmp。</p>
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>　　作为一个程序猿怎么能够被这种问题影响而不看电影，是吧。于是我上google搜索了一些解决方案，找到了一个比较好的方法。</p>
-<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>　　首先你得有一个 <strong><font color="#1b8fe6">百度网盘账号</font></strong> ，因为接下来我们准备通过百度网盘来进行下载这些文件。</p>
-<h2 id="获取BT文件的下载地址"><a href="#获取BT文件的下载地址" class="headerlink" title="获取BT文件的下载地址"></a>获取BT文件的下载地址</h2><p>　　获取这个地址的方式比较简单，你只需要在迅雷的下载任务列表选择一个无法下载的文件，然后右键 <strong><font color="#1b8fe6">复制文件下载链接</font></strong> 就可以了。</p>
-<h2 id="建立离线下载任务"><a href="#建立离线下载任务" class="headerlink" title="建立离线下载任务"></a>建立离线下载任务</h2><p>　　然后，你就可以登录百度网盘，新建离线下载任务。如下图所示。<img src="/images/2018/02/13/001.png" alt="离线任务"> 然后选择新建链接任务，将在迅雷上复制的链接粘贴上去，建立任务就可以了。<img src="/images/2018/02/13/002.png" alt="链接任务"></p>
-<h2 id="通过百度云盘app进行文件下载"><a href="#通过百度云盘app进行文件下载" class="headerlink" title="通过百度云盘app进行文件下载"></a>通过百度云盘app进行文件下载</h2><p>　　最后你只需要通过百度云盘的app进行文件下载就可以了。</p>
-<h1 id="毒鸡汤"><a href="#毒鸡汤" class="headerlink" title="毒鸡汤"></a>毒鸡汤</h1><p>　　日子还长，请别失望~
-　　</p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>　　前段时间学习了Window和WindowManager，但是并没有实际的用到它，只是简单的了解了其基本流程和功能，于是想写一个Demo来加深对Window以及WindowManager的理解，就有了这篇文章，写的比较粗糙。</p>
+<h1 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h1><p>　　<a href="https://github.com/Amoryan/AssistiveTouch" target="_blank" rel="noopener">AssistiveTouch</a></p>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><h2 id="type的选择"><a href="#type的选择" class="headerlink" title="type的选择"></a>type的选择</h2><p>　　为了让其悬浮在桌面上，它必须有一个System Window的type类型。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">getCompatWindowType</span><span class="params">()</span></span>: <span class="built_in">Int</span> = <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.O) &#123;</span><br><span class="line">    WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    WindowManager.LayoutParams.TYPE_SYSTEM_ALERT</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　这里会遇到一个问题，因为在Android6.0之后系统权限的限制，我们需要在6.0之后请求<strong><font color="#1b8fe6">SYSTEM_ALERT_WINDOW</font></strong>权限。这里<strong><font color="#1b8fe6">通过Settings的canDrawOverlays</font></strong>来做兼容处理。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">checkCompat</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.M) &#123;</span><br><span class="line">        <span class="keyword">if</span> (Settings.canDrawOverlays(<span class="keyword">this</span>)) &#123;</span><br><span class="line">            openFloating()</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            toSettingActivity()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        openFloating()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">openFloating</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> intent = Intent(<span class="keyword">this</span>, AssistiveTouchService::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>)</span></span><br><span class="line">    startService(intent)</span><br><span class="line">    finish()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RequiresApi(Build.VERSION_CODES.M)</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">toSettingActivity</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION)</span><br><span class="line">    intent.<span class="keyword">data</span> = Uri.parse(<span class="string">"package:<span class="variable">$packageName</span>"</span>)</span><br><span class="line">    startActivity(intent)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　如果没有权限的情况下，通过Intent跳转到设置界面，让用户进行设置。</p>
+<h2 id="service"><a href="#service" class="headerlink" title="service"></a>service</h2><p>　　编写一个service，在service中对View进行添加，更新和删除操作，这里不和具体的Activity产生关联，所以onBind()返回null即可。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AssistiveTouchService</span> : <span class="type">Service</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> assistiveTouch <span class="keyword">by</span> lazy &#123; AssistiveTouch(<span class="keyword">this</span>) &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onBind</span><span class="params">(intent: <span class="type">Intent</span>?)</span></span>: IBinder? &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onStartCommand</span><span class="params">(intent: <span class="type">Intent</span>?, flags: <span class="type">Int</span>, startId: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">        assistiveTouch.addAssistiveTouch()</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.onStartCommand(intent, flags, startId)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDestroy</span><span class="params">()</span></span> &#123;</span><br><span class="line">        assistiveTouch.removeAssistiveTouch()</span><br><span class="line">        <span class="keyword">super</span>.onDestroy()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　记得在manifest.xml文件中进行配置。</p>
+<h2 id="拖拽和点击"><a href="#拖拽和点击" class="headerlink" title="拖拽和点击"></a>拖拽和点击</h2><p>　　因为要同时设置onTouchListener和onClickListener，我们知道onTouchListener是先于onClickListener的。所以onTouchListener需要返回false，但是这样每次移动之后都会触发onClickListener，所以我添加了一个isMoving的标记。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">assistiveTouch.menuView.setOnTouchListener &#123; _, event -&gt;</span><br><span class="line">    <span class="keyword">when</span> (event.action) &#123;</span><br><span class="line">        MotionEvent.ACTION_DOWN -&gt; &#123;</span><br><span class="line">            scrollAnimator?.cancel()</span><br><span class="line">            downX = event.rawX</span><br><span class="line">            downY = event.rawY</span><br><span class="line">        &#125;</span><br><span class="line">        MotionEvent.ACTION_MOVE -&gt; &#123;</span><br><span class="line">            <span class="keyword">val</span> diffX = event.rawX - downX</span><br><span class="line">            <span class="keyword">val</span> diffY = event.rawY - downY</span><br><span class="line">            downX = event.rawX</span><br><span class="line">            downY = event.rawY</span><br><span class="line">            lp.x = Math.floor(lp.x + diffX + <span class="number">0.5</span>).toInt()</span><br><span class="line">            lp.y = Math.floor(lp.y + diffY + <span class="number">0.5</span>).toInt()</span><br><span class="line">            adjustPositionWhenMove()</span><br><span class="line">            assistiveTouchWindowManager.updateAssistiveTouch(assistiveTouch, lp)</span><br><span class="line">            isMoving = <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">        MotionEvent.ACTION_UP -&gt; adjustPositionWhenActionUp()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line">assistiveTouch.menuView.setOnClickListener &#123;</span><br><span class="line">    <span class="keyword">if</span> (!isMoving) &#123;</span><br><span class="line">        assistiveTouch.menuView.visibility = View.GONE</span><br><span class="line">        assistiveTouch.menuCl.visibility = View.VISIBLE</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        isMoving = <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="弹性恢复"><a href="#弹性恢复" class="headerlink" title="弹性恢复"></a>弹性恢复</h2><p>　　当拖拽到屏幕中央的时候取消拖拽，需要将View恢复到贴边状态，考虑到柔和，这里使用属性动画的方式进行处理。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">adjustPositionWhenActionUp</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> left = lp.x</span><br><span class="line">    <span class="keyword">val</span> top = lp.y</span><br><span class="line">    <span class="keyword">val</span> right = assistiveTouchWindowManager.windowWidth - menuWidth - left</span><br><span class="line">    <span class="keyword">val</span> bottom = assistiveTouchWindowManager.windowHeight - menuHeight - top</span><br><span class="line">    scrollAnimator = ObjectAnimator()</span><br><span class="line">    <span class="keyword">when</span> (mapOf(left to <span class="number">0</span>, top to <span class="number">1</span>, right to <span class="number">2</span>, bottom to <span class="number">3</span>).minBy &#123; it.key &#125;?.value) &#123;</span><br><span class="line">        <span class="number">0</span> -&gt; &#123;</span><br><span class="line">            scrollAnimator?.propertyName = <span class="string">"layoutParamsX"</span></span><br><span class="line">            scrollAnimator?.duration = left.toLong()</span><br><span class="line">            scrollAnimator?.setIntValues(left, <span class="number">0</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="number">1</span> -&gt; &#123;</span><br><span class="line">            scrollAnimator?.propertyName = <span class="string">"layoutParamsY"</span></span><br><span class="line">            scrollAnimator?.duration = top.toLong()</span><br><span class="line">            scrollAnimator?.setIntValues(top, <span class="number">0</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="number">2</span> -&gt; &#123;</span><br><span class="line">            scrollAnimator?.propertyName = <span class="string">"layoutParamsX"</span></span><br><span class="line">            scrollAnimator?.duration = right.toLong()</span><br><span class="line">            scrollAnimator?.setIntValues(left, assistiveTouchWindowManager.windowWidth - menuWidth)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="number">3</span> -&gt; &#123;</span><br><span class="line">            scrollAnimator?.propertyName = <span class="string">"layoutParamsY"</span></span><br><span class="line">            scrollAnimator?.duration = bottom.toLong()</span><br><span class="line">            scrollAnimator?.setIntValues(top, assistiveTouchWindowManager.windowHeight - menuHeight)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    scrollAnimator?.target = <span class="keyword">this</span></span><br><span class="line">    scrollAnimator?.interpolator = LinearInterpolator()</span><br><span class="line">    scrollAnimator?.start()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　余生没那么长，不要一味的付出去惯那些得寸进尺的人，请忠于自己，活得像最初的模样！</p>
 
       
     </div>
@@ -471,12 +469,12 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
   <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
   <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
-  <p><span>本文标题:</span><a href="/2018/02/13/关于迅雷下载BT出现的版权方问题/">关于迅雷下载BT出现的版权方问题</a></p>
+  <p><span>本文标题:</span><a href="/2018/05/07/简单的悬浮窗/">简单的悬浮窗</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 严方雄 的个人博客">严方雄</a></p>
-  <p><span>发布时间:</span>2018-02-13</p>
-  <p><span>最后更新:</span>2018-04-24</p>
-  <p><span>原始链接:</span><a href="/2018/02/13/关于迅雷下载BT出现的版权方问题/" title="关于迅雷下载BT出现的版权方问题">http://yanfangxiong.com/2018/02/13/关于迅雷下载BT出现的版权方问题/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yanfangxiong.com/2018/02/13/关于迅雷下载BT出现的版权方问题/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2018-05-07</p>
+  <p><span>最后更新:</span>2018-05-07</p>
+  <p><span>原始链接:</span><a href="/2018/05/07/简单的悬浮窗/" title="简单的悬浮窗">http://yanfangxiong.com/2018/05/07/简单的悬浮窗/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yanfangxiong.com/2018/05/07/简单的悬浮窗/"  aria-label="复制成功！"></i></span>
   </p>
 </div>
 <script>
@@ -508,7 +506,9 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
       
         <div class="post-tags">
           
-            <a href="/tags/BT下载/" rel="tag"><i class="fa fa-tag"></i> BT下载</a>
+            <a href="/tags/Window/" rel="tag"><i class="fa fa-tag"></i> Window</a>
+          
+            <a href="/tags/WindowManager/" rel="tag"><i class="fa fa-tag"></i> WindowManager</a>
           
         </div>
       
@@ -521,8 +521,8 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/30/android-support-annotation/" rel="next" title="android support annotation">
-                <i class="fa fa-chevron-left"></i> android support annotation
+              <a href="/2018/04/27/git-revert-reset/" rel="next" title="git revert/reset">
+                <i class="fa fa-chevron-left"></i> git revert/reset
               </a>
             
           </div>
@@ -530,10 +530,6 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/21/mac插入U盘的只读问题/" rel="prev" title="mac插入U盘的只读问题">
-                mac插入U盘的只读问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -705,7 +701,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原因"><span class="nav-number">2.</span> <span class="nav-text">原因</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解决方案"><span class="nav-number">3.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">3.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取BT文件的下载地址"><span class="nav-number">3.2.</span> <span class="nav-text">获取BT文件的下载地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立离线下载任务"><span class="nav-number">3.3.</span> <span class="nav-text">建立离线下载任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过百度云盘app进行文件下载"><span class="nav-number">3.4.</span> <span class="nav-text">通过百度云盘app进行文件下载</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#毒鸡汤"><span class="nav-number">4.</span> <span class="nav-text">毒鸡汤</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目地址"><span class="nav-number">2.</span> <span class="nav-text">项目地址</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现"><span class="nav-number">3.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#type的选择"><span class="nav-number">3.1.</span> <span class="nav-text">type的选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#service"><span class="nav-number">3.2.</span> <span class="nav-text">service</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拖拽和点击"><span class="nav-number">3.3.</span> <span class="nav-text">拖拽和点击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#弹性恢复"><span class="nav-number">3.4.</span> <span class="nav-text">弹性恢复</span></a></li></ol></li></ol></div>
             
 
           </div>
