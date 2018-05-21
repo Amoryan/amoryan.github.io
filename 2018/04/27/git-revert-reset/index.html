@@ -130,7 +130,7 @@
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/05/02/007.png">
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/05/02/008.png">
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/05/02/009.png">
-<meta property="og:updated_time" content="2018-05-02T06:27:44.000Z">
+<meta property="og:updated_time" content="2018-05-21T02:21:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git revert&#x2F;reset">
 <meta name="twitter:description" content="前言　　你是否也曾遇到版本回退的困扰，是否害怕使用版本回退，每次当错误提交之后，就惊的一身冷汗。很早以前，我就是这样子的。 场景一　　提交了一个commit，发现修改了不该修改的内容，怎么办？在现有分支上修改完了之后再次提交？这样无疑是可以的，但是我们可以通过git revert命令优雅的解决这种问题。 提交一个commit　　我们在A分支上提交一个commit。123$ vim a.txt$">
@@ -414,8 +414,8 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-02T14:27:44+08:00">
-                2018-05-02
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-21T10:21:09+08:00">
+                2018-05-21
               </time>
             
           </span>
@@ -467,7 +467,9 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
 <p>　　这里千万不要用git reset –hard HEAD~1，因为你现在HEAD之前1个commit是init的那个commit。</p>
 <h2 id="无关联覆盖"><a href="#无关联覆盖" class="headerlink" title="无关联覆盖"></a>无关联覆盖</h2><p>　　前段时间，朋友遇到这样的问题。他在使用hexo做静态博客的过程中，repo仓库地址填写错误，导致hexo d命令执行后将原来一个项目的所有文件都被覆盖掉了。<br>　　其实解决是十分简单的，我们只需要强制覆盖掉远程仓库的代码就可以了。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git push origin -f master</span><br></pre></td></tr></table></figure></p>
 <p>　　但是我想说的并不是这个，因为这是两个完全没有关联的commit历史，执行pull命令的时候会报错。我们如果要pull远程仓库的代码就需要通过如下的命令了。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master --allow-unrelated-histories</span><br></pre></td></tr></table></figure></p>
-<p>　　</p>
+<h2 id="还可以这么用"><a href="#还可以这么用" class="headerlink" title="还可以这么用"></a>还可以这么用</h2><p>　　比如你修改了若干个文件，但是你想将这些文件作为两次commit，而你又恰巧执行了git add .命令，这个时候该如何使用git reset命令呢？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ vim a.txt</span><br><span class="line">$ vim b.txt</span><br><span class="line">$ git add .</span><br><span class="line">$ git reset HEAD b.txt</span><br><span class="line">$ git commit -m &quot;修改a.txt文件&quot;</span><br><span class="line">$ git add .</span><br><span class="line">$ git commit -m &quot;修改b.txt文件&quot;</span><br></pre></td></tr></table></figure></p>
+<p>　　git reset命令添加–hard参数之后确实是一个很危险的命令，但是如果你只是使用git reset命令是并不危险的，因为<strong><font color="#1b8fe6">它修改的仅仅是暂存区的内容，而不会修改到你工作目录的文件</font></strong>。
+　　</p>
 <p>　　余生没那么长，不要一味的付出去惯那些得寸进尺的人，请忠于自己，活得像最初的模样！</p>
 
       
@@ -489,7 +491,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   <p><span>本文标题:</span><a href="/2018/04/27/git-revert-reset/">git revert/reset</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 严方雄 的个人博客">严方雄</a></p>
   <p><span>发布时间:</span>2018-04-27</p>
-  <p><span>最后更新:</span>2018-05-02</p>
+  <p><span>最后更新:</span>2018-05-21</p>
   <p><span>原始链接:</span><a href="/2018/04/27/git-revert-reset/" title="git revert/reset">http://yanfangxiong.com/2018/04/27/git-revert-reset/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yanfangxiong.com/2018/04/27/git-revert-reset/"  aria-label="复制成功！"></i></span>
   </p>
@@ -641,7 +643,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -720,7 +722,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#场景一"><span class="nav-number">2.</span> <span class="nav-text">场景一</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#提交一个commit"><span class="nav-number">2.1.</span> <span class="nav-text">提交一个commit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#revert最近一次commit"><span class="nav-number">2.2.</span> <span class="nav-text">revert最近一次commit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提交了多次commit才发现有问题"><span class="nav-number">2.3.</span> <span class="nav-text">提交了多次commit才发现有问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#找不到parent"><span class="nav-number">2.4.</span> <span class="nav-text">找不到parent</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#场景二"><span class="nav-number">3.</span> <span class="nav-text">场景二</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#版本上线后提交若干个commit"><span class="nav-number">3.1.</span> <span class="nav-text">版本上线后提交若干个commit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#强制回退"><span class="nav-number">3.2.</span> <span class="nav-text">强制回退</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#误操作reset"><span class="nav-number">3.3.</span> <span class="nav-text">误操作reset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无关联覆盖"><span class="nav-number">3.4.</span> <span class="nav-text">无关联覆盖</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#场景一"><span class="nav-number">2.</span> <span class="nav-text">场景一</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#提交一个commit"><span class="nav-number">2.1.</span> <span class="nav-text">提交一个commit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#revert最近一次commit"><span class="nav-number">2.2.</span> <span class="nav-text">revert最近一次commit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提交了多次commit才发现有问题"><span class="nav-number">2.3.</span> <span class="nav-text">提交了多次commit才发现有问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#找不到parent"><span class="nav-number">2.4.</span> <span class="nav-text">找不到parent</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#场景二"><span class="nav-number">3.</span> <span class="nav-text">场景二</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#版本上线后提交若干个commit"><span class="nav-number">3.1.</span> <span class="nav-text">版本上线后提交若干个commit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#强制回退"><span class="nav-number">3.2.</span> <span class="nav-text">强制回退</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#误操作reset"><span class="nav-number">3.3.</span> <span class="nav-text">误操作reset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无关联覆盖"><span class="nav-number">3.4.</span> <span class="nav-text">无关联覆盖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#还可以这么用"><span class="nav-number">3.5.</span> <span class="nav-text">还可以这么用</span></a></li></ol></li></ol></div>
             
 
           </div>
