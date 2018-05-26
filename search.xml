@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[android arch 学习之LiveData]]></title>
+    <url>%2F2018%2F05%2F22%2Fandroid-arch-%E5%AD%A6%E4%B9%A0%E4%B9%8BLiveData%2F</url>
+    <content type="text"><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[你真的了解git config吗]]></title>
     <url>%2F2018%2F05%2F18%2F%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3git-config%E5%90%97%2F</url>
-    <content type="text"><![CDATA[]]></content>
+    <content type="text"><![CDATA[前言 记得当时刚使用git的时候，安装完git后就按照别人说的稀里糊涂配置了这些玩意。12$ git config --global user.name "xxx"$ git config --global user.email "xxx" 压根没有想过git config这玩意有没有其他的作用。而最近看完progit这本书后，发现git config的用法还是很多的。这里就记录一些比较常用的。 config文件 git config实际上有三个层级的配置文件，它们分别是： git config –system，在mac上，这个配置文件在/usr/local/git/etc/gitconfig； git config –global，在mac上，这个配置文件在~/.gitconfig； git config –local，这个配置文件是在本地仓库的.git/config。 而当你使用到这些配置属性的时候，git会根据层级来获得这个属性的值，本地仓库下的配置优先级最高，其次是global配置，最后才是system配置。 我们可以看下global文件下配置的属性。 可以看到我们通过git config –global属性配置的user.name和user.email。 不同仓库不同身份 这个很简答，我们只需要通过git config –lobal配置好本地仓库的name和email，然后再生成对应email的ssh key并配置在服务器端就可以了。12$ git config --local user.name "xxx"$ git config --local user.email "xxx" 多个远程仓库 我记得很早之前我有个朋友问我一个问题，说他们的git工作模式是fork，每个人都有一个远程仓库和一个本地仓库，同时也有一个中央仓库，而他想要把代码同时提交到多个远程仓库该怎么弄。 默认情况下，我们clone远程仓库的代码后，local 配置文件下会有一个名为origin的远程仓库别名。 我们只需要通过git remote add xxx repoUrl添加其他的远程仓库就可以了。123$ git remote add another xxxxxx# 移除$ git remote rm another 本地配置文件是这个样子的。]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[android arch 学习之lifecycle-aware components]]></title>

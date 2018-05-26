@@ -106,7 +106,7 @@
 
 
 
-  <meta name="keywords" content="严方雄的个人博客" />
+  <meta name="keywords" content="git," />
 
 
 
@@ -117,14 +117,22 @@
 
 
 
+<meta name="description" content="前言　　记得当时刚使用git的时候，安装完git后就按照别人说的稀里糊涂配置了这些玩意。12$ git config --global user.name &quot;xxx&quot;$ git config --global user.email &quot;xxx&quot; 　　压根没有想过git config">
+<meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="你真的了解git config吗">
 <meta property="og:url" content="http://yanfangxiong.com/2018/05/18/你真的了解git-config吗/index.html">
 <meta property="og:site_name" content="严方雄的空间">
+<meta property="og:description" content="前言　　记得当时刚使用git的时候，安装完git后就按照别人说的稀里糊涂配置了这些玩意。12$ git config --global user.name &quot;xxx&quot;$ git config --global user.email &quot;xxx&quot; 　　压根没有想过git config这玩意有没有其他的作用。而最近看完progit这本书后，发现git config的用法还是很多的。这里就记录一些比较常">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-18T08:32:14.000Z">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/05/26/001.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/05/26/002.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/05/26/003.png">
+<meta property="og:updated_time" content="2018-05-26T05:24:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="你真的了解git config吗">
+<meta name="twitter:description" content="前言　　记得当时刚使用git的时候，安装完git后就按照别人说的稀里糊涂配置了这些玩意。12$ git config --global user.name &quot;xxx&quot;$ git config --global user.email &quot;xxx&quot; 　　压根没有想过git config这玩意有没有其他的作用。而最近看完progit这本书后，发现git config的用法还是很多的。这里就记录一些比较常">
+<meta name="twitter:image" content="http://yanfangxiong.com/images/2018/05/26/001.png">
 
 
 
@@ -404,8 +412,8 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-18T16:32:14+08:00">
-                2018-05-18
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-26T13:24:02+08:00">
+                2018-05-26
               </time>
             
           </span>
@@ -438,7 +446,19 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>　　记得当时刚使用git的时候，安装完git后就按照别人说的稀里糊涂配置了这些玩意。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git config --global user.name "xxx"</span><br><span class="line"><span class="meta">$</span> git config --global user.email "xxx"</span><br></pre></td></tr></table></figure></p>
+<p>　　压根没有想过git config这玩意有没有其他的作用。而最近看完progit这本书后，发现git config的用法还是很多的。这里就记录一些比较常用的。</p>
+<h1 id="config文件"><a href="#config文件" class="headerlink" title="config文件"></a>config文件</h1><p>　　git config实际上有三个层级的配置文件，它们分别是：</p>
+<ol>
+<li>git config –system，在mac上，这个配置文件在<strong><font color="#1b8fe6">/usr/local/git/etc/gitconfig</font></strong>；</li>
+<li>git config –global，在mac上，这个配置文件在<strong><font color="#1b8fe6">~/.gitconfig</font></strong>；</li>
+<li>git config –local，这个配置文件是在本地仓库的<strong><font color="#1b8fe6">.git/config</font></strong>。</li>
+</ol>
+<p>　　而当你使用到这些配置属性的时候，git会根据层级来获得这个属性的值，本地仓库下的配置优先级最高，其次是global配置，最后才是system配置。<br>　　我们可以看下global文件下配置的属性。<img src="/images/2018/05/26/001.png" alt="001"><br>　　可以看到我们通过git config –global属性配置的user.name和user.email。</p>
+<h2 id="不同仓库不同身份"><a href="#不同仓库不同身份" class="headerlink" title="不同仓库不同身份"></a>不同仓库不同身份</h2><p>　　这个很简答，我们只需要通过git config –lobal配置好本地仓库的name和email，然后再生成对应email的ssh key并配置在服务器端就可以了。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git config --local user.name "xxx"</span><br><span class="line"><span class="meta">$</span> git config --local user.email "xxx"</span><br></pre></td></tr></table></figure></p>
+<h2 id="多个远程仓库"><a href="#多个远程仓库" class="headerlink" title="多个远程仓库"></a>多个远程仓库</h2><p>　　我记得很早之前我有个朋友问我一个问题，说他们的git工作模式是fork，每个人都有一个远程仓库和一个本地仓库，同时也有一个中央仓库，而他想要把代码同时提交到多个远程仓库该怎么弄。<br>　　默认情况下，我们clone远程仓库的代码后，local 配置文件下会有一个名为origin的远程仓库别名。<img src="/images/2018/05/26/002.png" alt="002"><br>　　我们只需要通过git remote add xxx repoUrl添加其他的远程仓库就可以了。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git remote add another xxxxxx</span><br><span class="line"><span class="meta">#</span> 移除</span><br><span class="line"><span class="meta">$</span> git remote rm another</span><br></pre></td></tr></table></figure></p>
+<p>　　本地配置文件是这个样子的。<img src="/images/2018/05/26/003.png" alt="003"></p>
+
       
     </div>
     
@@ -458,7 +478,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   <p><span>本文标题:</span><a href="/2018/05/18/你真的了解git-config吗/">你真的了解git config吗</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 严方雄 的个人博客">严方雄</a></p>
   <p><span>发布时间:</span>2018-05-18</p>
-  <p><span>最后更新:</span>2018-05-18</p>
+  <p><span>最后更新:</span>2018-05-26</p>
   <p><span>原始链接:</span><a href="/2018/05/18/你真的了解git-config吗/" title="你真的了解git config吗">http://yanfangxiong.com/2018/05/18/你真的了解git-config吗/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yanfangxiong.com/2018/05/18/你真的了解git-config吗/"  aria-label="复制成功！"></i></span>
   </p>
@@ -490,6 +510,12 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag"><i class="fa fa-tag"></i> git</a>
+          
+        </div>
+      
 
       
       
@@ -508,6 +534,10 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/22/android-arch-学习之LiveData/" rel="prev" title="android arch 学习之LiveData">
+                android arch 学习之LiveData <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -571,8 +601,17 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -591,7 +630,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -660,6 +699,22 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#config文件"><span class="nav-number">2.</span> <span class="nav-text">config文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#不同仓库不同身份"><span class="nav-number">2.1.</span> <span class="nav-text">不同仓库不同身份</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多个远程仓库"><span class="nav-number">2.2.</span> <span class="nav-text">多个远程仓库</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
