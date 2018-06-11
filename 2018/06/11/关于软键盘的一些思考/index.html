@@ -106,7 +106,7 @@
 
 
 
-  <meta name="keywords" content="严方雄的个人博客" />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -117,14 +117,18 @@
 
 
 
+<meta name="description" content="前言　　公司的app大部分的界面都涉及到表单相关内容，所以要考虑软键盘和输入界面之间的协调性，于是在经过一系列的方法实践之后，总结了两种还算是比较和谐的方式。阅读本文前，请你先弄清楚windowSoftInputMode这个属性的作用，这个属性在Window与WindowManager一文中有讲解。 从布局入手　　这种">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于软键盘的一些思考">
 <meta property="og:url" content="http://yanfangxiong.com/2018/06/11/关于软键盘的一些思考/index.html">
 <meta property="og:site_name" content="严方雄的空间">
+<meta property="og:description" content="前言　　公司的app大部分的界面都涉及到表单相关内容，所以要考虑软键盘和输入界面之间的协调性，于是在经过一系列的方法实践之后，总结了两种还算是比较和谐的方式。阅读本文前，请你先弄清楚windowSoftInputMode这个属性的作用，这个属性在Window与WindowManager一文中有讲解。 从布局入手　　这种方式需要设置activity的windowSoftInputMode为adju">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-11T06:55:36.000Z">
+<meta property="og:updated_time" content="2018-06-11T14:34:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于软键盘的一些思考">
+<meta name="twitter:description" content="前言　　公司的app大部分的界面都涉及到表单相关内容，所以要考虑软键盘和输入界面之间的协调性，于是在经过一系列的方法实践之后，总结了两种还算是比较和谐的方式。阅读本文前，请你先弄清楚windowSoftInputMode这个属性的作用，这个属性在Window与WindowManager一文中有讲解。 从布局入手　　这种方式需要设置activity的windowSoftInputMode为adju">
 
 
 
@@ -404,7 +408,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-06-11T14:55:36+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-06-11T22:34:27+08:00">
                 2018-06-11
               </time>
             
@@ -438,7 +442,12 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>　　公司的app大部分的界面都涉及到表单相关内容，所以要考虑软键盘和输入界面之间的协调性，于是在经过一系列的方法实践之后，总结了两种还算是比较和谐的方式。阅读本文前，请你先弄清楚<strong><font color="#1b8fe6">windowSoftInputMode</font></strong>这个属性的作用，这个属性在<strong><font color="#1b8fe6"><a href="http://yanfangxiong.com/2018/04/16/Window%E4%B8%8EWindowManager/">Window与WindowManager</a></font></strong>一文中有讲解。</p>
+<h1 id="从布局入手"><a href="#从布局入手" class="headerlink" title="从布局入手"></a>从布局入手</h1><p>　　这种方式需要设置activity的windowSoftInputMode为adjustResize。然后通过对activity根布局的变化来知晓软键盘的显示和隐藏。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">window.decorView.viewTreeObserver.addOnGlobalLayoutListener &#123;</span><br><span class="line">    rootView.getWindowVisibleDisplayFrame(rootViewRect)</span><br><span class="line">    <span class="keyword">val</span> visibleHeight = rootViewRect.height()</span><br><span class="line">    <span class="keyword">when</span> &#123;</span><br><span class="line">        latestVisibleHeight == <span class="number">0</span> -&gt; latestVisibleHeight = visibleHeight</span><br><span class="line">        latestVisibleHeight - visibleHeight &gt; <span class="number">200</span> -&gt; &#123;</span><br><span class="line">            latestVisibleHeight = visibleHeight</span><br><span class="line">            listener?.onKeyBoardHiddenChanged(<span class="literal">false</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        visibleHeight - latestVisibleHeight &gt; <span class="number">200</span> -&gt; &#123;</span><br><span class="line">            latestVisibleHeight = visibleHeight</span><br><span class="line">            listener?.onKeyBoardHiddenChanged(<span class="literal">true</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">OnKeyBoardHiddenChangeListener</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">onKeyBoardHiddenChanged</span><span class="params">(hidden: <span class="type">Boolean</span>)</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　思路很简单，通过保存最近一次根布局的可视高度，然后和变化后的可是高度进行比较，达到某个差值就认为软键盘的状态发生了变化。<br>　　优点是可以知道软键盘的显示和隐藏状态，当然缺点也显而易见，就是软键盘弹起的时候得动态隐藏掉底部按钮，软键盘放下的时候再显示出来，这样会在视觉上明显的看到按钮的显示隐藏变化。</p>
+<h1 id="从事件分发入手"><a href="#从事件分发入手" class="headerlink" title="从事件分发入手"></a>从事件分发入手</h1><p>　　这种方式是我比较推荐的，也是目前正在使用的方式。在BaseActivity中重写dispatchTouchEvent()，在ACTION_DOWN的时候查看当前聚焦控件是否需要隐藏软键盘，若需要，则直接隐藏掉。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">dispatchTouchEvent</span><span class="params">(ev: <span class="type">MotionEvent</span>?)</span></span>: <span class="built_in">Boolean</span> &#123;</span><br><span class="line">    <span class="keyword">when</span> (ev?.action) &#123;</span><br><span class="line">        MotionEvent.ACTION_DOWN -&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span> (shouldHideKeyboard(currentFocus, ev)) &#123;</span><br><span class="line">                hideKeyboard(<span class="keyword">this</span>)</span><br><span class="line">                whenKeyboardHidden()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.dispatchTouchEvent(ev)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">whenKeyboardHidden</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//todo 软键盘隐藏的时候需要做的时候</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">hideKeyboard</span><span class="params">(context: <span class="type">Activity</span>)</span></span> &#123;</span><br><span class="line">    context.currentFocus?.windowToken?.apply &#123;</span><br><span class="line">        <span class="keyword">val</span> service: InputMethodManager? = context.getSystemService(Context.INPUT_METHOD_SERVICE) <span class="keyword">as</span>? InputMethodManager?</span><br><span class="line">        service?.hideSoftInputFromWindow(<span class="keyword">this</span>, InputMethodManager.HIDE_NOT_ALWAYS)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">shouldHideKeyboard</span><span class="params">(currentFocus: <span class="type">View</span>?, event: <span class="type">MotionEvent</span>)</span></span>: <span class="built_in">Boolean</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (currentFocus == <span class="literal">null</span> || currentFocus !<span class="keyword">is</span> EditText) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> l = intArrayOf(<span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">    currentFocus.getLocationInWindow(l)</span><br><span class="line">    <span class="keyword">val</span> left = l[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">val</span> top = l[<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">val</span> bottom = top + currentFocus.height</span><br><span class="line">    <span class="keyword">val</span> right = left + currentFocus.width</span><br><span class="line">    <span class="keyword">return</span> !(event.x &gt; left &amp;&amp; event.x &lt; right &amp;&amp; event.y &gt; top &amp;&amp; event.y &lt; bottom)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　使用这种方式，请设置windowSoftInputMode为adjustPan。</p>
+
       
     </div>
     
@@ -489,6 +498,12 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i> Android</a>
+          
+        </div>
       
 
       
@@ -571,8 +586,17 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -660,6 +684,22 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#从布局入手"><span class="nav-number">2.</span> <span class="nav-text">从布局入手</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#从事件分发入手"><span class="nav-number">3.</span> <span class="nav-text">从事件分发入手</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
