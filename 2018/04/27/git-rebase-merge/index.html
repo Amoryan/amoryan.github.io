@@ -133,7 +133,9 @@
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/04/27/006.png">
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/04/27/007.png">
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/04/27/008.png">
-<meta property="og:updated_time" content="2018-05-02T01:40:09.000Z">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/05/30/001.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/05/30/002.png">
+<meta property="og:updated_time" content="2018-05-30T11:59:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git rebase&#x2F;merge">
 <meta name="twitter:description" content="之前git常用命令是放在一篇文章中的，但是学习的东西越来越多，导致文章的阅读行变差，于是决定将其拆分开。 场景　　git rebase和git merge的作用有相似之处，在多分支开发中，经常会碰到分支代码合并的情况，而merge和rebase都可以实现这类需求。 举个栗子创建分支　　接下来我们创建两个分支funA和funB。12$ git checkout -b funA$ git che">
@@ -417,8 +419,8 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-02T09:40:09+08:00">
-                2018-05-02
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-30T19:59:39+08:00">
+                2018-05-30
               </time>
             
           </span>
@@ -472,9 +474,10 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
 <p>　　我们解决完冲突后，使用git add将修改添加，继续git rebase –continue操作，然后就rebase成功了。<img src="/images/2018/04/27/008.png" alt="008"></p>
 <h1 id="异同"><a href="#异同" class="headerlink" title="异同"></a>异同</h1><ol>
 <li>git rebase和git merge都可以将多个分支的commit合并到同一个分支上；</li>
-<li>rebase操作首先会复制当前分支上的每个commit，然后再拼接到另外的分支上；而merge会生成一个新的commit，它包含了待merge分支的所有commit，然后再拼接到分支上。</li>
+<li>rebase操作首先会复制当前分支上的每个commit，然后再拼接到另外的分支上；而merge会生成一个新的commit，它包含了待merge分支的所有commit，然后再拼接到分支上。<h1 id="更加复杂的场景"><a href="#更加复杂的场景" class="headerlink" title="更加复杂的场景"></a>更加复杂的场景</h1>　　这里就不赘述了，直接给一张图自行理解提交记录，这里有三个分支master，server，client。<img src="/images/2018/05/30/001.png" alt="009"><br>　　假设你希望将 client 中的修改合并到主分支并发布，但暂时并不想合并 server 中的修改，因为它们还需要经 过更全面的测试。 这时，你就可以使用 git rebase 命令的 –onto 选项，选中在 client 分支里但不在 server 分支里的修改(即 C8 和 C9)，将它们在 master 分支上重放。<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git rebase --onto master server client</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<p>余生没那么长，不要一味的付出去惯哪些得寸进尺的人，请忠于自己，活的像最初的模样~</p>
+<p>　　这个命令的意思是:“取出 client 分支，找出处于 client 分支和 server 分支的共同祖先之后的修改，然 后把它们在 master 分支上重放一遍”。 这理解起来有一点复杂，不过效果非常酷。<img src="/images/2018/05/30/002.png" alt="010"><br>　　<br>　　<br>　　<br>　　<br>余生没那么长，不要一味的付出去惯哪些得寸进尺的人，请忠于自己，活的像最初的模样~</p>
 
       
     </div>
@@ -495,7 +498,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   <p><span>本文标题:</span><a href="/2018/04/27/git-rebase-merge/">git rebase/merge</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 严方雄 的个人博客">严方雄</a></p>
   <p><span>发布时间:</span>2018-04-27</p>
-  <p><span>最后更新:</span>2018-05-02</p>
+  <p><span>最后更新:</span>2018-05-30</p>
   <p><span>原始链接:</span><a href="/2018/04/27/git-rebase-merge/" title="git rebase/merge">http://yanfangxiong.com/2018/04/27/git-rebase-merge/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yanfangxiong.com/2018/04/27/git-rebase-merge/"  aria-label="复制成功！"></i></span>
   </p>
@@ -647,7 +650,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -726,7 +729,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#场景"><span class="nav-number">1.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#举个栗子"><span class="nav-number">2.</span> <span class="nav-text">举个栗子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建分支"><span class="nav-number">2.1.</span> <span class="nav-text">创建分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在A分支产生多次commit记录"><span class="nav-number">2.2.</span> <span class="nav-text">在A分支产生多次commit记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在B分支产生多次commit记录"><span class="nav-number">2.3.</span> <span class="nav-text">在B分支产生多次commit记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-merge"><span class="nav-number">2.4.</span> <span class="nav-text">git merge</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-rebase"><span class="nav-number">2.5.</span> <span class="nav-text">git rebase</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#冲突"><span class="nav-number">3.</span> <span class="nav-text">冲突</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#git-merge-1"><span class="nav-number">3.1.</span> <span class="nav-text">git merge</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-rebase-1"><span class="nav-number">3.2.</span> <span class="nav-text">git rebase</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#异同"><span class="nav-number">4.</span> <span class="nav-text">异同</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#场景"><span class="nav-number">1.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#举个栗子"><span class="nav-number">2.</span> <span class="nav-text">举个栗子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建分支"><span class="nav-number">2.1.</span> <span class="nav-text">创建分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在A分支产生多次commit记录"><span class="nav-number">2.2.</span> <span class="nav-text">在A分支产生多次commit记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在B分支产生多次commit记录"><span class="nav-number">2.3.</span> <span class="nav-text">在B分支产生多次commit记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-merge"><span class="nav-number">2.4.</span> <span class="nav-text">git merge</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-rebase"><span class="nav-number">2.5.</span> <span class="nav-text">git rebase</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#冲突"><span class="nav-number">3.</span> <span class="nav-text">冲突</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#git-merge-1"><span class="nav-number">3.1.</span> <span class="nav-text">git merge</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-rebase-1"><span class="nav-number">3.2.</span> <span class="nav-text">git rebase</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#异同"><span class="nav-number">4.</span> <span class="nav-text">异同</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更加复杂的场景"><span class="nav-number">5.</span> <span class="nav-text">更加复杂的场景</span></a></li></ol></div>
             
 
           </div>
