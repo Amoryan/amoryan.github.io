@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[如何使用Telegram客户端]]></title>
+    <url>%2F2018%2F08%2F08%2F%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Telegram%E5%AE%A2%E6%88%B7%E7%AB%AF%2F</url>
+    <content type="text"><![CDATA[嗯～，最近因为离职找工作的事情都没怎么写总结，初到新公司，同事们都是用的Telegram进行沟通交流，嗯，心中有一句mmp不知道当讲不当讲。总结下各端上的Telegram客户端如何正常使用。 通用方法 适用于各个端的Telegram客户端，配置下MTProto代理 这里提供两个免费的MTProto代理。 配置一 server 74.120.175.43 port 400 secret bbd3d8c677df2c657bed1a1094a7e75a 配置二 Server 45.77.97.94 port 400 secret 5788c35845a9d6c9e8a0db182c60765e Android Android上面下载一个ShadowSock的app，还可以进行翻墙，很方便吧。]]></content>
+      <categories>
+        <category>奇葩</category>
+      </categories>
+      <tags>
+        <tag>应用</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[浅谈camera2API]]></title>
+    <url>%2F2018%2F08%2F01%2F%E6%B5%85%E8%B0%88camera2API%2F</url>
+    <content type="text"><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[APT揭露编译时注解的面纱]]></title>
+    <url>%2F2018%2F08%2F01%2FAPT%E6%8F%AD%E9%9C%B2%E7%BC%96%E8%AF%91%E6%97%B6%E6%B3%A8%E8%A7%A3%E7%9A%84%E9%9D%A2%E7%BA%B1%2F</url>
+    <content type="text"><![CDATA[]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>APT</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[有效的防止系统字体修改影响app]]></title>
     <url>%2F2018%2F07%2F15%2F%E6%9C%89%E6%95%88%E7%9A%84%E9%98%B2%E6%AD%A2%E7%B3%BB%E7%BB%9F%E5%AD%97%E4%BD%93%E4%BF%AE%E6%94%B9%E5%BD%B1%E5%93%8Dapp%2F</url>
     <content type="text"><![CDATA[前言 不知道你们有没有这种烦恼，比如我们在使用TextView控件的时候，设置字体大小是16sp，然后我们在手机设置中将字体的大小从标准修改为小，大或者特大，然后再回到app，发现这个时候TextView上显示的文本完全就不是我们想要的，因为sp会受到系统字体大小设置的影响。 解决方法 这里提供两种解决方法，更推荐使用第二种方式。 方法一 这种方法比较暴躁，也比较简单，就是你布局文件中textSize的单位使用dp，这样就不会受到设置的影响了。但是，这样修改后会有警告，因为google是建议textSize的单位使用sp。 方法二 于是在google上搜索了N多篇博客，基本都是如下的方式，重写getResource()方法。1234567override fun getResources(): Resources &#123; val resources = super.getResources() val config = Configuration() config.setToDefaults() resources.updateConfiguration(config, resources.displayMetrics) return resources&#125; 我想问，你们这样写就没有一点点的疑问吗，这样会将Configuration的配置全部重置为默认的，也就是说你设置的一些配置都没有了。 于是我将代码修改为了下面的，从当前的resources获取configuration然后对其的fontScale进行修改。1234567891011override fun getResources(): Resources &#123; val resources = super.getResources() if (resources != null) &#123; val config = resources.configuration if (config != null &amp;&amp; config.fontScale != 1F) &#123; config.fontScale = 1F resources.updateConfiguration(config, resources.displayMetrics) &#125; &#125; return resources&#125;]]></content>
