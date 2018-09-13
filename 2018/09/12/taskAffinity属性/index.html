@@ -117,14 +117,23 @@
 
 
 
+<meta name="description" content="我们在AndroidManifest.xml文件中可以指定taskAffinity属性，如下所示。1234&amp;lt;activity    android:name=&quot;.CActivity&quot;    android:launchMode=&quot;singleTask&quot;    and">
 <meta property="og:type" content="article">
 <meta property="og:title" content="taskAffinity属性">
 <meta property="og:url" content="http://yanfangxiong.com/2018/09/12/taskAffinity属性/index.html">
 <meta property="og:site_name" content="严方雄的空间">
+<meta property="og:description" content="我们在AndroidManifest.xml文件中可以指定taskAffinity属性，如下所示。1234&amp;lt;activity    android:name=&quot;.CActivity&quot;    android:launchMode=&quot;singleTask&quot;    android:taskAffinity=&quot;com.yanfangxiong.taskAffinity&quot; /&amp;gt; 　　它表示">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-13T00:47:56.000Z">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/09/13/001.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/09/13/002.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/09/13/003.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/09/13/004.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/09/13/005.png">
+<meta property="og:updated_time" content="2018-09-13T03:13:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="taskAffinity属性">
+<meta name="twitter:description" content="我们在AndroidManifest.xml文件中可以指定taskAffinity属性，如下所示。1234&amp;lt;activity    android:name=&quot;.CActivity&quot;    android:launchMode=&quot;singleTask&quot;    android:taskAffinity=&quot;com.yanfangxiong.taskAffinity&quot; /&amp;gt; 　　它表示">
+<meta name="twitter:image" content="http://yanfangxiong.com/images/2018/09/13/001.png">
 
 
 
@@ -384,7 +393,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-13T08:47:56+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-13T11:13:49+08:00">
                 2018-09-13
               </time>
             
@@ -418,7 +427,29 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script>
+        <script src="/assets/js/APlayer.min.js"> </script><p>　　我们在AndroidManifest.xml文件中可以指定taskAffinity属性，如下所示。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">".CActivity"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:launchMode</span>=<span class="string">"singleTask"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:taskAffinity</span>=<span class="string">"com.yanfangxiong.taskAffinity"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>　　它表示任务相关性，实际上的作用是<strong><font color="#1b8fe6">指定所在的任务栈的名称</font></strong>，指定taskAffinity也需要注意以下几点</p>
+<ol>
+<li>taskAffinity的值不要和包名一样，因为默认情况下，Activity都是运行在包名的任务栈中；</li>
+<li>taskAffinity的值中必须要有”.”，不然无法运行。</li>
+</ol>
+<p>　　像上面的代码，当启动CActivity的时候，会看是否有com.yanfangxiong.taskAffinity的任务栈存在，如果没有则会新建名为com.yanfangxiong.taskAffinity的任务栈，然后再将CActivity放入到任务栈，如果有该任务栈存在，则会看是否有CActivity的实例，如果有则调用onNewIntent()方法。<br>但但但是，一般我们使用taskAffinity没有作用，为什么呢？因为<strong><font color="#1b8fe6">taskAffinity属性要和singleTask启动模式(Intent的FLAG_ACTIVITY_NEW_TASK)一起使用，或者和allowTaskReparenting属性一起使用</font></strong>。</p>
+<h1 id="和singleTask一起使用"><a href="#和singleTask一起使用" class="headerlink" title="和singleTask一起使用"></a>和singleTask一起使用</h1><p>　　我们可以像上面一样在manifest文件中指定launchMode为singleTask，然后给Activity指定taskAffinity属性。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">".AActivity"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.MAIN"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.LAUNCHER"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">".BActivity"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:launchMode</span>=<span class="string">"singleTask"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:screenOrientation</span>=<span class="string">"portrait"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:taskAffinity</span>=<span class="string">"com.yanfangxiong.taskAffinity"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>　　或者我们不置顶BActivity的launchMode，通过Intent的flag，如下。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> intent = Intent(<span class="keyword">this</span><span class="symbol">@AActivity</span>, BActivity::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>)</span></span><br><span class="line">intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)</span><br><span class="line"><span class="keyword">val</span> queryIntent = <span class="keyword">this</span><span class="symbol">@AActivity</span>.packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)</span><br><span class="line"><span class="keyword">if</span> (queryIntent != <span class="literal">null</span> &amp;&amp; queryIntent.isNotEmpty()) &#123;</span><br><span class="line">    <span class="keyword">this</span><span class="symbol">@AActivity</span>.startActivity(intent)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　上面的代码表示AActivity将会运行在名字为包名的任务栈，而BActivity将会运行在名字为com.yanfangxiong.taskAffinity的任务栈中。我们通过如下代码打印出taskId，看看两者是否是相同的。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onResume</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">super</span>.onResume()</span><br><span class="line">    Log.d(<span class="string">"fxYan"</span>, <span class="string">"<span class="variable">$taskId</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　然后我们运行程序，之后从AActivity跳转到BActivity，看看两者是否在同一个任务栈中。<img src="/images/2018/09/13/001.png" alt="001"><br>可以看到两者在两个不同的任务栈中。</p>
+<h1 id="和allowTaskReparenting一起使用"><a href="#和allowTaskReparenting一起使用" class="headerlink" title="和allowTaskReparenting一起使用"></a>和allowTaskReparenting一起使用</h1><p>　　栗子已备好，大人请品尝。我创建了两个app，一个是com.yanfangxiong.test，记为A应用，另外一个是com.yanfangxiong.test2，记为B应用。A应用中有一个AActivity，B应用中有一个AActivity和一个BActivity；然后从A应用的AActivity点击后会打开B应用的BActivity。<br>然后我们分别修改BActivity的allowTaskReparenting属性，执行相同的流程。</p>
+<ol>
+<li>打开A应用；</li>
+<li>通过A应用的AActivity启动B应用的BActivity；</li>
+<li>回到桌面；</li>
+<li>通过B应用的launcher启动B应用。</li>
+</ol>
+<p>　　这里涉及到一个命令，可以查看activity的信息。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> adb shell dumpsys activity activities</span><br></pre></td></tr></table></figure></p>
+<h2 id="allowTaskReparenting为false"><a href="#allowTaskReparenting为false" class="headerlink" title="allowTaskReparenting为false"></a>allowTaskReparenting为false</h2><p>　　我们先来看看当B应用的BActivity的allowTaskReparenting为false的情况。为了简化，我这里只输出第四步的activity信息，如下所示。<br>　　先来看看B应用的任务栈信息，可以看到，只有我们启动的AActivity在任务栈中。<br><img src="/images/2018/09/13/002.png" alt="002"><br>　　然后再看看A应用的任务栈信息，可以看到，有B应用的BActivity和A应用的AActivity在任务栈中。<br><img src="/images/2018/09/13/003.png" alt="003"></p>
+<h2 id="allowTaskReparenting为true"><a href="#allowTaskReparenting为true" class="headerlink" title="allowTaskReparenting为true"></a>allowTaskReparenting为true</h2><p>　　然后我们看看allowTaskReparenting为true的情况，如下所示。<br>　　先来看看B应用的任务栈信息，可以看到神奇的一幕，有我们启动的AActivity以及之前通过A应用启动的BActivity在任务栈中，而且这个时候返回的时候是返回AActivity。<br><img src="/images/2018/09/13/004.png" alt="004"><br>　　然后再看看A应用的任务栈信息，可以看到，只有A应用的AActivity在任务栈中。<br><img src="/images/2018/09/13/005.png" alt="005"></p>
+<p>　　allowTaskReparenting属性为true的时候，BActivity发现B应用启动后，有自己想要的任务栈，所以会从A应用的任务栈迁移到B应用的任务栈，就出现了上面神奇的一幕。</p>
+
       
     </div>
     
@@ -555,8 +586,17 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -626,6 +666,22 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#和singleTask一起使用"><span class="nav-number">1.</span> <span class="nav-text">和singleTask一起使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#和allowTaskReparenting一起使用"><span class="nav-number">2.</span> <span class="nav-text">和allowTaskReparenting一起使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#allowTaskReparenting为false"><span class="nav-number">2.1.</span> <span class="nav-text">allowTaskReparenting为false</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#allowTaskReparenting为true"><span class="nav-number">2.2.</span> <span class="nav-text">allowTaskReparenting为true</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
