@@ -117,14 +117,17 @@
 
 
 
+<meta name="description" content="问题所在&amp;ensp;&amp;ensp;在项目开发过程中，经常会有很多的module，而每个module下面都会依赖一些library，当项目越来越大的时候，这种分散在每个module下面单独的gradle配置依赖库的方式就很难以进行管理。 解决方式&amp;ensp;&amp;ensp;我们可以通过gradl">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用gradle统一项目配置">
 <meta property="og:url" content="http://yanfangxiong.com/2018/10/28/使用gradle统一项目配置/index.html">
 <meta property="og:site_name" content="严方雄的空间">
+<meta property="og:description" content="问题所在&amp;ensp;&amp;ensp;在项目开发过程中，经常会有很多的module，而每个module下面都会依赖一些library，当项目越来越大的时候，这种分散在每个module下面单独的gradle配置依赖库的方式就很难以进行管理。 解决方式&amp;ensp;&amp;ensp;我们可以通过gradle的ext变量来建立一个公用的配置，这样其他的module中的gralde配置从这个公用配置中获取需要的信息来">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-28T05:26:57.000Z">
+<meta property="og:updated_time" content="2018-11-05T15:10:08.623Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用gradle统一项目配置">
+<meta name="twitter:description" content="问题所在&amp;ensp;&amp;ensp;在项目开发过程中，经常会有很多的module，而每个module下面都会依赖一些library，当项目越来越大的时候，这种分散在每个module下面单独的gradle配置依赖库的方式就很难以进行管理。 解决方式&amp;ensp;&amp;ensp;我们可以通过gradle的ext变量来建立一个公用的配置，这样其他的module中的gralde配置从这个公用配置中获取需要的信息来">
 
 
 
@@ -384,8 +387,8 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-28T13:26:57+08:00">
-                2018-10-28
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-05T23:10:08+08:00">
+                2018-11-05
               </time>
             
           </span>
@@ -418,7 +421,15 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="问题所在"><a href="#问题所在" class="headerlink" title="问题所在"></a>问题所在</h1><p>&ensp;&ensp;在项目开发过程中，经常会有很多的module，而每个module下面都会依赖一些library，当项目越来越大的时候，这种分散在每个module下面单独的gradle配置依赖库的方式就很难以进行管理。</p>
+<h1 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h1><p>&ensp;&ensp;我们可以通过gradle的ext变量来建立一个公用的配置，这样其他的module中的gralde配置从这个公用配置中获取需要的信息来完成自身module的配置。这样既能够保证每个module下的依赖库版本是一致的，而且管理起来也十分的方便。</p>
+<h2 id="build-gradle"><a href="#build-gradle" class="headerlink" title="build.gradle"></a>build.gradle</h2><p>&ensp;&ensp;首先我们来看看一个module下面的build.gradle文件的依赖库配置(这里只是举个栗子，比较简单，请以实际开发为准)。<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//support</span></span><br><span class="line">implementation <span class="string">"com.android.support:appcompat-v7:27.1.1"</span></span><br><span class="line">implementation <span class="string">"com.android.support:design:27.1.1"</span></span><br><span class="line">implementation <span class="string">"com.android.support:cardview-v7:27.1.1"</span></span><br><span class="line"><span class="comment">//retrofit</span></span><br><span class="line">implementation <span class="string">"com.squareup.retrofit2:retrofit:2.3.0"</span></span><br><span class="line">implementation <span class="string">"com.squareup.retrofit2:converter-gson:2.3.0"</span></span><br><span class="line">implementation <span class="string">"com.squareup.retrofit2:adapter-rxjava2:2.3.0"</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="config-gradle"><a href="#config-gradle" class="headerlink" title="config.gradle"></a>config.gradle</h2><p>&ensp;&ensp;然后我们在<strong><font color="#1b8fe6">主工程的外层</font></strong>新建一个config.gradle(名字自取)文件，使用<strong><font color="#1b8fe6">ext变量</font></strong>，它里面用map存放一些键值对的信息。下面是我写的一些配置。<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">ext &#123;</span><br><span class="line">    versions = [</span><br><span class="line">            <span class="string">"android_support_version"</span>: <span class="string">"27.1.1"</span>,</span><br><span class="line">            <span class="string">"retrofit_version"</span>       : <span class="string">"2.3.0"</span></span><br><span class="line">    ]</span><br><span class="line">    groups = [</span><br><span class="line">            <span class="string">"android_support"</span>: <span class="string">"com.android.support"</span>,</span><br><span class="line">            <span class="string">"retrofit2"</span>      : <span class="string">"com.squareup.retrofit2"</span></span><br><span class="line">    ]</span><br><span class="line">    names = [</span><br><span class="line">            <span class="comment">// support</span></span><br><span class="line">            <span class="string">"appcompat_v7"</span>   : <span class="string">"appcompat-v7"</span>,</span><br><span class="line">            <span class="string">"design"</span>         : <span class="string">"design"</span>,</span><br><span class="line">            <span class="string">"cardview_v7"</span>    : <span class="string">"cardview-v7"</span>,</span><br><span class="line">            <span class="comment">// retrofit</span></span><br><span class="line">            <span class="string">"retrofit"</span>       : <span class="string">"retrofit"</span>,</span><br><span class="line">            <span class="string">"converter_gson"</span> : <span class="string">"converter-gson"</span>,</span><br><span class="line">            <span class="string">"adapter_rxjava2"</span>: <span class="string">"adapter-rxjava2"</span></span><br><span class="line">    ]</span><br><span class="line">    android_support = [</span><br><span class="line">            <span class="string">"appcompat_v7"</span>: <span class="string">"$&#123;groups.android_support&#125;:$&#123;names.appcompat_v7&#125;:$&#123;versions.android_support_version&#125;"</span>,</span><br><span class="line">            <span class="string">"design"</span>      : <span class="string">"$&#123;groups.android_support&#125;:$&#123;names.design&#125;:$&#123;versions.android_support_version&#125;"</span>,</span><br><span class="line">            <span class="string">"cardview_v7"</span> : <span class="string">"$&#123;groups.android_support&#125;:$&#123;names.cardview_v7&#125;:$&#123;versions.android_support_version&#125;"</span></span><br><span class="line">    ]</span><br><span class="line">    retrofit2 = [</span><br><span class="line">            <span class="string">"retrofit"</span>       : <span class="string">"$&#123;groups.retrofit2&#125;:$&#123;names.retrofit&#125;:$&#123;versions.retrofit_version&#125;"</span>,</span><br><span class="line">            <span class="string">"converter_gson"</span> : <span class="string">"$&#123;groups.retrofit2&#125;:$&#123;names.converter_gson&#125;:$&#123;versions.retrofit_version&#125;"</span>,</span><br><span class="line">            <span class="string">"adapter_rxjava2"</span>: <span class="string">"$&#123;groups.retrofit2&#125;:$&#123;names.adapter_rxjava2&#125;:$&#123;versions.retrofit_version&#125;"</span>,</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="引入config-gradle"><a href="#引入config-gradle" class="headerlink" title="引入config.gradle"></a>引入config.gradle</h2><p>&ensp;&ensp;配置文件写完了，那么如何将其引入到工程中呢，这个时候我们需要在<strong><font color="#1b8fe6">主工程的build.gradle文件开头</font></strong>添加如下一句话。<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apply <span class="string">from :</span> <span class="string">"config.gradle"</span></span><br></pre></td></tr></table></figure></p>
+<p>这样重新构建一下，就能够将config.gradle文件引入到主工程中了。</p>
+<h2 id="修改module的build-gradle"><a href="#修改module的build-gradle" class="headerlink" title="修改module的build.gradle"></a>修改module的build.gradle</h2><p>&ensp;&ensp;接下来我们来修改刚才<strong><font color="#1b8fe6">module中的build.gradle文件</font></strong>，如下所示。<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> support = rootProject.ext.android_support</span><br><span class="line"><span class="keyword">def</span> retrofit = rootProject.ext.retrofit2</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    implementation support.appcompat_v7</span><br><span class="line">    implementation support.design</span><br><span class="line">    implementation support.cardview_v7</span><br><span class="line">    </span><br><span class="line">    implementation retrofit.retrofit</span><br><span class="line">    implementation retrofit.converter_gson</span><br><span class="line">    implementation retrofit.adapter_rxjava2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&ensp;&ensp;修改完成后重新构建项目，ok，你会发现完全没有问题，这样我们就可以将其他module下的依赖库也通过相同的方式来引入，而当要修改依赖库版本相关信息的时候，只需要修改配置文件中的版本信息就可以了，这样是不是很方便呢？</p>
+
       
     </div>
     
@@ -438,7 +449,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   <p><span>本文标题:</span><a href="/2018/10/28/使用gradle统一项目配置/">使用gradle统一项目配置</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 严方雄 的个人博客">严方雄</a></p>
   <p><span>发布时间:</span>2018-10-28</p>
-  <p><span>最后更新:</span>2018-10-28</p>
+  <p><span>最后更新:</span>2018-11-05</p>
   <p><span>原始链接:</span><a href="/2018/10/28/使用gradle统一项目配置/" title="使用gradle统一项目配置">http://yanfangxiong.com/2018/10/28/使用gradle统一项目配置/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yanfangxiong.com/2018/10/28/使用gradle统一项目配置/"  aria-label="复制成功！"></i></span>
   </p>
@@ -555,8 +566,17 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -626,6 +646,22 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题所在"><span class="nav-number">1.</span> <span class="nav-text">问题所在</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解决方式"><span class="nav-number">2.</span> <span class="nav-text">解决方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#build-gradle"><span class="nav-number">2.1.</span> <span class="nav-text">build.gradle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#config-gradle"><span class="nav-number">2.2.</span> <span class="nav-text">config.gradle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引入config-gradle"><span class="nav-number">2.3.</span> <span class="nav-text">引入config.gradle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改module的build-gradle"><span class="nav-number">2.4.</span> <span class="nav-text">修改module的build.gradle</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
