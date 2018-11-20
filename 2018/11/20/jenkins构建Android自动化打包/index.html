@@ -132,7 +132,7 @@
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/007.png">
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/008.png">
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/009.png">
-<meta property="og:image" content="http://yanfangxiong.com/imags/2018/11/20/010.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/010.png">
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/011.png">
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/012.png">
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/013.png">
@@ -147,7 +147,7 @@
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/022.png">
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/023.png">
 <meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/024.png">
-<meta property="og:updated_time" content="2018-11-20T14:05:51.793Z">
+<meta property="og:updated_time" content="2018-11-20T14:10:20.757Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jenkins构建Android自动化打包">
 <meta name="twitter:description" content="前言　　为什么要弄jenkins自动化打包，其一，使用jenkins自动打包是在服务器上进行的，不占用自己电脑的资源；其二，简化流程，比如没用jenkins之前，我们要将包放到蒲公英上，需要先打包，然后再到蒲公英上上传应用，巴拉巴拉一大推流程，但是使用jenkins配置构建job，我们就可以不用关心上面的这一系列流程，它会帮助我们自动完成构建，上传等操作。 配置流程安装jenkins　　笔者是m">
@@ -411,7 +411,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-20T22:05:51+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-20T22:10:20+08:00">
                 2018-11-20
               </time>
             
@@ -452,9 +452,9 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
 <h3 id="新建job"><a href="#新建job" class="headerlink" title="新建job"></a>新建job</h3><p>　　在dashboard界面，我们选择New Item选项，如下图所示。<br><img src="/images/2018/11/20/002.png" alt="001"><br>　　然后输入job名称，选择Freestyle project，然后点击ok就可以了。<br><img src="/images/2018/11/20/003.png" alt="002"></p>
 <h3 id="配置源码"><a href="#配置源码" class="headerlink" title="配置源码"></a>配置源码</h3><p>　　在新建完成job之后，我们会进入到job的配置界面，然后第一步，我们需要配置构建的源码来源，这里笔者是使用git版本管理工具的，首先切换到Source Code Management。<br><img src="/images/2018/11/20/004.png" alt="003"><br>　　然后选择Git，输入Git仓库地址，如下所示。<br><img src="/images/2018/11/20/005.png" alt="004"><br>　　因为jenkins需要从git仓库中pull代码，然后进行构建，所以我们需要<strong><font color="#1b8fe6">将git的ssh的私钥配置在jenkins上</font></strong>，以便job可以成功的从远程仓库拉取代码。如下图所示，这里需要选择SSH Username with primary key，然后将私钥配置在primary key里面。<br><img src="/images/2018/11/20/006.png" alt="005"></p>
 <h3 id="配置gradle"><a href="#配置gradle" class="headerlink" title="配置gradle"></a>配置gradle</h3><p>　　配置完源码来源后，我们将tab切换到build下面，来配置gradle的一些信息。<br><img src="/images/2018/11/20/007.png" alt="006"><br>　　默认情况下，jenkins是没有下载gradle的，我们可以配置命令自动进行下载，也可以在全局设置中先下载，然后在上面的配置界面中选择已有的gradle版本进行构建。<br><img src="/images/2018/11/20/008.png" alt="007"><br><img src="/images/2018/11/20/009.png" alt="008"><br>　　这里记得勾选自动下载。</p>
-<h3 id="上传蒲公英"><a href="#上传蒲公英" class="headerlink" title="上传蒲公英"></a>上传蒲公英</h3><p>　　笔者这边以蒲公英做示例，首先我们需要到插件管理下面下载”Upload To Pgyer”插件。<br><img src="/imags/2018/11/20/010.png" alt="009"><br><img src="/images/2018/11/20/011.png" alt="010"><br>　　因为笔者这里已经是安装了这个插件的，实际上安装的时候是在available下面进行搜索安装的。<br>　　下载完成插件，我们再回到job的配置界面，选择Post-build Actions，表示在构建完成后做什么事情。然后添加action，选择upload to pgyer，笔者这里选择的是with api2，需要配置pgyer api_key，这个可以在蒲公英的用户账号设置里面找到。<br><img src="/images/2018/11/20/012.png" alt="011"><br><img src="/images/2018/11/20/013.png" alt="012"></p>
+<h3 id="上传蒲公英"><a href="#上传蒲公英" class="headerlink" title="上传蒲公英"></a>上传蒲公英</h3><p>　　笔者这边以蒲公英做示例，首先我们需要到插件管理下面下载”Upload To Pgyer”插件。<br><img src="/images/2018/11/20/010.png" alt="009"><br><img src="/images/2018/11/20/011.png" alt="010"><br>　　因为笔者这里已经是安装了这个插件的，实际上安装的时候是在available下面进行搜索安装的。<br>　　下载完成插件，我们再回到job的配置界面，选择Post-build Actions，表示在构建完成后做什么事情。然后添加action，选择upload to pgyer，笔者这里选择的是with api2，需要配置pgyer api_key，这个可以在蒲公英的用户账号设置里面找到。<br><img src="/images/2018/11/20/012.png" alt="011"><br><img src="/images/2018/11/20/013.png" alt="012"></p>
 <h2 id="运行job"><a href="#运行job" class="headerlink" title="运行job"></a>运行job</h2><p>　　上面的配置基本上完成了一大半，剩下的就是在构建的过程中进行填坑了。通过Build Now，我们新建一个构建任务。<br><img src="/images/2018/11/20/014.png" alt="013"><br>　　通过console我们可以看到，没有找到sdk，我们可以通过local.property或者是指定一个ANDROID_HOME的环境变量。这里笔者选择了后者。<br><img src="/images/2018/11/20/015.png" alt="014"><br><img src="/images/2018/11/20/016.png" alt="015"><br>　　添加完环境变量之后我们再次运行。依旧是构建失败，这次log中提示找不到配置的ANDROID_HOME对应的目录。<br><img src="/images/2018/11/20/017.png" alt="016"><br>　　但是实际上这个目录是存在的，于是笔者怀疑应该是目录访问权限限制了。于是乎去对应的路径下修改了权限。chmod命令我就不多说了。修改完访问权限，我们再次构建job就成功了。<br><img src="/images/2018/11/20/018.png" alt="017"></p>
-<h1 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h1><h2 id="构建参数"><a href="#构建参数" class="headerlink" title="构建参数"></a>构建参数</h2><p>　　上面只是完成了一个job的简单配置，我们构建命令也只是简单的时候了assembleRelease。显然这是不够的，比如我们现在项目中配置了很多的渠道，或者buildTypes，这个时候我们想要打某个渠道的包，或者某个buildType的apk包那该如何是好？<br>　　在job的的配置界面第一个tab下，勾选this project is parameterized，如下所示，这里笔者选择choice parameters。<br><img src="/images/2018/11/20/019.png" alt="018"><br>　　然后我们增加两个参数选择，一个debug，一个release，如下所示。<br><img src="/images/2018/11/20/020.png" alt="019"><br>　　别忘了还需要修改gradle的构建命令，和配置的参数相关联。<br><img src="/images/2018/11/20/021.png" alt="020"><br>　　然后我们再来看看Build Now，这里变成了一个可选择的。<br><img src="/images/2018/11/20/022.png" alt="021"></p>
+<h1 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h1><h2 id="构建参数"><a href="#构建参数" class="headerlink" title="构建参数"></a>构建参数</h2><p>　　上面只是完成了一个job的简单配置，我们构建命令也只是简单的使用了assembleRelease。显然这是不够的，比如我们现在项目中配置了很多的渠道，或者buildTypes，这个时候我们想要打某个渠道的包，或者某个buildType的apk包那该如何是好？<br>　　在job的的配置界面第一个tab下，勾选this project is parameterized，如下所示，这里笔者选择choice parameters。<br><img src="/images/2018/11/20/019.png" alt="018"><br>　　然后我们增加两个参数选择，一个debug，一个release，如下所示。<br><img src="/images/2018/11/20/020.png" alt="019"><br>　　别忘了还需要修改gradle的构建命令，和配置的参数相关联。<br><img src="/images/2018/11/20/021.png" alt="020"><br>　　然后我们再来看看Build Now，这里变成了一个可选择的。<br><img src="/images/2018/11/20/022.png" alt="021"></p>
 <h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><p>　　构建触发器是指什么时候进行构建，比如我们可以指定当源码更新的时候就出发构建；或者是在每天的凌晨两点开始构建等等，这就是构建触发器。在job的配置界面，我们可以看到第三个tab，Build Triggers。<br><img src="/images/2018/11/20/023.png" alt="022"><br>　　比如我们这里配置每天凌晨两点钟构建一次，可以配置成如下的样子。<br><img src="/images/2018/11/20/024.png" alt="023"><br>　　具体的参数配置可以参考jenkins定时任务的官方文档说明。</p>
 
       
