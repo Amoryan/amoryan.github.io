@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Dancing Script:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="严方雄的个人博客" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言　　为什么要弄jenkins自动化打包，其一，使用jenkins自动打包是在服务器上进行的，不占用自己电脑的资源；其二，简化流程，比如没用jenkins之前，我们要将包放到蒲公英上，需要先打包，然后再到蒲公英上上传应用，巴拉巴拉一大推流程，但是使用jenkins配置构建job，我们就可以不用关心上面的这一系列流程，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jenkins构建Android自动化打包">
+<meta property="og:url" content="http://yanfangxiong.com/2018/11/20/jenkins构建Android自动化打包/index.html">
+<meta property="og:site_name" content="严方雄的空间">
+<meta property="og:description" content="前言　　为什么要弄jenkins自动化打包，其一，使用jenkins自动打包是在服务器上进行的，不占用自己电脑的资源；其二，简化流程，比如没用jenkins之前，我们要将包放到蒲公英上，需要先打包，然后再到蒲公英上上传应用，巴拉巴拉一大推流程，但是使用jenkins配置构建job，我们就可以不用关心上面的这一系列流程，它会帮助我们自动完成构建，上传等操作。 配置流程安装jenkins　　笔者是m">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/002.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/003.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/004.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/005.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/006.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/007.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/008.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/009.png">
+<meta property="og:image" content="http://yanfangxiong.com/imags/2018/11/20/010.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/011.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/012.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/013.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/014.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/015.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/016.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/017.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/018.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/019.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/020.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/021.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/022.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/023.png">
+<meta property="og:image" content="http://yanfangxiong.com/images/2018/11/20/024.png">
+<meta property="og:updated_time" content="2018-11-20T14:05:51.793Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jenkins构建Android自动化打包">
+<meta name="twitter:description" content="前言　　为什么要弄jenkins自动化打包，其一，使用jenkins自动打包是在服务器上进行的，不占用自己电脑的资源；其二，简化流程，比如没用jenkins之前，我们要将包放到蒲公英上，需要先打包，然后再到蒲公英上上传应用，巴拉巴拉一大推流程，但是使用jenkins配置构建job，我们就可以不用关心上面的这一系列流程，它会帮助我们自动完成构建，上传等操作。 配置流程安装jenkins　　笔者是m">
+<meta name="twitter:image" content="http://yanfangxiong.com/images/2018/11/20/002.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: false,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"expandIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yanfangxiong.com/2018/11/20/jenkins构建Android自动化打包/"/>
+
+
+
+
+
+  <title>jenkins构建Android自动化打包</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    left: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    document.getElementById("live2dcanvas").style.width = '75px';
+    document.getElementById("live2dcanvas").style.height = '150px';
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/koharu.model.json", 0.5);});
+})();
+</script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">严方雄的空间</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            成长
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-comments">
+          <a href="/comments/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comment"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yanfangxiong.com/2018/11/20/jenkins构建Android自动化打包/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="严方雄">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="严方雄的空间">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">jenkins构建Android自动化打包</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-20T20:42:20+08:00">
+                2018-11-20
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-20T22:05:51+08:00">
+                2018-11-20
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>　　为什么要弄jenkins自动化打包，其一，使用jenkins自动打包是在服务器上进行的，不占用自己电脑的资源；其二，简化流程，比如没用jenkins之前，我们要将包放到蒲公英上，需要先打包，然后再到蒲公英上上传应用，巴拉巴拉一大推流程，但是使用jenkins配置构建job，我们就可以不用关心上面的这一系列流程，它会帮助我们自动完成构建，上传等操作。</p>
+<h1 id="配置流程"><a href="#配置流程" class="headerlink" title="配置流程"></a>配置流程</h1><h2 id="安装jenkins"><a href="#安装jenkins" class="headerlink" title="安装jenkins"></a>安装jenkins</h2><p>　　笔者是mac os的系统，安装jenkins可以使用如下的命令进行。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> brew install jenkins</span><br></pre></td></tr></table></figure></p>
+<p>　　或者你也可以到jenkins的官网上下载，然后进行安装，是一样的。</p>
+<h2 id="配置job"><a href="#配置job" class="headerlink" title="配置job"></a>配置job</h2><p>　　这里我就不细说jenkins的安装过程了， 比较简单，在下载插件的时候，如果不明确的知道自己需要哪些插件，可以选择推荐的插件安装就可以了，一般我们需要用到的都会有。</p>
+<h3 id="新建job"><a href="#新建job" class="headerlink" title="新建job"></a>新建job</h3><p>　　在dashboard界面，我们选择New Item选项，如下图所示。<br><img src="/images/2018/11/20/002.png" alt="001"><br>　　然后输入job名称，选择Freestyle project，然后点击ok就可以了。<br><img src="/images/2018/11/20/003.png" alt="002"></p>
+<h3 id="配置源码"><a href="#配置源码" class="headerlink" title="配置源码"></a>配置源码</h3><p>　　在新建完成job之后，我们会进入到job的配置界面，然后第一步，我们需要配置构建的源码来源，这里笔者是使用git版本管理工具的，首先切换到Source Code Management。<br><img src="/images/2018/11/20/004.png" alt="003"><br>　　然后选择Git，输入Git仓库地址，如下所示。<br><img src="/images/2018/11/20/005.png" alt="004"><br>　　因为jenkins需要从git仓库中pull代码，然后进行构建，所以我们需要<strong><font color="#1b8fe6">将git的ssh的私钥配置在jenkins上</font></strong>，以便job可以成功的从远程仓库拉取代码。如下图所示，这里需要选择SSH Username with primary key，然后将私钥配置在primary key里面。<br><img src="/images/2018/11/20/006.png" alt="005"></p>
+<h3 id="配置gradle"><a href="#配置gradle" class="headerlink" title="配置gradle"></a>配置gradle</h3><p>　　配置完源码来源后，我们将tab切换到build下面，来配置gradle的一些信息。<br><img src="/images/2018/11/20/007.png" alt="006"><br>　　默认情况下，jenkins是没有下载gradle的，我们可以配置命令自动进行下载，也可以在全局设置中先下载，然后在上面的配置界面中选择已有的gradle版本进行构建。<br><img src="/images/2018/11/20/008.png" alt="007"><br><img src="/images/2018/11/20/009.png" alt="008"><br>　　这里记得勾选自动下载。</p>
+<h3 id="上传蒲公英"><a href="#上传蒲公英" class="headerlink" title="上传蒲公英"></a>上传蒲公英</h3><p>　　笔者这边以蒲公英做示例，首先我们需要到插件管理下面下载”Upload To Pgyer”插件。<br><img src="/imags/2018/11/20/010.png" alt="009"><br><img src="/images/2018/11/20/011.png" alt="010"><br>　　因为笔者这里已经是安装了这个插件的，实际上安装的时候是在available下面进行搜索安装的。<br>　　下载完成插件，我们再回到job的配置界面，选择Post-build Actions，表示在构建完成后做什么事情。然后添加action，选择upload to pgyer，笔者这里选择的是with api2，需要配置pgyer api_key，这个可以在蒲公英的用户账号设置里面找到。<br><img src="/images/2018/11/20/012.png" alt="011"><br><img src="/images/2018/11/20/013.png" alt="012"></p>
+<h2 id="运行job"><a href="#运行job" class="headerlink" title="运行job"></a>运行job</h2><p>　　上面的配置基本上完成了一大半，剩下的就是在构建的过程中进行填坑了。通过Build Now，我们新建一个构建任务。<br><img src="/images/2018/11/20/014.png" alt="013"><br>　　通过console我们可以看到，没有找到sdk，我们可以通过local.property或者是指定一个ANDROID_HOME的环境变量。这里笔者选择了后者。<br><img src="/images/2018/11/20/015.png" alt="014"><br><img src="/images/2018/11/20/016.png" alt="015"><br>　　添加完环境变量之后我们再次运行。依旧是构建失败，这次log中提示找不到配置的ANDROID_HOME对应的目录。<br><img src="/images/2018/11/20/017.png" alt="016"><br>　　但是实际上这个目录是存在的，于是笔者怀疑应该是目录访问权限限制了。于是乎去对应的路径下修改了权限。chmod命令我就不多说了。修改完访问权限，我们再次构建job就成功了。<br><img src="/images/2018/11/20/018.png" alt="017"></p>
+<h1 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h1><h2 id="构建参数"><a href="#构建参数" class="headerlink" title="构建参数"></a>构建参数</h2><p>　　上面只是完成了一个job的简单配置，我们构建命令也只是简单的时候了assembleRelease。显然这是不够的，比如我们现在项目中配置了很多的渠道，或者buildTypes，这个时候我们想要打某个渠道的包，或者某个buildType的apk包那该如何是好？<br>　　在job的的配置界面第一个tab下，勾选this project is parameterized，如下所示，这里笔者选择choice parameters。<br><img src="/images/2018/11/20/019.png" alt="018"><br>　　然后我们增加两个参数选择，一个debug，一个release，如下所示。<br><img src="/images/2018/11/20/020.png" alt="019"><br>　　别忘了还需要修改gradle的构建命令，和配置的参数相关联。<br><img src="/images/2018/11/20/021.png" alt="020"><br>　　然后我们再来看看Build Now，这里变成了一个可选择的。<br><img src="/images/2018/11/20/022.png" alt="021"></p>
+<h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><p>　　构建触发器是指什么时候进行构建，比如我们可以指定当源码更新的时候就出发构建；或者是在每天的凌晨两点开始构建等等，这就是构建触发器。在job的配置界面，我们可以看到第三个tab，Build Triggers。<br><img src="/images/2018/11/20/023.png" alt="022"><br>　　比如我们这里配置每天凌晨两点钟构建一次，可以配置成如下的样子。<br><img src="/images/2018/11/20/024.png" alt="023"><br>　　具体的参数配置可以参考jenkins定时任务的官方文档说明。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+        <div>
+            
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/2018/11/20/jenkins构建Android自动化打包/">jenkins构建Android自动化打包</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 严方雄 的个人博客">严方雄</a></p>
+  <p><span>发布时间:</span>2018-11-20</p>
+  <p><span>最后更新:</span>2018-11-20</p>
+  <p><span>原始链接:</span><a href="/2018/11/20/jenkins构建Android自动化打包/" title="jenkins构建Android自动化打包">http://yanfangxiong.com/2018/11/20/jenkins构建Android自动化打包/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yanfangxiong.com/2018/11/20/jenkins构建Android自动化打包/"  aria-label="复制成功！"></i></span>
+  </p>
+</div>
+<script>
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({
+          title: "",
+          text: '复制成功',
+          html: false,
+          timer: 500,
+          showConfirmButton: false
+        });
+      });
+    }));
+</script>
+
+
+        </div>
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/16/全屏模式和adjustResize的冲突/" rel="next" title="全屏模式和adjustResize的冲突">
+                <i class="fa fa-chevron-left"></i> 全屏模式和adjustResize的冲突
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/20/INSTALL-FAILED-CONFLICTING-PROVIDER/" rel="prev" title="INSTALL_FAILED_CONFLICTING_PROVIDER">
+                INSTALL_FAILED_CONFLICTING_PROVIDER <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+        <div id="gitment-container"></div>
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpeg"
+                alt="严方雄" />
+            
+              <p class="site-author-name" itemprop="name">严方雄</p>
+              <p class="site-description motion-element" itemprop="description">余生没那么长，不要一味的付出去惯那些得寸进尺的人，请忠于自己，活的像最初的模样~</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/amoryan" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                推荐博客
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.whezh.com/" title="Hezhou's personal blog" target="_blank">Hezhou's personal blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置流程"><span class="nav-number">2.</span> <span class="nav-text">配置流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装jenkins"><span class="nav-number">2.1.</span> <span class="nav-text">安装jenkins</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置job"><span class="nav-number">2.2.</span> <span class="nav-text">配置job</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新建job"><span class="nav-number">2.2.1.</span> <span class="nav-text">新建job</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置源码"><span class="nav-number">2.2.2.</span> <span class="nav-text">配置源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置gradle"><span class="nav-number">2.2.3.</span> <span class="nav-text">配置gradle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上传蒲公英"><span class="nav-number">2.2.4.</span> <span class="nav-text">上传蒲公英</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行job"><span class="nav-number">2.3.</span> <span class="nav-text">运行job</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#扩展"><span class="nav-number">3.</span> <span class="nav-text">扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#构建参数"><span class="nav-number">3.1.</span> <span class="nav-text">构建参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#触发器"><span class="nav-number">3.2.</span> <span class="nav-text">触发器</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">严方雄</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script type="text/javascript">
+            var temp = window.location.pathname;
+            var gitment = new Gitment({
+                    id: decodeURIComponent(temp),
+                    owner: 'Amoryan',
+                    repo: 'amoryan.github.io',
+                    oauth: {
+                        client_id: 'fa40d1c2257386108712',
+                        client_secret: '8d01df95c8ac9fd361b960fdba54044fa628d522',
+                    }});
+            gitment.render('gitment-container');
+    </script>
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+
+  <!-- 页面点击小红心 -->
+  <!-- <script type="text/javascript" src="/js/src/click-love.js"></script> -->
+  <!-- 播放音乐 -->
+  <!-- <div style="display: none">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=518088247&auto=1&height=66">
+    </iframe>
+  </div> -->
+</body>
+</html>
