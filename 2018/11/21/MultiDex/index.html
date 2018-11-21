@@ -124,7 +124,7 @@
 <meta property="og:site_name" content="严方雄的空间">
 <meta property="og:description" content="先说下为什么有这篇文章，app刚完成第一版开发(笔者内心是非常崩溃的，接手的项目其实前景还不错，但是第一版被玩坏了，做第一版的产品，UI，测试，开发都走了，然后来接手这个项目，全是一脸懵逼，前期规划的太烂)，然后运营也开始进行培训，刚好白天运营同事拿过来一款手机，Android4.4的版本，然后运行app就闪退，于是开始寻找这个原因就有了这篇文章。 5.0以前　　先说下，在Android5.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-21T14:20:51.252Z">
+<meta property="og:updated_time" content="2018-11-21T15:07:03.047Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MultiDex">
 <meta name="twitter:description" content="先说下为什么有这篇文章，app刚完成第一版开发(笔者内心是非常崩溃的，接手的项目其实前景还不错，但是第一版被玩坏了，做第一版的产品，UI，测试，开发都走了，然后来接手这个项目，全是一脸懵逼，前期规划的太烂)，然后运营也开始进行培训，刚好白天运营同事拿过来一款手机，Android4.4的版本，然后运行app就闪退，于是开始寻找这个原因就有了这篇文章。 5.0以前　　先说下，在Android5.">
@@ -387,7 +387,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-21T22:20:51+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-21T23:07:03+08:00">
                 2018-11-21
               </time>
             
@@ -422,8 +422,8 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
 
       
         <script src="/assets/js/APlayer.min.js"> </script><p>　　先说下为什么有这篇文章，app刚完成第一版开发(笔者内心是非常崩溃的，接手的项目其实前景还不错，但是第一版被玩坏了，做第一版的产品，UI，测试，开发都走了，然后来接手这个项目，全是一脸懵逼，前期规划的太烂)，然后运营也开始进行培训，刚好白天运营同事拿过来一款手机，Android4.4的版本，然后运行app就闪退，于是开始寻找这个原因就有了这篇文章。</p>
-<h1 id="5-0以前"><a href="#5-0以前" class="headerlink" title="5.0以前"></a>5.0以前</h1><p>　　先说下，<strong><font color="#1b8fe6">在Android5.0以前，Android使用的是dalvik虚拟机，而dalvik虚拟机为每一个apk只生成一个classes.dex文件(dex全称Dalvik Executable Format，是java文件编译后的class文件的集合)</font></strong>。那么重点来了，这个dex文件它所保存的classes的方法个数是0~65535，随着业务的不断增加，迟早有一天会超过这个限制，那么该怎么解决方法数突破64k的限制呢？这个时候就出现了multidex这个东西。</p>
-<h1 id="5-0以后"><a href="#5-0以后" class="headerlink" title="5.0以后"></a>5.0以后</h1><p>　　前面说了Android5.0版本之前使用的是Dalvik虚拟机，对每个apk只会生成一个classes.dex文件。<strong>&lt;font color=”#1b8fe6&gt;而Android5.0开始，使用的是ART(Android Runtime)，它本身支持从APK文件加载多个DEX文件，它会在apk安装的时候执行一次预编译，如果发现有多个dex文件，它会将其整合成一个.oat的文件供Android设备执行。</strong>因此如果minSdkVersion高于Android5.0，就不需要multidex库的支持。</p>
+<h1 id="5-0以前"><a href="#5-0以前" class="headerlink" title="5.0以前"></a>5.0以前</h1><p>　　先说下，<strong><font color="#1b8fe6">在Android5.0以前，Android使用的是dalvik虚拟机，而dalvik虚拟机为每一个apk只生成一个classes.dex文件(dex全称Dalvik Executable Format，是java文件编译后的class文件的集合)</font></strong>。那么重点来了，这个dex文件它所保存的classes的方法个数是0~65535，随着业务的不断增加，迟早有一天会超过这个限制，那么该怎么解决方法数64k的限制呢？这个时候就出现了multidex这个东西。</p>
+<h1 id="5-0以后"><a href="#5-0以后" class="headerlink" title="5.0以后"></a>5.0以后</h1><p>　　前面说了Android5.0版本之前使用的是Dalvik虚拟机，对每个apk只会生成一个classes.dex文件。<strong><font color="#1b8fe6">而Android5.0开始，使用的是ART(Android Runtime)，它本身支持从APK加载多个DEX文件，它会在apk安装的时候执行一次预编译，如果发现有多个dex文件，它会将其整合成一个.oat的文件供Android设备执行。</font></strong>因此如果minSdkVersion高于Android5.0，就不需要multidex库的支持。</p>
 <h1 id="配置multidex"><a href="#配置multidex" class="headerlink" title="配置multidex"></a>配置multidex</h1><h2 id="minSdkVersion21或更高"><a href="#minSdkVersion21或更高" class="headerlink" title="minSdkVersion21或更高"></a>minSdkVersion21或更高</h2><p>　　如果minSdkVersion为21或者更高，我们只需要在app的build.gradle文件下配置multiDexEnable为true即可。<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">        ...</span><br><span class="line">        minSdkVersion <span class="number">21</span> </span><br><span class="line">        targetSdkVersion <span class="number">28</span></span><br><span class="line">        multiDexEnabled <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="minSdkVersion低于21"><a href="#minSdkVersion低于21" class="headerlink" title="minSdkVersion低于21"></a>minSdkVersion低于21</h2><p>　　如果minSdkVersion低于21，那么我们需要使用multidex support library。<br>首先，修改build.gradle文件。<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">        ...</span><br><span class="line">        minSdkVersion <span class="number">15</span> </span><br><span class="line">        targetSdkVersion <span class="number">28</span></span><br><span class="line">        multiDexEnabled <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">  compile <span class="string">'com.android.support:multidex:1.0.3'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>　　然后修改Application。</p>
@@ -439,7 +439,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
 </li>
 </ol>
 <p>　　注意一点，不要在MultiDex.install()方法之前通过反射或者JNI执行任何代码，这会导致出现ClassNotFoundException。</p>
-<p>　　然后我们再构建项目，<strong>&lt;font color=”#1b8fe6&gt;它会生成一个primary dex(classes.dex)，和若干个support dex(classes2.dex…)，最后构建系统会将这些dex文件打包到apk中。<br>在运行的时候，multidex APIs会使用特定的类加载器检索所有可用的DEX文件，而不仅仅只是在主classes.dex文件中进行检索。</strong></p>
+<p>　　然后我们再构建项目，<strong><font color="#1b8fe6">它会生成一个primary dex(classes.dex)，和若干个support dex(classes2.dex…)，最后构建系统会将这些dex文件打包到apk中。<br>在运行的时候，multidex APIs会使用特定的类加载器检索所有可用的DEX文件，而不仅仅只是在主classes.dex文件中进行检索。</font></strong></p>
 <h1 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h1><p><a href="https://developer.android.google.cn/studio/build/multidex#about" target="_blank" rel="noopener">官方文档</a><br><a href="https://developer.android.com/studio/build/multidex#about" target="_blank" rel="noopener">官方文档</a></p>
 
       
