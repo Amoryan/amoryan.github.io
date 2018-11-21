@@ -117,20 +117,17 @@
 
 
 
-<meta name="description" content="平常在翻看书籍的时候，是不是经常的使用书签记录当前阅读的地方，方便下次接着阅读。其实，在git中，也有个类似的功能，就是tag。 场景　　在手机app开发中，如果你没有使用热修复等功能，那么每次线上出现严重bug需要fix的时候，你就得check出发布的版本，然后修改bug之后发包上线，这是一个很麻烦的操作。　　每个人">
+<meta name="description" content="先说下为什么有这篇文章，app刚完成第一版开发(笔者内心是非常崩溃的，接手的项目其实前景还不错，但是第一版被玩坏了，做第一版的产品，UI，测试，开发都走了，然后来接手这个项目，全是一脸懵逼，前期规划的太烂)，然后运营也开始进行培训，刚好白天运营同事拿过来一款手机，Android4.4的版本，然后运行app就闪退，于是开">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git tag">
-<meta property="og:url" content="http://yanfangxiong.com/2018/04/27/git-tag/index.html">
+<meta property="og:title" content="MultiDex">
+<meta property="og:url" content="http://yanfangxiong.com/2018/11/21/MultiDex/index.html">
 <meta property="og:site_name" content="严方雄的空间">
-<meta property="og:description" content="平常在翻看书籍的时候，是不是经常的使用书签记录当前阅读的地方，方便下次接着阅读。其实，在git中，也有个类似的功能，就是tag。 场景　　在手机app开发中，如果你没有使用热修复等功能，那么每次线上出现严重bug需要fix的时候，你就得check出发布的版本，然后修改bug之后发包上线，这是一个很麻烦的操作。　　每个人的处理方式不一样，有些人会把每次发版的版本单独做一个分支，这是一个方法。但">
+<meta property="og:description" content="先说下为什么有这篇文章，app刚完成第一版开发(笔者内心是非常崩溃的，接手的项目其实前景还不错，但是第一版被玩坏了，做第一版的产品，UI，测试，开发都走了，然后来接手这个项目，全是一脸懵逼，前期规划的太烂)，然后运营也开始进行培训，刚好白天运营同事拿过来一款手机，Android4.4的版本，然后运行app就闪退，于是开始寻找这个原因就有了这篇文章。 5.0以前　　先说下，在Android5.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yanfangxiong.com/images/2018/05/02/001.png">
-<meta property="og:image" content="http://yanfangxiong.com/images/2018/05/02/002.png">
-<meta property="og:updated_time" content="2018-09-13T00:47:35.000Z">
+<meta property="og:updated_time" content="2018-11-21T14:20:51.252Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git tag">
-<meta name="twitter:description" content="平常在翻看书籍的时候，是不是经常的使用书签记录当前阅读的地方，方便下次接着阅读。其实，在git中，也有个类似的功能，就是tag。 场景　　在手机app开发中，如果你没有使用热修复等功能，那么每次线上出现严重bug需要fix的时候，你就得check出发布的版本，然后修改bug之后发包上线，这是一个很麻烦的操作。　　每个人的处理方式不一样，有些人会把每次发版的版本单独做一个分支，这是一个方法。但">
-<meta name="twitter:image" content="http://yanfangxiong.com/images/2018/05/02/001.png">
+<meta name="twitter:title" content="MultiDex">
+<meta name="twitter:description" content="先说下为什么有这篇文章，app刚完成第一版开发(笔者内心是非常崩溃的，接手的项目其实前景还不错，但是第一版被玩坏了，做第一版的产品，UI，测试，开发都走了，然后来接手这个项目，全是一脸懵逼，前期规划的太烂)，然后运营也开始进行培训，刚好白天运营同事拿过来一款手机，Android4.4的版本，然后运行app就闪退，于是开始寻找这个原因就有了这篇文章。 5.0以前　　先说下，在Android5.">
 
 
 
@@ -160,13 +157,13 @@
 
 
 
-  <link rel="canonical" href="http://yanfangxiong.com/2018/04/27/git-tag/"/>
+  <link rel="canonical" href="http://yanfangxiong.com/2018/11/21/MultiDex/"/>
 
 
 
 
 
-  <title>git tag</title>
+  <title>MultiDex</title>
   
 
 
@@ -345,7 +342,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yanfangxiong.com/2018/04/27/git-tag/">
+    <link itemprop="mainEntityOfPage" href="http://yanfangxiong.com/2018/11/21/MultiDex/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="严方雄">
@@ -362,7 +359,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
 
         
         
-          <h1 class="post-title" itemprop="name headline">git tag</h1>
+          <h1 class="post-title" itemprop="name headline">MultiDex</h1>
         
 
         <div class="post-meta">
@@ -374,8 +371,8 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-27T13:22:09+08:00">
-                2018-04-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-21T21:29:45+08:00">
+                2018-11-21
               </time>
             
 
@@ -390,8 +387,8 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-13T08:47:35+08:00">
-                2018-09-13
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-21T22:20:51+08:00">
+                2018-11-21
               </time>
             
           </span>
@@ -424,18 +421,26 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><p>　　平常在翻看书籍的时候，是不是经常的使用书签记录当前阅读的地方，方便下次接着阅读。其实，在git中，也有个类似的功能，就是tag。</p>
-<h1 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h1><p>　　在手机app开发中，如果你没有使用热修复等功能，那么每次线上出现严重bug需要fix的时候，你就得check出发布的版本，然后修改bug之后发包上线，这是一个很麻烦的操作。<br>　　每个人的处理方式不一样，有些人会把每次发版的版本单独做一个分支，这是一个方法。但是版本迭代如此之快，岂不是会有若干个分支存在，你肯定会说，等后续版本发布之后就可以将前面的分支删除掉了。那么，这个时候，倘若产品需要以前的版本你该如何(我还真就遇到过)？<br>　　实际上我们通过tag来管理每个版本十分方便。</p>
-<h1 id="举个栗子"><a href="#举个栗子" class="headerlink" title="举个栗子"></a>举个栗子</h1><h2 id="第一版开发"><a href="#第一版开发" class="headerlink" title="第一版开发"></a>第一版开发</h2><p>　　下面我们开始第一个版本的开发，提交若干个commit。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> vim a.txt</span><br><span class="line"><span class="meta">$</span> git add .</span><br><span class="line"><span class="meta">$</span> git commit -m "第一次提交"</span><br><span class="line"><span class="meta">$</span> vim b.txt</span><br><span class="line"><span class="meta">$</span> git add .</span><br><span class="line"><span class="meta">$</span> git commit -m "第二次提交"</span><br><span class="line"><span class="meta">$</span> git push origin master</span><br></pre></td></tr></table></figure></p>
-<p>　　这个时候第一个版本迭代完成，我们可以发布上线。在发布上线的时候，我们使用tag记录当前版本最后的commit。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git tag --list</span><br><span class="line"><span class="meta">$</span> git tag -a v1.0.0 -m "版本1.0.0上线"</span><br><span class="line"><span class="meta">$</span> git push origin v1.0.0</span><br></pre></td></tr></table></figure></p>
-<p>　　这个时候git仓库的commit记录如下。<img src="/images/2018/05/02/001.png" alt="001"></p>
-<h2 id="第二版迭代"><a href="#第二版迭代" class="headerlink" title="第二版迭代"></a>第二版迭代</h2><p>　　发布上线之后，我们开始了第二版的迭代，再提交若干个commit。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> vim c.txt</span><br><span class="line"><span class="meta">$</span> git add .</span><br><span class="line"><span class="meta">$</span> git commit -m "第二版开发"</span><br><span class="line"><span class="meta">$</span> vim d.txt</span><br><span class="line"><span class="meta">$</span> git add .</span><br><span class="line"><span class="meta">$</span> git commit -m "第二版开发"</span><br><span class="line"><span class="meta">$</span> vim a.txt</span><br><span class="line"><span class="meta">$</span> git add .</span><br><span class="line"><span class="meta">$</span> git commit -m "第二版开发"</span><br></pre></td></tr></table></figure></p>
-<h2 id="fix-bug"><a href="#fix-bug" class="headerlink" title="fix bug"></a>fix bug</h2><p>　　这个时候，由用户反馈某个功能出现问题，需要修复重新打包上线。这个时候我们需要将tag来出来，然后修复bug。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git checkout v1.0.0 -b bugfix</span><br></pre></td></tr></table></figure></p>
-<p>　　这个时候我们将之前tag所对应的commit单独checkout出来为一个分支。然后在这个分支上进行bugfix。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> vim a.txt</span><br><span class="line"><span class="meta">$</span> git add .</span><br><span class="line"><span class="meta">$</span> git commit -m "bug fix"</span><br></pre></td></tr></table></figure></p>
-<p>　　这个时候bug fix完成，然后我们需要将bug fix之后的代码merge到主分支，以保证主分支的代码也是bug fix的。这里a.txt文件是同时修改了，所以会有冲突，如果你知道如何解决冲突，请看<a href="http://yanfangxiong.com/2018/04/27/git-rebase-merge/">git rebase/merge</a>。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git checkout master</span><br><span class="line"><span class="meta">$</span> git merge bugfix</span><br><span class="line"><span class="meta">$</span> git add .</span><br><span class="line"><span class="meta">$</span> git commit -m "v1.0.0bug fix"</span><br></pre></td></tr></table></figure></p>
-<p>　　这个时候git仓库的commit是这个样子的。<img src="/images/2018/05/02/002.png" alt="002"></p>
-<h2 id="重新打入tag"><a href="#重新打入tag" class="headerlink" title="重新打入tag"></a>重新打入tag</h2><p>　　千万要记住，你bugfix之后要会从新打入tag，防止出现其他的问题。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git checkout bugfix</span><br><span class="line"><span class="meta">$</span> git tag --list</span><br><span class="line"><span class="meta">$</span> git tag -a v1.0.1 -m "v1.0.1 bug fix"</span><br><span class="line"><span class="meta">$</span> git push origin v1.0.1</span><br></pre></td></tr></table></figure></p>
-<p>　　余生没那么长，不要一味的付出去惯那些得寸进尺的人，请忠于自己，活得像最初的模样！</p>
+        <script src="/assets/js/APlayer.min.js"> </script><p>　　先说下为什么有这篇文章，app刚完成第一版开发(笔者内心是非常崩溃的，接手的项目其实前景还不错，但是第一版被玩坏了，做第一版的产品，UI，测试，开发都走了，然后来接手这个项目，全是一脸懵逼，前期规划的太烂)，然后运营也开始进行培训，刚好白天运营同事拿过来一款手机，Android4.4的版本，然后运行app就闪退，于是开始寻找这个原因就有了这篇文章。</p>
+<h1 id="5-0以前"><a href="#5-0以前" class="headerlink" title="5.0以前"></a>5.0以前</h1><p>　　先说下，<strong><font color="#1b8fe6">在Android5.0以前，Android使用的是dalvik虚拟机，而dalvik虚拟机为每一个apk只生成一个classes.dex文件(dex全称Dalvik Executable Format，是java文件编译后的class文件的集合)</font></strong>。那么重点来了，这个dex文件它所保存的classes的方法个数是0~65535，随着业务的不断增加，迟早有一天会超过这个限制，那么该怎么解决方法数突破64k的限制呢？这个时候就出现了multidex这个东西。</p>
+<h1 id="5-0以后"><a href="#5-0以后" class="headerlink" title="5.0以后"></a>5.0以后</h1><p>　　前面说了Android5.0版本之前使用的是Dalvik虚拟机，对每个apk只会生成一个classes.dex文件。<strong>&lt;font color=”#1b8fe6&gt;而Android5.0开始，使用的是ART(Android Runtime)，它本身支持从APK文件加载多个DEX文件，它会在apk安装的时候执行一次预编译，如果发现有多个dex文件，它会将其整合成一个.oat的文件供Android设备执行。</strong>因此如果minSdkVersion高于Android5.0，就不需要multidex库的支持。</p>
+<h1 id="配置multidex"><a href="#配置multidex" class="headerlink" title="配置multidex"></a>配置multidex</h1><h2 id="minSdkVersion21或更高"><a href="#minSdkVersion21或更高" class="headerlink" title="minSdkVersion21或更高"></a>minSdkVersion21或更高</h2><p>　　如果minSdkVersion为21或者更高，我们只需要在app的build.gradle文件下配置multiDexEnable为true即可。<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">        ...</span><br><span class="line">        minSdkVersion <span class="number">21</span> </span><br><span class="line">        targetSdkVersion <span class="number">28</span></span><br><span class="line">        multiDexEnabled <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="minSdkVersion低于21"><a href="#minSdkVersion低于21" class="headerlink" title="minSdkVersion低于21"></a>minSdkVersion低于21</h2><p>　　如果minSdkVersion低于21，那么我们需要使用multidex support library。<br>首先，修改build.gradle文件。<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">        ...</span><br><span class="line">        minSdkVersion <span class="number">15</span> </span><br><span class="line">        targetSdkVersion <span class="number">28</span></span><br><span class="line">        multiDexEnabled <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">  compile <span class="string">'com.android.support:multidex:1.0.3'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　然后修改Application。</p>
+<ol>
+<li><p>如果没有重写Application，我们需要在AndroidManifest.xml文件中指定application标签的name属性为MultiDexApplication；</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">package</span>=<span class="string">"com.example.myapp"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">application</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">"android.support.multidex.MultiDexApplication"</span> &gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">application</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果重写了Application，可以让其继承MultiDexApplication；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyApplication</span> <span class="keyword">extends</span> <span class="title">MultiDexApplication</span> </span>&#123; ... &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果既重写了Application，又继承了其他的Application，那么可以使用multiDex.install(context)的方式。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyApplication</span> <span class="keyword">extends</span> <span class="title">SomeOtherApplication</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">attachBaseContext</span><span class="params">(Context base)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">super</span>.attachBaseContext(base);</span><br><span class="line">     MultiDex.install(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>　　注意一点，不要在MultiDex.install()方法之前通过反射或者JNI执行任何代码，这会导致出现ClassNotFoundException。</p>
+<p>　　然后我们再构建项目，<strong>&lt;font color=”#1b8fe6&gt;它会生成一个primary dex(classes.dex)，和若干个support dex(classes2.dex…)，最后构建系统会将这些dex文件打包到apk中。<br>在运行的时候，multidex APIs会使用特定的类加载器检索所有可用的DEX文件，而不仅仅只是在主classes.dex文件中进行检索。</strong></p>
+<h1 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h1><p><a href="https://developer.android.google.cn/studio/build/multidex#about" target="_blank" rel="noopener">官方文档</a><br><a href="https://developer.android.com/studio/build/multidex#about" target="_blank" rel="noopener">官方文档</a></p>
 
       
     </div>
@@ -453,12 +458,12 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
   <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
   <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
-  <p><span>本文标题:</span><a href="/2018/04/27/git-tag/">git tag</a></p>
+  <p><span>本文标题:</span><a href="/2018/11/21/MultiDex/">MultiDex</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 严方雄 的个人博客">严方雄</a></p>
-  <p><span>发布时间:</span>2018-04-27</p>
-  <p><span>最后更新:</span>2018-09-13</p>
-  <p><span>原始链接:</span><a href="/2018/04/27/git-tag/" title="git tag">http://yanfangxiong.com/2018/04/27/git-tag/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yanfangxiong.com/2018/04/27/git-tag/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2018-11-21</p>
+  <p><span>最后更新:</span>2018-11-21</p>
+  <p><span>原始链接:</span><a href="/2018/11/21/MultiDex/" title="MultiDex">http://yanfangxiong.com/2018/11/21/MultiDex/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yanfangxiong.com/2018/11/21/MultiDex/"  aria-label="复制成功！"></i></span>
   </p>
 </div>
 <script>
@@ -497,8 +502,8 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/27/git-rebase-merge/" rel="next" title="git rebase/merge">
-                <i class="fa fa-chevron-left"></i> git rebase/merge
+              <a href="/2018/11/20/INSTALL-FAILED-CONFLICTING-PROVIDER/" rel="next" title="INSTALL_FAILED_CONFLICTING_PROVIDER">
+                <i class="fa fa-chevron-left"></i> INSTALL_FAILED_CONFLICTING_PROVIDER
               </a>
             
           </div>
@@ -506,10 +511,6 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/27/git-cherry-pick/" rel="prev" title="git cherry-pick">
-                git cherry-pick <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -663,7 +664,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#场景"><span class="nav-number">1.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#举个栗子"><span class="nav-number">2.</span> <span class="nav-text">举个栗子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一版开发"><span class="nav-number">2.1.</span> <span class="nav-text">第一版开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二版迭代"><span class="nav-number">2.2.</span> <span class="nav-text">第二版迭代</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fix-bug"><span class="nav-number">2.3.</span> <span class="nav-text">fix bug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重新打入tag"><span class="nav-number">2.4.</span> <span class="nav-text">重新打入tag</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#5-0以前"><span class="nav-number">1.</span> <span class="nav-text">5.0以前</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-0以后"><span class="nav-number">2.</span> <span class="nav-text">5.0以后</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置multidex"><span class="nav-number">3.</span> <span class="nav-text">配置multidex</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#minSdkVersion21或更高"><span class="nav-number">3.1.</span> <span class="nav-text">minSdkVersion21或更高</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#minSdkVersion低于21"><span class="nav-number">3.2.</span> <span class="nav-text">minSdkVersion低于21</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#官方文档"><span class="nav-number">4.</span> <span class="nav-text">官方文档</span></a></li></ol></div>
             
 
           </div>
