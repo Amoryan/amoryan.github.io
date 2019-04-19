@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[仿微信通讯录右侧导航控件]]></title>
-    <url>%2F2018%2F12%2F06%2F%E4%BB%BF%E5%BE%AE%E4%BF%A1%E9%80%9A%E8%AE%AF%E5%BD%95%E5%8F%B3%E4%BE%A7%E5%AF%BC%E8%88%AA%E6%8E%A7%E4%BB%B6%2F</url>
-    <content type="text"><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[jcenter初体验]]></title>
-    <url>%2F2018%2F12%2F06%2Fjcenter%E5%88%9D%E4%BD%93%E9%AA%8C%2F</url>
-    <content type="text"><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[验证码输入框]]></title>
     <url>%2F2018%2F12%2F03%2F%E9%AA%8C%E8%AF%81%E7%A0%81%E8%BE%93%E5%85%A5%E6%A1%86%2F</url>
     <content type="text"><![CDATA[前言 最近项目中有一个类似于付款的时候需要输入密码一样的控件，不过我们是输入验证码。在google上搜索了很多类似的博客，发现大部分都是通过放置多个TextView，然后放一个隐藏的EditText获取焦点的形式实现的，想着这样还不如自己撸一个控件，于是就有了这篇文章。 如何使用 通过gradle引入控件就可以使用了。1implementation 'com.fxyan.widget:validationCodeView:1.0.2' 项目地址 思考 在写之前，我们先思考一下主要需要解决的问题有哪些？ 如何让View点击时获取到焦点并弹起数字软键盘； 如何监听软键盘上的输入以及删除； 如何处理 对于第一个问题，首先，我们得让View可以通过点击获取到焦点。12setFocusable(true);setFocusableInTouchMode(true); 然后，我们在onTouchEvent的ACTION_DOWN事件处理中，获取焦点，并弹起输入法软键盘。123456789@Overridepublic boolean onTouchEvent(MotionEvent event) &#123; if (event.getAction() == MotionEvent.ACTION_DOWN) &#123; requestFocus(); imm.showSoftInput(this, InputMethodManager.SHOW_FORCED); return true; &#125; return super.onTouchEvent(event);&#125; 最后，我们希望弹起的软键盘的输入类型是数字的。12345@Overridepublic InputConnection onCreateInputConnection(EditorInfo outAttrs) &#123; outAttrs.inputType = InputType.TYPE_CLASS_NUMBER; return super.onCreateInputConnection(outAttrs);&#125; 对于第二个问题，我们需要在View中设置KeyListener，然后处理数字输入和Del。12345678910111213141516171819202122232425262728293031private class InputKeyListener implements View.OnKeyListener &#123; @Override public boolean onKey(View v, int keyCode, KeyEvent event) &#123; if (event.getAction() == KeyEvent.ACTION_DOWN) &#123; if (keyCode &gt;= KeyEvent.KEYCODE_0 &amp;&amp; keyCode &lt;= KeyEvent.KEYCODE_9) &#123; if (content.size() &lt; itemCount) &#123; content.put(content.size(), String.valueOf(keyCode - 7)); invalidate(); if (content.size() == itemCount) &#123; if (onInputCompletedListener != null) &#123; StringBuilder builder = new StringBuilder(); for (int i = 0; i &lt; content.size(); i++) &#123; builder.append(content.get(i)); &#125; onInputCompletedListener.onInputCompleted(builder.toString()); &#125; imm.hideSoftInputFromWindow(getWindowToken(), 0); &#125; return true; &#125; &#125; else if (keyCode == KeyEvent.KEYCODE_DEL) &#123; if (content.size() &gt; 0) &#123; content.remove(content.size() - 1); invalidate(); &#125; return true; &#125; &#125; return false; &#125;&#125; 属性说明 需要注意的大致上就这两个问题，其他的东西都是结合Canvas API去绘制相应的图形和文本了。 vcvItemCount验证码位数 vcvItemWidth单个验证码框宽度 vcvItemHeight单个验证码框高度 vcvItemDistance两个验证码框之间的距离 vcvBorderWidth验证码框的宽度 vcvBorderStyle验证码框的样式(矩形，线) vcvBorderRadius框为矩形时候的圆角 vcvContentStatus验证码的显示状态(明文，密码) vcvContentSize验证码为明文时的文本大小 vcvContentRadiusWhenIsHidden验证码为密文时候的圆半径 vcvCompletedBorderColor已填写内容的边框颜色 vcvCompletedContentColor已填写的文本颜色 vcvUnCompleteBorderColor未填写内容的边框颜色 vcvIsAheadDraw是否提前渲染一个框 效果图 效果图如下]]></content>
