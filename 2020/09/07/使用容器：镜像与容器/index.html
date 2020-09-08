@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Dancing Script:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="严方雄的个人博客" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="镜像与容器镜像和容器作为 Docker 里最基础的概念，我们很有必要了解 Docker 对它们的很多定义以及其他与它们有关的知识。在这一小节里，我们就专门针对镜像与容器两个概念展开，细致的梳理与这两者有关的概念和定义。 Docker 镜像如果进行形象的表述，我们可以将 Docker 镜像理解为包含应用程序以及其相关依赖">
+<meta property="og:type" content="article">
+<meta property="og:title" content="严方雄的空间">
+<meta property="og:url" content="http://yanfangxiong.com/2020/09/07/使用容器：镜像与容器/index.html">
+<meta property="og:site_name" content="严方雄的空间">
+<meta property="og:description" content="镜像与容器镜像和容器作为 Docker 里最基础的概念，我们很有必要了解 Docker 对它们的很多定义以及其他与它们有关的知识。在这一小节里，我们就专门针对镜像与容器两个概念展开，细致的梳理与这两者有关的概念和定义。 Docker 镜像如果进行形象的表述，我们可以将 Docker 镜像理解为包含应用程序以及其相关依赖的一个基础文件系统，在 Docker 容器启动的过程中，它以只读的方式被用于创">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/9/13/165d0692fe7a478b?w=1434&h=554&f=png&s=65696">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/9/12/165cc15252cc5e51?w=1151&h=418&f=png&s=25855">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/9/17/165e53743e730432?w=1829&h=932&f=png&s=215394">
+<meta property="og:updated_time" content="2020-09-07T10:03:55.710Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="严方雄的空间">
+<meta name="twitter:description" content="镜像与容器镜像和容器作为 Docker 里最基础的概念，我们很有必要了解 Docker 对它们的很多定义以及其他与它们有关的知识。在这一小节里，我们就专门针对镜像与容器两个概念展开，细致的梳理与这两者有关的概念和定义。 Docker 镜像如果进行形象的表述，我们可以将 Docker 镜像理解为包含应用程序以及其相关依赖的一个基础文件系统，在 Docker 容器启动的过程中，它以只读的方式被用于创">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/9/13/165d0692fe7a478b?w=1434&h=554&f=png&s=65696">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: false,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"expandIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yanfangxiong.com/2020/09/07/使用容器：镜像与容器/"/>
+
+
+
+
+
+  <title></title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    left: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    document.getElementById("live2dcanvas").style.width = '75px';
+    document.getElementById("live2dcanvas").style.height = '150px';
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/koharu.model.json", 0.5);});
+})();
+</script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">严方雄的空间</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            成长
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-comments">
+          <a href="/comments/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comment"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yanfangxiong.com/2020/09/07/使用容器：镜像与容器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="严方雄">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="严方雄的空间">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-07T18:03:55+08:00">
+                2020-09-07
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-09-07T18:03:55+08:00">
+                2020-09-07
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="镜像与容器"><a href="#镜像与容器" class="headerlink" title="镜像与容器"></a>镜像与容器</h1><p>镜像和容器作为 Docker 里最基础的概念，我们很有必要了解 Docker 对它们的很多定义以及其他与它们有关的知识。在这一小节里，我们就专门针对镜像与容器两个概念展开，细致的梳理与这两者有关的概念和定义。</p>
+<h2 id="Docker-镜像"><a href="#Docker-镜像" class="headerlink" title="Docker 镜像"></a>Docker 镜像</h2><p>如果进行形象的表述，我们可以将 Docker 镜像理解为包含应用程序以及其相关依赖的一个基础文件系统，在 Docker 容器启动的过程中，它以只读的方式被用于创建容器的运行环境。</p>
+<p>从另一个角度看，在之前的小节里我们讲到了，Docker 镜像其实是由基于 UnionFS 文件系统的一组镜像层依次挂载而得，而每个镜像层包含的其实是对上一镜像层的修改，这些修改其实是发生在容器运行的过程中的。所以，我们也可以反过来理解，镜像是对容器运行环境进行持久化存储的结果。</p>
+<h3 id="深入镜像实现"><a href="#深入镜像实现" class="headerlink" title="深入镜像实现"></a>深入镜像实现</h3><p>与其他虚拟机的镜像管理不同，Docker 将镜像管理纳入到了自身设计之中，也就是说，所有的 Docker 镜像都是按照 Docker 所设定的逻辑打包的，也是受到 Docker Engine 所控制的。</p>
+<p>这么说起来也许还不够具体，让我们来做一个比较。我们常见的虚拟机镜像，通常是由热心的提供者以他们自己熟悉的方式打包成镜像文件，被我们从网上下载或是其他方式获得后，恢复到虚拟机中的文件系统里的。而 Docker 的镜像我们必须通过 Docker 来打包，也必须通过 Docker 下载或导入后使用，不能单独直接恢复成容器中的文件系统。</p>
+<p>虽然这么做失去了很多灵活性，但固定的格式意味着我们可以很轻松的在不同的服务器间传递 Docker 镜像，配合 Docker 自身对镜像的管理功能，让我们在不同的机器中传递和共享 Docker 变得非常方便。这也是 Docker 能够提升我们工作效率的一处体现。</p>
+<p>对于每一个记录文件系统修改的镜像层来说，Docker 都会根据它们的信息生成了一个 Hash 码，这是一个 64 长度的字符串，足以保证全球唯一性。这种编码的形式在 Docker 很多地方都有体现，之后我们会经常见到。</p>
+<p>由于镜像层都有唯一的编码，我们就能够区分不同的镜像层并能保证它们的内容与编码是一致的，这带来了另一项好处，就是允许我们在镜像之间共享镜像层。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/9/13/165d0692fe7a478b?w=1434&amp;h=554&amp;f=png&amp;s=65696" alt=""></p>
+<p>举一个实际的例子，由 Docker 官方提供的两个镜像 elasticsearch 镜像和 jenkins 镜像都是在 openjdk 镜像之上修改而得，那么在我们实际使用的时候，这两个镜像是可以共用 openjdk 镜像内部的镜像层的。</p>
+<p>这带来的一项好处就是让镜像可以共用一些存储空间，达到 1 + 1 &lt; 2 的效果，为我们在同一台机器里存放众多镜像提供了可能。</p>
+<p>事实上，这个优势是更为明显的。一个虚拟机镜像的占用空间往往用 GB 来衡量，在同一台物理机上存放几个就已经是了不起的事情了。而 Docker 管理之下的镜像，占用空间是以 MB 为单位进行衡量的，加之镜像之间还能够共享部分的镜像层，也就是共享存储空间，所以我们在常见的硬盘里放下几十、数百个镜像也不是什么难事。</p>
+<p>在之后的小节里，我们会讲到如何导出镜像，在导出镜像的时候，我们可以更清晰的看到镜像层的体现，这个留至后面我们来讲解。</p>
+<h3 id="查看镜像"><a href="#查看镜像" class="headerlink" title="查看镜像"></a>查看镜像</h3><p>镜像是由 Docker 进行管理的，所以它们的存储位置和存储方式等我们并不需要过多的关心，我们只需要利用 Docker 所提供的一些接口或命令对它们进行控制即可。</p>
+<p>如果要查看当前连接的 docker daemon 中存放和管理了哪些镜像，我们可以使用 <code>docker images</code> 这个命令 ( Linux、macOS 还是 Windows 上都是一致的 )。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">php                 7-fpm               f214b5c48a25        9 days ago          368MB</span><br><span class="line">redis               3.2                 2fef532eadb3        11 days ago         76MB</span><br><span class="line">redis               4.0                 e1a73233e3be        11 days ago         83.4MB</span><br><span class="line">cogset/cron         latest              c01d5ac6fc8a        15 months ago       125MB</span><br></pre></td></tr></table></figure>
+<p>在 <code>docker images</code> 命令的结果中，我们可以看到<strong>镜像的 ID ( IMAGE ID)</strong>、<strong>构建时间 ( CREATED )</strong>、<strong>占用空间 ( SIZE )</strong> 等数据。</p>
+<p>这里需要注意一点，我们发现在结果中镜像 ID 的长度只有 12 个字符，这和我们之前说的 64 个字符貌似不一致。其实为了避免屏幕的空间都被这些看似“乱码”的镜像 ID 所挤占，所以 Docker 只显示了镜像 ID 的前 12 个字符，大部分情况下，它们已经能够让我们在单一主机中识别出不同的镜像了。</p>
+<h3 id="镜像命名"><a href="#镜像命名" class="headerlink" title="镜像命名"></a>镜像命名</h3><p>镜像层的 ID 既可以识别每个镜像层，也可以用来直接识别镜像 ( 因为根据最上层镜像能够找出所有依赖的下层镜像，所以最上层进行的镜像层 ID 就能表示镜像的 ID )，但是使用这种无意义的超长哈希码显然是违背人性的，所以这里我们还要介绍镜像的命名，通过镜像名我们能够更容易的识别镜像。</p>
+<p>在 <code>docker images</code> 命令打印出的内容中，我们还能看到两个与镜像命名有关的数据：<strong>REPOSITORY</strong> 和 <strong>TAG</strong>，这两者其实就组成了 docker 对镜像的命名规则。</p>
+<p>来看这个例子：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/9/12/165cc15252cc5e51?w=1151&amp;h=418&amp;f=png&amp;s=25855" alt=""></p>
+<p>准确的来说，镜像的命名我们可以分成三个部分：<strong>username</strong>、<strong>repository</strong> 和 <strong>tag</strong>。</p>
+<ul>
+<li><strong>username</strong>： 主要用于识别上传镜像的不同用户，与 GitHub 中的用户空间类似。</li>
+<li><strong>repository</strong>：主要用于识别进行的内容，形成对镜像的表意描述。</li>
+<li><strong>tag</strong>：主要用户表示镜像的版本，方便区分进行内容的不同细节</li>
+</ul>
+<p>对于 username 来说，在上面我们展示的 <code>docker images</code> 结果中，有的镜像有 username 这个部分，而有的镜像是没有的。没有 username 这个部分的镜像，表示镜像是由 Docker 官方所维护和提供的，所以就不单独标记用户了。</p>
+<p>如果大家再多接触一些镜像，会发现 Docker 中镜像的 repository 部分通常采用的是软件名。这时候大家一定要注意了，镜像还是镜像，镜像名还是镜像名，其与软件命名其实是独立的。</p>
+<p>之所以镜像通常直接采用软件名，这还要回归到 Docker 对容器的轻量化设计中。Docker 对容器的设计和定义是微型容器而不是庞大臃肿的完整环境 ( 这当然归功于容器技术在实现虚拟化过程中性能几乎无损 )，这就使得我们通常会只在一个容器中运行一个应用程序，这样的好处自然是能够大幅降低程序之间相互的影响，也有利于利用容器技术控制每个程序所使用的资源。</p>
+<p>回过头来，既然我们推崇这种一个容器运行一个程序的做法，那么自然容器的镜像也会仅包含程序以及与它运行有关的一些依赖包，所以我们使用程序的名字直接套用在镜像之上，既祛除了镜像取名的麻烦，又能直接表达镜像中的内容。</p>
+<p>在镜像命名中，还有一个非常重要的部分，也就是镜像的标签 ( tag )。镜像的标签是对同一种镜像进行更细层次区分的方法，也是最终识别镜像的关键部分。</p>
+<p>通常来说，镜像的标签主要是为了区分同类镜像不同构建过程所产生的不同结果的。由于时间、空间等因素的不同，Docker 每次构建镜像的内容也就有所不同，具体体现就是镜像层以及它们的 ID 都会产生变化。而标签就是在镜像命名这个层面上区分这些镜像的方法。</p>
+<p>与镜像的 repository 类似，镜像 tag 的命名方法也通常参考镜像所关联的应用程序。更确切的来说，我们通常会采用镜像内应用程序的版本号以及一些环境、构建方式等信息来作为镜像的 tag。</p>
+<p>例如，我们之前示例的结果中就分别有包含 Redis 3.2 版本和 4.0 版本的两个镜像：<code>redis:3.2</code> 和 <code>redis:4.0</code>。</p>
+<p>除了单纯使用应用程序版本来作为镜像的标签外，有时候我们也会在其中包含一些构建方式的区别。例如 <code>php:7.2-cli</code> 和 <code>php:7.2-fpm</code> 两个镜像分别表示只包含控制台命令的 PHP 镜像以及包含 PHP-FPM 功能的 PHP 镜像，而他们对应 PHP 版本都是 7.2。</p>
+<p>通过组合应用程序和它的版本号来命名镜像，大大方便了我们在 Docker 区别和使用镜像的门槛，与其说我们在使用 Docker 进行来启动容器，这个过程倒更像我们在运行指定版本的应用程序。</p>
+<p>另外，Docker 中还有一个约定，当我们在操作中没有具体给出镜像的 tag 时，Docker 会采用 <strong>latest</strong> 作为缺省 tag。这也就带来了一个共识，也就是绝大多数镜像提供者在提供镜像时，会在 latest 对应的镜像中包含软件最新的版本。这带来了一项小便利，就是我们在不需要了解应用程序迭代周期的情况下，可以利用 latest 镜像保持软件最新版本的使用。</p>
+<h2 id="容器的生命周期"><a href="#容器的生命周期" class="headerlink" title="容器的生命周期"></a>容器的生命周期</h2><p>要熟悉 Docker 容器，还有一个重要的概念，也就是容器的生命周期。</p>
+<p>由于 Docker 揽下了大部分对容器管理的活，只提供给我们非常简单的操作接口，这就意味着 Docker 里对容器的一些运行细节会被更加严格的定义，这其中就包括了容器的生命周期。</p>
+<p>这里有一张容器运行的状态流转图：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/9/17/165e53743e730432?w=1829&amp;h=932&amp;f=png&amp;s=215394" alt=""></p>
+<p>图中展示了几种常见对 Docker 容器的操作命令，以及执行它们之后容器运行状态的变化。这里我们撇开命令，着重看看容器的几个核心状态，也就是图中色块表示的：<strong>Created</strong>、<strong>Running</strong>、<strong>Paused</strong>、<strong>Stopped</strong>、<strong>Deleted</strong>。</p>
+<p>在这几种状态中，Running 是最为关键的状态，在这种状态中的容器，就是真正正在运行的容器了。</p>
+<h3 id="主进程"><a href="#主进程" class="headerlink" title="主进程"></a>主进程</h3><p>如果单纯去看容器的生命周期会有一些难理解的地方，而 Docker 中对容器生命周期的定义其实并不是独立存在的。</p>
+<p>在 Docker 的设计中，容器的生命周期其实与容器中 PID 为 1 这个进程有着密切的关系。更确切的说，它们其实是共患难，同生死的兄弟。容器的启动，本质上可以理解为这个进程的启动，而容器的停止也就意味着这个进程的停止，反过来理解亦然。</p>
+<p>当我们启动容器时，Docker 其实会按照镜像中的定义，启动对应的程序，并将这个程序的主进程作为容器的主进程 ( 也就是 PID 为 1 的进程 )。而当我们控制容器停止时，Docker 会向主进程发送结束信号，通知程序退出。</p>
+<p>而当容器中的主进程主动关闭时 ( 正常结束或出错停止 )，也会让容器随之停止。</p>
+<p>通过之前提到的几个方面来看，Docker 不仅是从设计上推崇轻量化的容器，也是许多机制上是以此为原则去实现的。所以，我们最佳的 Docker 实践方法是遵循着它的逻辑，逐渐习惯这种容器即应用，应用即容器的虚拟化方式。虽然在 Docker 中我们也能够实现在同一个容器中运行多个不同类型的程序，但这么做的话，Docker 就无法跟踪不同应用的生命周期，有可能造成应用的非正常关闭，进而影响系统、数据的稳定性。</p>
+<h2 id="写时复制机制"><a href="#写时复制机制" class="headerlink" title="写时复制机制"></a>写时复制机制</h2><p>写时复制 ( Copy on Write ) 这个词对于开发者来说应该并不陌生，在很多编程语言里，都隐藏了写时复制的实现。在编程里，写时复制常常用于对象或数组的拷贝中，当我们拷贝对象或数组时，复制的过程并不是马上发生在内存中，而只是先让两个变量同时指向同一个内存空间，并进行一些标记，当我们要对对象或数组进行修改时，才真正进行内存的拷贝。</p>
+<p>Docker 的写时复制与编程中的相类似，也就是在通过镜像运行容器时，并不是马上就把镜像里的所有内容拷贝到容器所运行的沙盒文件系统中，而是利用 UnionFS 将镜像以只读的方式挂载到沙盒文件系统中。只有在容器中发生对文件的修改时，修改才会体现到沙盒环境上。</p>
+<p>也就是说，容器在创建和启动的过程中，不需要进行任何的文件系统复制操作，也不需要为容器单独开辟大量的硬盘空间，与其他虚拟化方式对这个过程的操作进行对比，Docker 启动的速度可见一斑。</p>
+<p>采用写时复制机制来设计的 Docker，既保证了镜像在生成为容器时，以及容器在运行过程中，不会对自身造成修改。又借助剔除常见虚拟化在初始化时需要从镜像中拷贝整个文件系统的过程，大幅提高了容器的创建和启动速度。可以说，Docker 容器能够实现秒级启动速度，写时复制机制在其中发挥了举足轻重的作用。</p>
+<h2 id="留言互动"><a href="#留言互动" class="headerlink" title="留言互动"></a>留言互动</h2><p>在这一小节中，我们对 Docker 的镜像与容器相关的概念进行了进一步的梳理，通过掌握这些词汇，能够更好的帮助大家理解之后小节中的内容。这里给大家留一道思考题：</p>
+<blockquote>
+<p>Docker 对镜像与容器的设计有什么独特之处，它们又给 Docker 带来了怎样的优势？</p>
+</blockquote>
+<p>欢迎大家通过留言的方式说出你的看法。我会选出有代表性的优质留言，推荐给大家。</p>
+<p>同时，如果你对镜像与容器相关的概念、知识还有不理解的地方，可以加入到这本小册的官方微信群中，参与对相关问题的讨论。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+        <div>
+            
+
+        </div>
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/09/07/使用容器：运行和管理容器/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/09/07/基础概念：了解 Docker 的核心组成/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+        <div id="gitment-container"></div>
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpeg"
+                alt="严方雄" />
+            
+              <p class="site-author-name" itemprop="name">严方雄</p>
+              <p class="site-description motion-element" itemprop="description">余生没那么长，不要一味的付出去惯那些得寸进尺的人，请忠于自己，活的像最初的模样~</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/amoryan" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                推荐博客
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.whezh.com/" title="Hezhou's personal blog" target="_blank">Hezhou's personal blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#镜像与容器"><span class="nav-number">1.</span> <span class="nav-text">镜像与容器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-镜像"><span class="nav-number">1.1.</span> <span class="nav-text">Docker 镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#深入镜像实现"><span class="nav-number">1.1.1.</span> <span class="nav-text">深入镜像实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看镜像"><span class="nav-number">1.1.2.</span> <span class="nav-text">查看镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#镜像命名"><span class="nav-number">1.1.3.</span> <span class="nav-text">镜像命名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#容器的生命周期"><span class="nav-number">1.2.</span> <span class="nav-text">容器的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主进程"><span class="nav-number">1.2.1.</span> <span class="nav-text">主进程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写时复制机制"><span class="nav-number">1.3.</span> <span class="nav-text">写时复制机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#留言互动"><span class="nav-number">1.4.</span> <span class="nav-text">留言互动</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">严方雄</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script type="text/javascript">
+            var temp = window.location.pathname;
+            var gitment = new Gitment({
+                    id: decodeURIComponent(temp),
+                    owner: 'Amoryan',
+                    repo: 'amoryan.github.io',
+                    oauth: {
+                        client_id: 'fa40d1c2257386108712',
+                        client_secret: '8d01df95c8ac9fd361b960fdba54044fa628d522',
+                    }});
+            gitment.render('gitment-container');
+    </script>
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+
+  <!-- 页面点击小红心 -->
+  <!-- <script type="text/javascript" src="/js/src/click-love.js"></script> -->
+  <!-- 播放音乐 -->
+  <!-- <div style="display: none">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=518088247&auto=1&height=66">
+    </iframe>
+  </div> -->
+</body>
+</html>
